@@ -1,8 +1,12 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{fancyhdr}
 \usepackage[style=apa]{biblatex}
+\usepackage{csquotes}
 \usepackage{marginnote}
 \usepackage{amsmath}
+\usepackage{xparse,physics}
+\usepackage{subcaption}
+\usepackage{tikz}
 \usepackage[hidelinks]{hyperref}
 
 \fancypagestyle{main}{
@@ -20,11 +24,15 @@
 \addbibresource{main.bib}
 \DefineBibliographyStrings{english}{bibliography={References}}
 
+\MakeOuterQuote{"}
+
 \reversemarginpar
+
+\usetikzlibrary{arrows.meta}
+\colorlet{ylx}{yellow!50!black}
+\colorlet{yly}{yellow!50!black!50}
 
 \newcommand{\dq}[2]{``#1" \parencite[#2]{bib:Thomas}.}
 \newcommand{\e}[1][]{\text{e}^{#1}}
-\newcommand{\sech}{\text{sech}\,}
-\newcommand{\csch}{\text{csch}\,}
 
 \usepackage{subfiles}

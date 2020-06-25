@@ -55,5 +55,103 @@
 
 
 
+\section{Derivatives and Integrals}
+\begin{itemize}
+    \item \marginnote{6/25:}Derivatives of the hyperbolic functions:
+    \begin{align*}
+        \dv{x}(\sinh u) &= \cosh u\, \dv{u}{x}&
+        \dv{x}(\cosh u) &= \sinh u\, \dv{u}{x}\\
+        \dv{x}(\tanh u) &= \sech^2 u\, \dv{u}{x}&
+        \dv{x}(\sech u) &= -\sech u\tanh u\, \dv{u}{x}\\
+        \dv{x}(\coth u) &= -\csch^2 u\, \dv{u}{x}&
+        \dv{x}(\csch u) &= -\csch u\coth u\, \dv{u}{x}
+    \end{align*}
+    \begin{itemize}
+        \item Note that these are almost exact analogs of the formulas for the corresponding circular functions, the exception being that the negative signs are not associated with the cofunctions but with the latter three.
+    \end{itemize}
+    \item Lots of intro to the hanging cable problem.
+\end{itemize}
+
+
+
+\section{Geometric Meaning of the Hyperbolic Radian}
+\begin{itemize}
+    \begin{figure}[h!]
+        \centering
+        \begin{subfigure}[b]{0.48\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=2]
+                \footnotesize
+                \fill [yly] (0,0) -- (1,0) node[above right=-1mm,yshift=2mm,black]{$A(1,0)$} arc[start angle=0,end angle=60,radius=1cm] node[above right=-1mm,black]{$P(x,y)$} -- cycle;
+    
+                \draw [-stealth] (-1.5,0) -- (1.5,0) node[right]{$x$};
+                \draw [-stealth] (0,-1.5) -- (0,1.5) node[above]{$y$};
+                \draw circle (1cm);
+    
+                \node [below left] {$O$};
+                \node at (0.5,0.3) {$\theta$};
+            \end{tikzpicture}
+            \caption{Circular radians.}
+            \label{fig:hyperbolicGeometrica}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.48\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=2]
+                \footnotesize
+                \fill [yly] (0,0) -- (1.8,0) -- (1.8,1.5) -- cycle;
+                \fill [yly!50!gray] plot [domain=0:1.19] ({0.5*(e^\x+e^(-\x))},{0.5*(e^\x-e^(-\x))}) -- (0,0);
+    
+                \draw [very thin] (2.4,1.5) -- (1.8,1.5) -- (1.8,-0.8);
+                \draw [thin,<->] (0,-0.6) -- node[near start,xshift=2mm,fill=white,inner sep=1.5pt]{$x=\cosh u$} (1.8,-0.6);
+                \draw [thin,<->] (2.2,1.5) -- node[fill=white,inner sep=1.5pt]{$y=\sinh u$} (2.2,0);
+    
+                \draw [-stealth] (-0.4,0) -- (2.5,0) node[right]{$x$};
+                \draw [-stealth] (0,-1.5) -- (0,1.5) node[above]{$y$};
+
+                \draw [ylx,thick] plot [domain=-1:1.3,smooth] ({0.5*(e^\x+e^(-\x))},{0.5*(e^\x-e^(-\x))});
+                \node [below left] {$O$};
+                \node [below left] at (1,0) {$A(1,0)$};
+                \node [above left] at (1.8,1.5) {$P(x,y)$};
+                \node [below right] at (1.8,0) {$Q$};
+                \node [above right] at (1.54,-1.18) {$x^2-y^2=1$};
+            \end{tikzpicture}
+            \caption{Hyperbolic radians.}
+            \label{fig:hyperbolicGeometricb}
+        \end{subfigure}
+        \caption{Geometric meaning of radians.}
+        \label{fig:hyperbolicGeometric}
+    \end{figure}
+    \item For circular sine and cosine, the \dq{meaning of the variable $\theta$ in the equations $x=\cos\theta$, $y=\sin\theta$ as they relatee to the point $P(x,y)$ on the unit circle $x^2+y^2=1$ [is] the radian measure of the angle $AOP$ in [Figure \ref{fig:hyperbolicGeometrica}], that is $\theta = \frac{\text{arc }AP}{\text{radius }OA}$}{271}
+    \begin{itemize}
+        \item However, since $A=\frac{1}{2}r^2\theta=\frac{\theta}{2}$ for $r=1$, $\theta$ also equals twice the area of the sector $AOP$.
+    \end{itemize}
+    \item To understand the meaning of the variable $u$, calculate the area of the sector $AOP$ in Figure \ref{fig:hyperbolicGeometricb} as an analog to circular area.
+    \begingroup
+    \allowdisplaybreaks
+    \begin{align*}
+        A_{AOP} &= A_{OQP}-A_{AQP}\\
+        &= \frac{1}{2}bh - \int_A^P y\dd{x}\\
+        \intertext{\centering$
+            \begin{aligned}
+                y &= \sinh u,&
+                x = \cosh u \Rightarrow \dv{x}{u} = \sinh u \Rightarrow \dd x &= \sinh u\dd{u}
+            \end{aligned}
+        $}
+        &= \frac{1}{2}xy - \int_A^P \sinh^2u\dd{u}\\
+        &= \frac{1}{2}\cosh u\sinh u - \frac{1}{2}\int_A^P (\cosh 2u-1)\dd{u}\\
+        &= \frac{1}{2}\sinh u\cosh u - \frac{1}{2}\left[ \frac{1}{2}\sinh 2u-u \right]_{A(u=0)}^{P(u=u)}\\
+        &= \frac{1}{2}\sinh u\cosh u - \left( \frac{1}{4}\sinh 2u-\frac{1}{2}u \right)\\
+        &= \frac{1}{2}\sinh u\cosh u - \left( \frac{1}{2}\sinh u\cosh u-\frac{1}{2}u \right)\\
+        &= \frac{1}{2}u
+    \end{align*}
+    \endgroup
+    \begin{itemize}
+        \item This implies that $u$ also equals twice the area of the sector $AOP$ (the hyperbolic sector, that is).
+        \item This means, for example, that \dq{$\cosh 2$ and $\sinh 2$ may be interpreted as the coordinates of $P$ when the area of the sector $AOP$ is just equal to the area of a square having $OA$ as side}{272}
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
