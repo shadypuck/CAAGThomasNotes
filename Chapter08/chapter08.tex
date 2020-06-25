@@ -10,7 +10,48 @@
 
 
 \chapter{Hyperbolic Functions}
-Notes.
+\section{Introduction}
+\begin{itemize}
+    \item \marginnote{6/24:}\textbf{Hyperbolic functions}: Certain combinations of $\e[x]$ and $\e[-x]$ that are used to solve certain engineering problems (the hanging cable) and are useful in connection with differential equations.
+\end{itemize}
+
+
+
+\section{Definitions and Identities}
+\begin{itemize}
+    \item Let
+    \begin{align*}
+        \cosh u &= \frac{1}{2}(\e[u]+\e[-u])&
+        \sinh u &= \frac{1}{2}(\e[u]-\e[-u])
+    \end{align*}
+    \begin{itemize}
+        \item These combinations of exponentials occur sufficiently frequently that we give a special name to them.
+        \item Although the names may seem random, $\sinh u$ and $\cosh u$ do share many analogous properties with $\sin u$ and $\cos u$.
+        \item Pronounced to rhyme with "gosh you" and as "cinch you," respectively.
+    \end{itemize}
+    \item Like $x=\cos u$ and $y=\sin u$ are associated with the point $(x,y)$ on the unit circle $x^2+y^2=1$, $x=\cosh u$ and $y=\sinh u$ are associated with the point $(x,y)$ on the unit hyperbola $x^2-y^2=1$.
+    \begin{itemize}
+        \item Note that $x=\cosh u$ and $y=\sinh u$ are associated with the \emph{right-hand} branch of the unit hyperbola.
+        \item Also note that sine and cosine are sometimes referred to as the \textbf{circular functions}.
+    \end{itemize}
+    \item Analogous to sine and cosine, we have the identity
+    \begin{equation*}
+        \cosh^2u-\sinh^2u=1
+    \end{equation*}
+    \item We define the remaining hyperbolic trig functions as would be expected.
+    \begin{align*}
+        \tanh u &= \frac{\sinh u}{\cosh u} = \frac{\e[u]-\e[-u]}{\e[u]+\e[-u]}&
+        \sech u &= \frac{1}{\cosh u} = \frac{2}{\e[u]+\e[-u]}\\
+        \coth u &= \frac{\cosh u}{\sinh u} = \frac{\e[u]+\e[-u]}{\e[u]-\e[-u]}&
+        \csch u &= \frac{1}{\sinh u} = \frac{2}{\e[u]-\e[-u]}
+    \end{align*}
+    \item Since $\cosh u+\sinh u=\e[u]$, we can replace any combination of exponentials with hyperbolic sines and cosines and vice versa.
+    \item Note that the hyperbolic functions are \emph{not} periodic.
+    \begin{itemize}
+        \item This does mean, though, that they have more easily defined properties at infinity.
+    \end{itemize}
+    \item \dq{Practically all the circular trigonometric identities have hyperbolic analogies}{267}
+\end{itemize}
 
 
 

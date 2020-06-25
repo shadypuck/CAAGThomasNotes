@@ -1,6 +1,8 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{fancyhdr}
 \usepackage[style=apa]{biblatex}
+\usepackage{marginnote}
+\usepackage{amsmath}
 \usepackage[hidelinks]{hyperref}
 
 \fancypagestyle{main}{
@@ -17,5 +19,12 @@
 
 \addbibresource{main.bib}
 \DefineBibliographyStrings{english}{bibliography={References}}
+
+\reversemarginpar
+
+\newcommand{\dq}[2]{``#1" \parencite[#2]{bib:Thomas}.}
+\newcommand{\e}[1][]{\text{e}^{#1}}
+\newcommand{\sech}{\text{sech}\,}
+\newcommand{\csch}{\text{csch}\,}
 
 \usepackage{subfiles}
