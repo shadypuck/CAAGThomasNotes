@@ -55,7 +55,7 @@
 
 
 
-\section{Derivatives and Integrals}
+\section{Derivatives and Integrals}\label{sss:8.3}
 \begin{itemize}
     \item \marginnote{6/25:}Derivatives of the hyperbolic functions:
     \begin{align*}
@@ -149,6 +149,77 @@
         \item This implies that $u$ also equals twice the area of the sector $AOP$ (the hyperbolic sector, that is).
         \item This means, for example, that \dq{$\cosh 2$ and $\sinh 2$ may be interpreted as the coordinates of $P$ when the area of the sector $AOP$ is just equal to the area of a square having $OA$ as side}{272}
     \end{itemize}
+\end{itemize}
+
+
+
+\section{The Inverse Hyperbolic Functions}
+\begin{itemize}
+    \item \marginnote{6/26:}The inverse of $x=\sinh y$ is $y=\sinh^{-1} x$.
+    \begin{itemize}
+        \item Since there is a one-to-one correspondence between $x$ and $y$ values for the inverse hyperbolic sine function, there is no need to define a principal branch (as there was with circular sine).
+    \end{itemize}
+    \item The inverse of $x=\cosh y$ is $y=\cosh^{-1} x$, where $y\geq 0$ and $x\geq 1$.
+    \begin{itemize}
+        \item Since there is a two-to-one correspondence between $x$ and $y$ values this time, we choose the positive values to be the principal branch and let the negative values be defined by the function $y=-\cosh^{-1} x$.
+    \end{itemize}
+    \item Note that the only other inverse hyperbolic trig function that needs a principal branch is (rather appropriately) $\sech x$. Likewise, the positive values make up the principal branch.
+    \item Like the hyperbolic trig functions have exponential forms, the inverse hyperbolic trig functions have logarithmic forms.
+    \begin{itemize}
+        \item For example,
+        \begin{align*}
+            y &= \sinh^{-1} x\\
+            \sinh y &= x\\
+            \frac{1}{2}(\e[y]-\e[-y]) &= x\\
+            \e[y]-\frac{1}{\e[y]} &= 2x\\
+            \e[2y]-1 &= 2x\e[y]\\
+            0 &= \e[2y]-2x\e[y]-1\\
+            \e[y] &= x\pm\sqrt{x^2+1}\\
+            y &= \ln\left( x+\sqrt{x^2+1} \right)
+        \end{align*}
+    \end{itemize}
+    \item Like the inverse circular trig functions, the inverse hyperbolic functions are quite useful as the end results of integration of radicals. First, however, we must derive their derivatives.
+    \begin{align*}
+        \dv{x}\left( \sinh^{-1}u \right) &= \frac{1}{\sqrt{1+u^2}}\, \dv{u}{x}&
+        \dv{x}\left( \cosh^{-1}u \right) &= \frac{1}{\sqrt{u^2-1}}\, \dv{u}{x}\\
+        \dv{x}\left( \tanh^{-1}u \right) &= \frac{1}{1-u^2}\, \dv{u}{x},\quad|u|<1&
+        \dv{x}\left( \sech^{-1}u \right) &= \frac{-1}{u\sqrt{1-u^2}}\, \dv{u}{x}\\
+        \dv{x}\left( \coth^{-1}u \right) &= \frac{1}{1-u^2}\, \dv{u}{x},\quad|u|>1&
+        \dv{x}\left( \csch^{-1}u \right) &= \frac{-1}{|u|\sqrt{1+u^2}}\, \dv{u}{x}
+    \end{align*}
+\end{itemize}
+
+
+
+\section{The Hanging Cable}
+\begin{itemize}
+    \item We seek to derive the solution to the following differential equation associated with the hanging cable problem, as described in Section \ref{sss:8.3}.
+    \begin{equation*}
+        \dv[2]{y}{x} = \frac{w}{H}\sqrt{1+\left( \dv{y}{x} \right)^2}
+    \end{equation*}
+    \item Since the above equation involves the second derivative, we will have to deal with two constants of integration. Since it doesn't matter where the hanging cable lies in the Cartesian plane, we can choose its location such that the final answer will be as simple as possible.
+    \begin{itemize}
+        \item \dq{By choosing the $y$-axis to be the vertical line through the lowest point of the cable, one condition becomes $\dv{y}{x}=0$ when $x=0$}{277}
+        \item \dq{Then we may still move the $x$-axis up or down to suit our convenience. That is, we let $y=y_0$ when $x=0$, and we may choose $y_0$ so as to give us the simplest form in our final answer}{277}
+    \end{itemize}
+    \item Let's begin solving the original equation. Since it involves $y'$ and $y''$ but not $y$, let $y'=p$ and start by integrating with respect to $p$.
+    \begin{align*}
+        \dv{p}{x} &= \frac{w}{H}\sqrt{1+p^2}\\
+        \frac{\dd p}{\sqrt{1+p^2}} &= \frac{w}{H}\dd{x}\\
+        \int\frac{\dd p}{\sqrt{1+p^2}} &= \int\frac{w}{H}\dd{x}\\
+        \sinh^{-1}p &= \frac{w}{H}x+C_1
+    \end{align*}
+    \item Since $p=\dv{y}{x}=0$ and $x=0$, $C_1=0$. Thus,
+    \begin{align*}
+        \dv{y}{x} &= \sinh\left( \frac{w}{H}x \right)\\
+        \dd y &= \sinh\left( \frac{w}{H}x \right)\dd{x}\\
+        \int\dd y &= \int\sinh\left( \frac{w}{H}x \right)\dd{x}\\
+        y &= \frac{H}{w}\cosh\left( \frac{w}{H}x \right)+C_2
+    \end{align*}
+    \item Since $y=y_0$ when $x=0$, $C_2=y_0-\frac{H}{w}$. Thus, let $y_0=\frac{H}{w}$. Therefore, we are finished:
+    \begin{equation*}
+        y = \frac{H}{w}\cosh\left( \frac{w}{H}x \right)
+    \end{equation*}
 \end{itemize}
 
 
