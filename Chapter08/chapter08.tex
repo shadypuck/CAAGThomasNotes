@@ -69,7 +69,83 @@
     \begin{itemize}
         \item Note that these are almost exact analogs of the formulas for the corresponding circular functions, the exception being that the negative signs are not associated with the cofunctions but with the latter three.
     \end{itemize}
-    \item Lots of intro to the hanging cable problem.
+    \item We now introduce the hanging cable problem, deriving the differential equation that represents the condition for equilibrium of forces acting on a section $AP$ of a hanging cable (Figure \ref{fig:hangingAP}).
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[
+            scale=2,
+            every node/.style={black}
+        ]
+            \footnotesize
+            \draw [-stealth] (-0.9,0) -- (2,0) node[right]{$x$};
+            \draw [-stealth] (0,-0.3) -- (0,1.8) node[above]{$y$};
+
+            \draw [gray,thick,yshift=-0.4cm,xscale=1.25] plot [domain=-0.7:1.4,smooth] (\x,{0.5*(e^\x+e^(-\x))});
+
+            \draw (1.3,0.94) arc[start angle=0,end angle=27,radius=0.4cm] node[right,yshift=-1.3mm]{$\phi$};
+
+            \draw [ylx,very thick,-latex] (1,0.94) -- (1.7,1.44) node[fill=white,inner sep=2pt,above left]{$T$};
+            \draw [ylx,thick,-latex] (1,0.94) -- node[below]{$T\cos\phi$} ++(0.7,0);
+            \draw [ylx,thick,-latex] (1.7,0.94) -- (1.7,1.44) node[below right]{$T\sin\phi$};
+            \draw [ylx,very thick,-latex] (0,0.6) -- (-0.8,0.6) node[below right]{$H$};
+            \foreach \x/\y in {0.1/0.6,0.37/0.64,0.63/0.73,0.9/0.87} {
+                \draw [ylx,thick,-latex] (\x,\y) -- ++(0,-0.3);
+            }
+
+            \node [circle,fill,inner sep=1.5pt,label={above left:$P(x,y)$}] at (1,0.94) {};
+            \node [circle,fill,inner sep=1.5pt,label={above left:$A$}] at (0,0.6) {};
+            \node [below left] {$O$};
+            \node at (0.5,0.3) {$W$};
+
+            \draw [white,double=black,double distance=0.4pt] (0.9,0.88) rectangle (1.1,1);
+            \draw [thin,->] (1,0.88) -- (1,0.5) -- (3,0.5);
+            \begin{scope}[xshift=3cm]
+                \normalsize
+                \draw (0,0) rectangle (2.7,1.5);
+                \clip (0,0) rectangle (2.7,1.5);
+                \draw [gray,ultra thick] (0,0) -- (2,1.5);
+
+                \draw [ylx,line width=2pt] (1,0.75) -- node[below]{$\dd x$} (1.6,0.75) -- node[right]{$\dd y$} (1.6,1.2) -- node[above,xshift=-1mm]{$\dd s$} (1,0.75);
+
+                \node [circle,fill,inner sep=2.2pt,label={above left:$P(x,y)$}] at (1,0.75) {};
+                \node at (1.3,0.87) {$\phi$};
+
+                \draw (0,0) rectangle (2.7,1.5);
+            \end{scope}
+        \end{tikzpicture}
+        \caption{A section $AP$ of a hanging cable.}
+        \label{fig:hangingAP}
+    \end{figure}
+    \item Let point $A$ to be the lowest point in the arc of the hanging cable, and let it be at $(0,y_0)$ in the Cartesian plane.
+    \item Continue along the right arc of the cable until arriving at some point $P(x,y)$.
+    \item We wish to consider only segment $AP$, so we need to anchor points $A$ and $P$ as if the rest of the cable were still there. Now every infinitesimal sliver of the cable is being pulled (downward) slightly by gravity, but significantly (tangentially) by the rest of the cable. Thus, we can compensate at point $A$ by pulling it tangentially left with some force $H$, and at point $P$ by pulling it tangentially up and to the right with some force $T$.
+    \item Since the cable is at equilibrium, the three forces acting on the cable as a whole ($T$, $H$, and $W$) are balanced. Thus,
+    \begin{align*}
+        T\sin\phi &= W\\
+        T\cos\phi &= H
+    \end{align*}
+    \item Combining these two equations gives an important result:
+    \begin{align*}
+        \frac{T\sin\phi}{T\cos\phi} &= \frac{W}{H}\\
+        \tan\phi &= \frac{W}{H}
+    \end{align*}
+    \item Now $\tan\phi$ is a particularly important piece of the puzzle, because it actually equals $\dv{y}{x}$ (see the zoomed-in section of Figure \ref{fig:hangingAP}). Thus,
+    \begin{equation*}
+        \dv{y}{x} = \frac{W}{H}
+    \end{equation*}
+    \item Contrary to how it may look, $W$ is actually not a constant --- the weight of section $AP$ is dependent on $P$ (i.e., is dependent on how long the section is). If we assume that the cable has a uniform weight per length ratio $w$ and that section $AP$ is $s$ units long, then we have $W=ws$. Thus,
+    \begin{equation*}
+        \dv{y}{x} = \frac{ws}{H}
+    \end{equation*}
+    \item $s$ is just arc length. Thus, $s=\int_A^P\sqrt{1+(\dv*{y}{x})^2}\dd{x}$. However, because we cannot have an integral in a differential equation, we differentiate to find $\dd s = \sqrt{1+(\dv*{y}{x})^2}\dd{x}$.
+    \begin{itemize}
+        \item Note that this expression for $\dd s$ makes sense because, by the zoomed-in section of Figure \ref{fig:hangingAP}, $\dd s = \sqrt{\dd x^2+\dd y^2} = \sqrt{(\dd x^2/\dd x^2+\dd y^2/\dd x^2)\dd x^2} = \sqrt{1+(\dv*{y}{x})^2}\dd{x}$.
+    \end{itemize}
+    \item If we differentiate $\dv{y}{x} = \frac{ws}{H}$, we can get $\dd s$ into the equation and substitute, as follows, to yield the final differential equation.
+    \begin{align*}
+        \dv[2]{y}{x} &= \frac{w}{H}\dv{s}{x}\\
+        \Aboxed{\dv[2]{y}{x} &= \frac{w}{H}\sqrt{1+\left( \dv{y}{x} \right)^2}}
+    \end{align*}
 \end{itemize}
 
 
@@ -126,8 +202,6 @@
         \item However, since $A=\frac{1}{2}r^2\theta=\frac{\theta}{2}$ for $r=1$, $\theta$ also equals twice the area of the sector $AOP$.
     \end{itemize}
     \item To understand the meaning of the variable $u$, calculate the area of the sector $AOP$ in Figure \ref{fig:hyperbolicGeometricb} as an analog to circular area.
-    \begingroup
-    \allowdisplaybreaks
     \begin{align*}
         A_{AOP} &= A_{OQP}-A_{AQP}\\
         &= \frac{1}{2}bh - \int_A^P y\dd{x}\\
@@ -144,7 +218,6 @@
         &= \frac{1}{2}\sinh u\cosh u - \left( \frac{1}{2}\sinh u\cosh u-\frac{1}{2}u \right)\\
         &= \frac{1}{2}u
     \end{align*}
-    \endgroup
     \begin{itemize}
         \item This implies that $u$ also equals twice the area of the sector $AOP$ (the hyperbolic sector, that is).
         \item This means, for example, that \dq{$\cosh 2$ and $\sinh 2$ may be interpreted as the coordinates of $P$ when the area of the sector $AOP$ is just equal to the area of a square having $OA$ as side}{272}
