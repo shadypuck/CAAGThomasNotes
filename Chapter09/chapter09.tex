@@ -1,0 +1,379 @@
+\documentclass[../main.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter:\ #1}{}}
+\setcounter{chapter}{8}
+
+\begin{document}
+
+
+
+
+\chapter{Methods of Integration}
+\section{Basic Formulas}
+\begin{itemize}
+    \item \marginnote{6/30:}Useful, abstract info (that I already know) on what makes a student good at integating, e.g., integrating is an exercise in trial-and-error, but there are ways to increase your likelihood of being successful.
+\end{itemize}
+
+
+
+\section{Powers of Trigonometric Functions}
+\begin{itemize}
+    \item When integrating power functions, look for integral/derivative relationships, which may allow you to substitute $u$ and $\dd u$ at the same time.
+    \begin{itemize}
+        \item For example, when confronted with $\int \sin^nax\cos ax\dd{x}$, note that $\cos ax$ is almost the derivative of $\sin ax$, and choose $u=\sin ax$ and $\frac{\dd u}{a}=\cos ax\dd{x}$ to yield $\frac{1}{a}\int u^n\dd{u}$.
+    \end{itemize}
+    \item When integrating power functions, it may be possible to split the exponent into a product ($u^n=u^au^b$ where $a+b=n$) and work off of properties of one of the functions raised to a smaller exponent ($u^a$ may have properties that $u^n$ lacks).
+    \begin{itemize}
+        \item For example, when confronted with $\int \sin^3x\dd{x}$, recall that $\sin^2x$ has Pythagorean properties, and split the exponent.
+        \begin{align*}
+            \int\sin^3x\dd{x} &= \int\sin^2x\sin x\dd{x}\\
+            &= \int\left( 1-\cos^2x \right)\sin x\dd{x}
+            \intertext{Now we can use the previous property, since $\sin x$ and $\cos x$ have an integral/derivative relationship.}
+            &= -\int\left( 1-u^2 \right)\dd{u}\\
+            &= \int\left( u^2-1 \right)\dd{u}
+        \end{align*}
+        \item Note that this technique is applicable whenever an odd power of sine or cosine is to be integrated. For higher powers, consider the following.
+        \begin{equation*}
+            \int\cos^{2n+1}x\dd{x} = \int\left( \cos^2x \right)^n\cos x\dd{x}
+            = \int\left( 1-\sin^2x \right)^n\cos x\dd{x}
+            = \int\left( 1-u^2 \right)^n\dd{u}
+        \end{equation*}
+        Remember that $\left( 1-u^2 \right)^n$ can be expanded via the binomial theorem.
+    \end{itemize}
+    \item When integrating a composite trigonometric function, consider reducing it to a radical of powers of sines and cosines.
+    \begin{itemize}
+        \item For example, $\sec x\tan x = \frac{\sin x}{\cos^2x}$.
+    \end{itemize}
+    \item When integrating positive integer powers of $\tan x$, use either the base cases or the \textbf{reduction formula}.
+    \begin{itemize}
+        \item Begin by deriving a reduction formula.
+        \begin{align*}
+            \int\tan^nx\dd{x} &= \int\tan^{n-2}x\left( \sec^2x-1 \right)\dd{x}\\
+            &= \int\tan^{n-2}\sec^2x\dd{x}-\int\tan^{n-2}x\dd{x}\\
+            &= \frac{\tan^{n-1}x}{n-1}-\int\tan^{n-2}x\dd{x}
+        \end{align*}
+        Since the reduction formula decreases the exponent by 2, we must work out two base cases:
+        \begin{equation*}
+            \int\tan^0 x\dd{x} = \int\dd{x} = x+C
+        \end{equation*}
+        \begin{equation*}
+            \int\tan^1 x\dd{x} = \int\frac{\sin x}{\cos x}\dd{x}
+            = -\int\frac{\dd u}{u}
+            = -\ln|\cos x|+C
+        \end{equation*}
+        \item Note that the impetus for initially deriving such a formula was the search for a way to get $\sec^2x$ into the integrand, which can be done by splitting the exponent.
+        \item This method can easily be adjusted to suit negative powers of $\tan x$ (positive powers of $\cot x$).
+    \end{itemize}
+    \item When integrating even powers of $\sec x$, either use the secant reduction formula, or split the exponent.
+    \begin{itemize}
+        \item We derive the following formula.
+        \begin{align*}
+            \int\sec^{2n}x\dd{x} &= \int\sec^{2n-2}x\sec^2x\dd{x}\\
+            &= \int\left( 1+\tan^2x \right)^{n-1}\sec^2x\dd{x}\\
+            &= \int\left( 1+u^2 \right)^{n-1}\dd{u}
+        \end{align*}
+    \end{itemize}
+    \item When integrating secant (or cosecant) alone, produce $\frac{u'}{u}$ by multiplying the integrand by a clever form of 1.
+    \begin{itemize}
+        \item For example,
+        \begin{align*}
+            \int\sec x\dd{x} &= \int\sec x\cdot\frac{\sec x+\tan x}{\sec x+\tan x}\dd{x}\\
+            &= \int\frac{\sec^2x+\sec x\tan x}{\sec x+\tan x}\\
+            &= \ln|\sec x+\tan x|+C
+        \end{align*}
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Even Powers of Sines and Cosines}
+\begin{itemize}
+    \item When integrating the product of sines and cosines raised to powers where at least one exponent is a positive odd integer, split the exponent and use $u$-substitution.
+    \begin{itemize}
+        \item In effect, we wish to evaluate $\int\sin^mx\cos^nx\dd{x}$ where at least one of $m,n$ is a positive odd integer.
+        \item For example, when confronted with $\int\cos^\frac{2}{3}x\sin^5x\dd{x}$, split the exponent of $\sin^5x$ and choose $u=\cos x$ and $-\dd u=\sin x\dd{x}$.
+        \begin{equation*}
+            \int\cos^\frac{2}{3}x\sin^5x\dd{x} = \int\cos^\frac{2}{3}x\left( 1-\cos^2x \right)^2\sin x\dd{x}
+            = \int u^\frac{2}{3}\left( u^2-1 \right)\dd{u}
+        \end{equation*}
+    \end{itemize}
+    \item When integrating the product of sines and cosines raised to powers where both exponents are even integers, begin by transforming it into a sum of either just sines \emph{or} just cosines raised to even integers. Then split the exponents and use one of the following formulas. It may be necessary to use these formulas multiple times. Use them until the problem has been reduced to a sum with only odd exponents.
+    \begin{align*}
+        \sin^2u &= \frac{1}{2}(1-\cos2u)&
+        \cos^2u &= \frac{1}{2}(1+\cos2u)
+    \end{align*}
+    \begin{itemize}
+        \item Note that \dq{these identities may be derived very quickly by adding or subtracting the equations [$\cos^2u+\sin^2u=1$ and $\cos^2u-\sin^2u=\cos2u$] and by dividing by two}{287}
+        \item For example, when confronted with $\int\sin^2x\cos^4x\dd{x}$, begin by changing it to a case with only powers of cosine (chose to eliminate the sine function because it is raised to a lower exponent and, thus, will need less binomial expansion).
+        \begin{align*}
+            \int\sin^2x\cos^4x\dd{x} &= \int\left( 1-\cos^2x \right)\cos^4x\dd{x}\\
+            &= \int\cos^4x\dd{x}-\int\cos^6x\dd{x}
+            \intertext{Now split the exponents.}
+            &= \int\left( \cos^2x \right)^2\dd{x}-\int\left( \cos^2x \right)^3\dd{x}
+            \intertext{Employ the above formulas and use binomial expansion. If necessary, repeat (split the exponents, employ the above formulas, use binomial expansion) until only odd exponents remain (remember that 1 is an odd exponent).}
+            &= \int\left( \frac{1}{2}(1+\cos2x) \right)^2\dd{x}-\int\left( \frac{1}{2}(1+\cos2x) \right)^3\dd{x}\\
+            &= \frac{1}{4}\int\left( 1+2\cos2x+\cos^22x \right)\dd{x}\\
+            &\qquad-\frac{1}{8}\int\left( 1+3\cos2x+3\cos^22x+\cos^32x \right)\dd{x}\\
+            &= \frac{1}{4}\int\left( 1+2\cos2x+\frac{1}{2}(1+\cos4x) \right)\dd{x}\\
+            &\qquad-\frac{1}{8}\int\left( 1+3\cos2x+\frac{3}{2}(1+\cos4x)+\cos^32x \right)\dd{x}
+        \end{align*}
+        These integrals may now be handled using previously discussed techniques.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Integrals With Terms \texorpdfstring{$\sqrt{a^2-u^2}$}{TEXT}, \texorpdfstring{$\sqrt{a^2+u^2}$}{TEXT}, \texorpdfstring{$\sqrt{u^2-a^2}$}{TEXT}, \texorpdfstring{$a^2+u^2$}{TEXT}, \texorpdfstring{$a^2-u^2$}{TEXT}}
+\begin{itemize}
+    \item When integrating a radical that resembles the derivative of an inverse trig function, we may factor out the issue so as to make the integral resemble one of the known formulas.
+    \begin{itemize}
+        \item For example, when confronted with $\int\frac{\dd u}{a^2+u^2}$, divide the $a^2$ term out of the denominator and integrate with respect to $\frac{u}{a}$\footnote{\cite{bib:Thomas} uses differentials with more complex functions than a single variable quite often. It's not something I've seen before, but it's something I should get used to (and it does make sense if you think about it --- it's just an extension of the underlying concept of separation of variables integration).}.
+        \begin{align*}
+            \int\frac{\dd u}{a^2+u^2} &= \frac{1}{a^2}\int\frac{\dd u}{1+\left( \frac{u}{a} \right)^2}\\
+            &= \frac{1}{a^2}\int\frac{a\dd{\left( \frac{u}{a} \right)}}{1+\left( \frac{u}{a} \right)^2}\\
+            &= \frac{1}{a}\tan^{-1}\frac{u}{a}+C
+        \end{align*}
+        \item However, this method is partially flawed in that it relies on having memorized the derivatives of the inverse trig functions, i.e., it is not terribly analytical. This shortcoming will now be addressed with a new, more general technique.
+    \end{itemize}
+    \item The new method leans heavily on the following three identities.
+    \begin{align*}
+        1-\sin^2\theta &= \cos^2\theta&
+        1+\tan^2\theta &= \sec^2\theta&
+        \sec^2\theta-1 &= \tan^2\theta
+    \end{align*}
+    \begin{itemize}
+        \item With the help of these identities, it is possible to\dots
+        \begin{enumerate}
+            \item use $u=a\sin\theta$ to replace $a^2-u^2$ with $a^2\cos^2\theta$;
+            \item use $u=a\tan\theta$ to replace $a^2+u^2$ with $a^2\sec^2\theta$;
+            \item use $u=a\sec\theta$ to replace $u^2-a^2$ with $a^2\tan^2\theta$.
+        \end{enumerate}
+        \begin{figure}[h!]
+            \centering
+            \begin{subfigure}[b]{0.3\linewidth}
+                \centering
+                \begin{tikzpicture}[
+                    every node/.style={black}
+                ]
+                    \footnotesize
+                    \draw [ylx,thick]
+                        (0,0) coordinate (B) -- node[below]{$\cos\theta$}
+                        (2,0) coordinate (A) -- node[right]{$\sin\theta$}
+                        (2,1.2) coordinate (C) -- node[above]{$1$}
+                        cycle
+                    ;
+                    \begin{scope}[on background layer]
+                        \pic[pic text={$\theta$},draw,thin,angle radius=8mm,angle eccentricity=1.2]{angle};
+                    \end{scope}
+                \end{tikzpicture}
+                \caption{$\cos^2\theta+\sin^2\theta=1$.}
+                \label{fig:trigIdentitiesa}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.3\linewidth}
+                \centering
+                \begin{tikzpicture}[
+                    every node/.style={black}
+                ]
+                    \footnotesize
+                    \draw [ylx,thick]
+                        (0,0) coordinate (B) -- node[below]{$1$}
+                        (2,0) coordinate (A) -- node[right]{$\tan\theta$}
+                        (2,1.2) coordinate (C) -- node[above,xshift=-2mm]{$\sec\theta$}
+                        cycle
+                    ;
+                    \begin{scope}[on background layer]
+                        \pic[pic text={$\theta$},draw,thin,angle radius=8mm,angle eccentricity=1.2]{angle};
+                    \end{scope}
+                \end{tikzpicture}
+                \caption{$1+\tan^2\theta=\sec^2\theta$.}
+                \label{fig:trigIdentitiesb}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.3\linewidth}
+                \centering
+                \begin{tikzpicture}[
+                    every node/.style={black}
+                ]
+                    \footnotesize
+                    \draw [ylx,thick]
+                        (0,0) coordinate (B) -- node[below]{$\cot\theta$}
+                        (2,0) coordinate (A) -- node[right]{$1$}
+                        (2,1.2) coordinate (C) -- node[above,xshift=-2mm]{$\csc\theta$}
+                        cycle
+                    ;
+                    \begin{scope}[on background layer]
+                        \pic[pic text={$\theta$},draw,thin,angle radius=8mm,angle eccentricity=1.2]{angle};
+                    \end{scope}
+                \end{tikzpicture}
+                \caption{$\cot^2\theta+1=\csc^2\theta$.}
+                \label{fig:trigIdentitiesc}
+            \end{subfigure}
+            \caption{Geometric rationale for the trigonometric identities.}
+            \label{fig:trigIdentities}
+        \end{figure}
+        \begin{figure}[h!]
+            \centering
+            \begin{subfigure}[b]{0.3\linewidth}
+                \centering
+                \begin{tikzpicture}[
+                    every node/.style={black}
+                ]
+                    \footnotesize
+                    \draw [ylx,thick]
+                        (0,0) coordinate (B) -- node[below]{$\color{white}a$}
+                        (2,0) coordinate (A) -- node[right]{$u$}
+                        (2,1.2) coordinate (C) -- node[above]{$a$}
+                        cycle
+                    ;
+                    \begin{scope}[on background layer]
+                        \pic[pic text={$\theta$},draw,thin,angle radius=8mm,angle eccentricity=1.2]{angle};
+                    \end{scope}
+                \end{tikzpicture}
+                \caption{$\sqrt{a^2-u^2}=a\cos\theta$\\ $u=a\sin\theta$.}
+                \label{fig:trigSubstitutionsa}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.3\linewidth}
+                \centering
+                \begin{tikzpicture}[
+                    every node/.style={black}
+                ]
+                    \footnotesize
+                    \draw [ylx,thick]
+                        (0,0) coordinate (B) -- node[below]{$a$}
+                        (2,0) coordinate (A) -- node[right]{$u$}
+                        (2,1.2) coordinate (C) --
+                        cycle
+                    ;
+                    \begin{scope}[on background layer]
+                        \pic[pic text={$\theta$},draw,thin,angle radius=8mm,angle eccentricity=1.2]{angle};
+                    \end{scope}
+                \end{tikzpicture}
+                \caption{$\sqrt{u^2+a^2}=a\sec\theta$\\ $u=a\tan\theta$.}
+                \label{fig:trigSubstitutionsb}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.3\linewidth}
+                \centering
+                \begin{tikzpicture}[
+                    every node/.style={black}
+                ]
+                    \footnotesize
+                    \draw [ylx,thick]
+                        (0,0) coordinate (B) -- node[below]{$a$}
+                        (2,0) coordinate (A) --
+                        (2,1.2) coordinate (C) -- node[above]{$u$}
+                        cycle
+                    ;
+                    \begin{scope}[on background layer]
+                        \pic[pic text={$\theta$},draw,thin,angle radius=8mm,angle eccentricity=1.2]{angle};
+                    \end{scope}
+                \end{tikzpicture}
+                \caption{$\sqrt{u^2-a^2}=a\tan\theta$\\ $u=a\sec\theta$.}
+                \label{fig:trigSubstitutionsc}
+            \end{subfigure}
+            \caption{Geometric rationale for the trigonometric substitutions.}
+            \label{fig:trigSubstitutions}
+        \end{figure}
+        \item These identities and substitutions can be easily remembered by thinking of the Pythagorean theorem in conjunction with Figures \ref{fig:trigIdentities} and \ref{fig:trigSubstitutions}, respectively.
+    \end{itemize}
+    \item We may now evaluate inverse trig integrals analytically.
+    \begin{itemize}
+        \item For example, when confronted with $\int\frac{\dd u}{a^2+u^2}$, choose $u=a\tan\theta$ and $\dd u=a\sec^2\theta\dd{\theta}$.
+        \begin{align*}
+            \int\frac{\dd u}{a^2+u^2} &= \int\frac{a\sec^2\theta\dd{\theta}}{a^2+(a\tan\theta)^2}\\
+            &= \int\frac{a\sec^2\theta}{a^2\left( 1+\tan^2\theta \right)}\dd{\theta}\\
+            &= \frac{1}{a}\int\frac{\sec^2\theta}{\sec^2\theta}\dd{\theta}\\
+            &= \frac{1}{a}\int\dd{\theta}\\
+            &= \frac{1}{a}\theta+C
+            \intertext{At this point, solve $u=a\tan\theta$ for $\theta$ and substitute.}
+            &= \frac{1}{a}\tan^{-1}\frac{u}{a}+C
+        \end{align*}
+        \item Some integrals will simplify to have a plus/minus in the denominator, leading to two possible solutions. However, there are sometimes ways to isolate a single solution.
+        \begin{itemize}
+            \item For example, $\int\frac{\dd u}{\sqrt{a^2-u^2}}=\int\frac{a\cos\theta\dd{\theta}}{\pm a\cos\theta}=\pm\theta+C$. However, when we consider the fact that $\theta=\sin^{-1}\frac{u}{a}$, we know that $\theta\in\left[ -\frac{\pi}{2},\frac{\pi}{2} \right]$ (because inverse sine is not arcsine, and inverse sine is only defined over the principal branch of sine). Thus, since $\theta\in\left[ -\frac{\pi}{2},\frac{\pi}{2} \right]$, $\cos\theta\in[0,1]$, i.e., is always positive. Thus, we choose $\int\frac{\dd u}{\sqrt{a^2-u^2}}=+\theta+C=\sin^{-1}\frac{u}{a}+C$ as our one solution.
+            \item For example, $\int\frac{\dd u}{\sqrt{u^2-a^2}}$ equals $\ln\left| \frac{u}{a}+\frac{\sqrt{u^2-a^2}}{a} \right|+C$ or $-\ln\left| \frac{u}{a}-\frac{\sqrt{u^2-a^2}}{a} \right|+C$ depending on whether $\tan\theta$ is positive or negative. But it can be shown algebraically that the two solutions are actually equal:
+            \begin{align*}
+                -\ln\left| \frac{u}{a}-\frac{\sqrt{u^2-a^2}}{a} \right| &= \ln\left| \frac{a}{u-\sqrt{u^2-a^2}} \right|\\
+                &= \ln\left| \frac{a\left( u+\sqrt{u^2-a^2} \right)}{\left( u-\sqrt{u^2-a^2} \right)\left( u+\sqrt{u^2-a^2} \right)} \right|\\
+                &= \ln\left| \frac{a\left( u+\sqrt{u^2-a^2} \right)}{a^2} \right|\\
+                &= \ln\left| \frac{u}{a}+\frac{\sqrt{u^2-a^2}}{a} \right|
+            \end{align*}
+            Thus, we have $\ln\left| \frac{u}{a}+\frac{\sqrt{u^2-a^2}}{a} \right|+C$ as the one solution\footnote{Note that we could choose to use the other solution, but we choose this one because it's "simpler" (it uses addition instead of subtraction).}.
+        \end{itemize}
+        \item Some integrals will have extraneous constants that can be combined with $C$ to simplify the \emph{indefinite} integral.
+        \begin{itemize}
+            \item Continuing with the above example,
+            \begin{align*}
+                \int\frac{\dd u}{\sqrt{u^2-a^2}} &= \ln\left| \frac{u}{a}+\frac{\sqrt{u^2-a^2}}{a} \right|+C\\
+                &= \ln\left| u+\sqrt{u^2-a^2} \right|-\ln|a|+C\\
+                &= \ln\left| u+\sqrt{u^2-a^2} \right|+C
+            \end{align*}
+        \end{itemize}
+    \end{itemize}
+    \item When integrating an inverse trig integral with excess polynomial terms, look to transform it into a (power of a) trig integral problem.
+    \begin{itemize}
+        \item For example, when confronted with $\int\frac{x^2\dd{x}}{\sqrt{9-x^2}}$, treat it as a case of $a^2-u^2$, but substitute the trig expression into the $x^2$ term in the numerator, too.
+        \begin{equation*}
+            \int\frac{x^2\dd{x}}{\sqrt{9-x^2}} = \int\frac{9\sin^2\theta\cdot 3\cos\theta\dd{\theta}}{3\cos\theta}
+            = 9\int\sin^2\theta\dd{\theta}
+        \end{equation*}
+        This integral may now be handled using previously discussed techniques.
+    \end{itemize}
+    \item Many inverse trig integrals can also be evaluated hyperbolically, making use of the following three identities.
+    \begin{align*}
+        \cosh^2\theta-1 &= \sinh^2\theta&
+        1-\tanh^2\theta &= \sech^2\theta&
+        1+\sinh^2\theta &= \cosh^2\theta
+    \end{align*}
+    \begin{itemize}
+        \item With the help of these identities, it is possible to\dots
+        \begin{enumerate}
+            \item use $u=a\tanh\theta$ to replace $a^2-u^2$ with $a^2\sech^2\theta$;
+            \item use $u=a\sinh\theta$ to replace $a^2+u^2$ with $a^2\cosh^2\theta$;
+            \item use $u=a\cosh\theta$ to replace $u^2-a^2$ with $a^2\sinh^2\theta$.
+        \end{enumerate}
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Integrals With \texorpdfstring{$ax^2+bx+c$}{TEXT}}
+\begin{itemize}
+    \item When integrating composite functions where the inner function is a binomial, look to factor said binomial.
+    \begin{itemize}
+        \item The general quadratic $f(x)=ax^2+bx+c$, $a\neq 0$, can be reduced to the form $a\left( u^2+B \right)$ by completing the square and choosing $u=x+\frac{b}{2a}$ and $B=\frac{4ac-b^2}{4a^2}$:
+        \begin{align*}
+            ax^2+bx+c &= a\left( x^2+\frac{b}{a}x \right)+c\\
+            &= a\left( x^2+\frac{b}{a}x+\frac{b^2}{4a^2} \right)+c-\frac{b^2}{4a}\\
+            &= a\left( \left( x+\frac{b}{2a} \right)^2+\frac{4ac-b^2}{4a^2} \right)
+        \end{align*}
+    \end{itemize}
+    \item When integrating the square root of a binomial, or some similarly tricky function of a binomial, we can transform the binomial into a form such that it will suit one of the inverse trig integrals.
+    \begin{itemize}
+        \item Since it would lead to complex numbers, we disregard cases where $a\left( u^2+B \right)$ is negative, i.e., we focus on cases where (1) $a$ is positive, and (2) $a,B$ are both negative.
+        \item That being said, if it is an odd root ($\sqrt[3]{x}$, $\sqrt[5]{x}$, etc.), the sign doesn't matter.
+        \item For example, when confronted with $\int\frac{(x+1)\dd{x}}{\sqrt{2x^2-6x+4}}$, begin by factoring the binomial\footnote{Note that, in place of inspection, we could use the general form factorization derived above.}.
+        \begin{equation*}
+            2x^2-6x+4 = 2\left( x^2-3x \right)+4
+            = 2\left( x-\frac{3}{2} \right)^2-\frac{1}{2}
+            = 2\left( u^2-a^2 \right)
+        \end{equation*}
+        Note that $u=x-\frac{3}{2}$ and $a=\frac{1}{2}$. We can now return to the integral, which we shall reformulate in terms of $u$ in its entirety.
+        \begin{align*}
+            \int\frac{(x+1)\dd{x}}{\sqrt{2x^2-6x+4}} &= \int\frac{\left( u+\frac{5}{2} \right)\dd{u}}{\sqrt{2\left( u^2-a^2 \right)}}
+            \intertext{Split it into two separate integrals and factor out the constants.}
+            &= \frac{1}{\sqrt{2}}\int\frac{u\dd{u}}{\sqrt{u^2-a^2}}+\frac{5}{2\sqrt{2}}\int\frac{\dd u}{\sqrt{u^2-a^2}}
+            \intertext{The right integral is a straight-up inverse trig integral. The left one, however, needs something special. It could be dealt with as previously discussed by substituting $u=a\tan\theta$ for all instances of $u$ and evaluating it is a more complex trig integral in $\theta$. However, for the sake of showing a different technique, we will choose $z=u^2-a^2$ and $\frac{1}{2}\dd z=u\dd{u}$ and treat it as a power function in $z$.}
+            &= \frac{1}{2\sqrt{2}}\int\frac{\dd{z}}{\sqrt{z}}+\frac{5}{2\sqrt{2}}\ln\left| u+\sqrt{u^2-a^2} \right|+C_2\\
+            &= \frac{1}{2\sqrt{2}}\int z^{-\frac{1}{2}}\dd{z}+\frac{5}{2\sqrt{2}}\ln\left| u+\sqrt{u^2-a^2} \right|+C_2\\
+            &= \frac{1}{\sqrt{2}}z^\frac{1}{2}+C_1+\frac{5}{2\sqrt{2}}\ln\left| u+\sqrt{u^2-a^2} \right|+C_2
+            \intertext{Return all of the substitutions and combine the constants of integration.}
+            &= \sqrt{\frac{u^2-a^2}{2}}+\frac{5}{2\sqrt{2}}\ln\left| u+\sqrt{u^2-a^2} \right|+C\\
+            &= \sqrt{\frac{x^2-3x+2}{2}}+\frac{5}{2\sqrt{2}}\ln\left| x-\frac{3}{2}+\sqrt{x^2-3x+2} \right|+C
+        \end{align*}
+    \end{itemize}
+\end{itemize}
+
+
+
+
+\end{document}

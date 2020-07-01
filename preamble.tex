@@ -1,9 +1,11 @@
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=1in,footnotesep=0.25in]{geometry}
 \usepackage{fancyhdr}
 \usepackage[style=apa]{biblatex}
 \usepackage{csquotes}
 \usepackage{marginnote}
-\usepackage{amsmath}
+\usepackage{scrextend}
+\usepackage[bottom]{footmisc}
+\usepackage{amsmath,amssymb}
 \usepackage{xparse,physics,mathtools}
 \usepackage{subcaption}
 \usepackage{tikz}
@@ -28,9 +30,14 @@
 
 \reversemarginpar
 
-\usetikzlibrary{arrows.meta}
+\deffootnotemark{\textsuperscript{[\thefootnotemark]}}
+\deffootnote[2.1em]{0em}{0em}{\textsuperscript{\thefootnotemark}}
+
+\usetikzlibrary{angles,backgrounds}
 \colorlet{ylx}{yellow!50!black}
 \colorlet{yly}{yellow!50!black!50}
+
+\renewcommand{\labelitemiii}{\scriptsize$\blacksquare$}
 
 \newcommand{\dq}[2]{``#1" \parencite[#2]{bib:Thomas}.}
 \newcommand{\e}[1][]{\text{e}^{#1}}
