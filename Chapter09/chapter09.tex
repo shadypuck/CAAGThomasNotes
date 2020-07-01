@@ -53,15 +53,13 @@
             &= \int\tan^{n-2}\sec^2x\dd{x}-\int\tan^{n-2}x\dd{x}\\
             &= \frac{\tan^{n-1}x}{n-1}-\int\tan^{n-2}x\dd{x}
         \end{align*}
-        Since the reduction formula decreases the exponent by 2, we must work out two base cases:
-        \begin{equation*}
-            \int\tan^0 x\dd{x} = \int\dd{x} = x+C
-        \end{equation*}
-        \begin{equation*}
+        Since the reduction formula decreases the exponent by 2, work out two base cases.
+        \begin{gather*}
+            \int\tan^0 x\dd{x} = \int\dd{x} = x+C\\
             \int\tan^1 x\dd{x} = \int\frac{\sin x}{\cos x}\dd{x}
             = -\int\frac{\dd u}{u}
             = -\ln|\cos x|+C
-        \end{equation*}
+        \end{gather*}
         \item Note that the impetus for initially deriving such a formula was the search for a way to get $\sec^2x$ into the integrand, which can be done by splitting the exponent.
         \item This method can easily be adjusted to suit negative powers of $\tan x$ (positive powers of $\cot x$).
     \end{itemize}
@@ -371,6 +369,364 @@
             &= \sqrt{\frac{x^2-3x+2}{2}}+\frac{5}{2\sqrt{2}}\ln\left| x-\frac{3}{2}+\sqrt{x^2-3x+2} \right|+C
         \end{align*}
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Integration by the Method of Partial Fractions}
+\begin{itemize}
+    \item \marginnote{7/1:}\textbf{Method of Partial Fractions}: The process of \dq{split[ting] a fraction into a sum of fractions having simpler denominators}{294}
+    \item If we wish to split a rational fraction $\frac{f(x)}{g(x)}$ into a sum of simpler fractions, then\dots
+    \begin{itemize}
+        \item \dq{The degree of $f(x)$ should be less than the degree of $g(x)$. If this is not the case, we first perform a long division, then work with the remainder term. This remainder can always be put into the required form}{294}
+        \item \dq{The factors of $g(x)$ should be known. Theoretically, any polynomial $g(x)$ with real coefficient can be expressed as a product of real linear and quadratic factors. In practice, it may be difficult to perform the factorization}{294}
+    \end{itemize}
+    \item If $x-r$ is a linear factor of $g(x)$ and $(x-r)^m$ is the highest power of $x-r$ that divides $g(x)$, then, to this factor, assign the sum of $m$ partial fractions
+    \begin{equation*}
+        \frac{A_1}{x-r}+\frac{A_2}{(x-r)^2}+\cdots+\frac{A_m}{(x-r)^m}
+    \end{equation*}
+    \begin{itemize}
+        \item If $x^2+px+q$ is a quadratic factor\footnote{A binomial factor, the factoring of which into linear factors would introduce complex numbers.} of $g(x)$ and $\left( x^2+px+q \right)^n$ is the highest power of $x^2+px+q$ that divides $g(x)$, then, to this factor, assign the sum of $n$ partial fractions
+    \end{itemize}
+    \begin{equation*}
+        \frac{B_1x+C_1}{x^2+px+q}+\frac{B_2x+C_2}{\left( x^2+px+q \right)^2}+\cdots+\frac{B_nx+C_n}{\left( x^2+px+q \right)^n}
+    \end{equation*}
+    \begin{itemize}
+        \item Continue, as necessary, to higher degree factors of $g(x)$ (although this caveat is not addressed by \cite{bib:Thomas}).
+    \item Notice how the degree of the polynomial in the numerator of the partial fractions will be at most one less than the degree of the denominator.
+    \end{itemize}
+    \item Any rational function integrated via the method of partial fractions can be reduced to the problem of evaluating the following two types of integrals.
+    \begin{align*}
+        \int\frac{\dd x}{(x-r)^h}&&
+        \int\frac{(ax+b)\dd{x}}{\left( x^2+px+q \right)^k}
+    \end{align*}
+    \begin{itemize}
+        \item The left integral, with the substitution $z=x-r$ and $\dd{z}=\dd{x}$, becomes a power integral.
+        \item The right integral, after completing the square in the denominator, substituting, and splitting into two fractions by the numerator, becomes a pair of inverse trig substitution integrals.
+    \end{itemize}
+    \item With the method of partial fractions, there is a new way to integrate $\sec\theta$.
+    \begin{align*}
+        \int\sec\theta\dd{\theta} &= \int\frac{\dd\theta}{\cos\theta}\\
+        &= \int\frac{\cos\theta\dd{\theta}}{\cos^2\theta}\\
+        &= \int\frac{\dd x}{1-x^2}\\
+        &= \int\frac{0.5}{1+x}\dd{x}+\int\frac{0.5}{1-x}\dd{x}\\
+        &= \frac{1}{2}\ln|1+x|-\frac{1}{2}\ln|1-x|+C\\
+        &= \frac{1}{2}\ln\left| \frac{1+x}{1-x} \right|+C\\
+        &= \ln\sqrt{\frac{1+\sin\theta}{1-\sin\theta}}+C
+    \end{align*}
+    \begin{itemize}
+        \item Note that $\ln\sqrt{\frac{1+\sin\theta}{1-\sin\theta}}+C$ is equivalent to the previously derived form:
+        \begin{align*}
+            \sqrt{\frac{1+\sin\theta}{1-\sin\theta}} &= \sqrt{\frac{(1+\sin\theta)^2}{1-\sin^2\theta}}\\
+            &= \left| \frac{1+\sin\theta}{\cos\theta} \right|\\
+            &= |\sec\theta+\tan\theta|
+        \end{align*}
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Integration by Parts}
+\begin{itemize}
+    \item This is the second general method of integration (the first being substitution).
+    \item It relies on the following formulas for indefinite and definite integrals, respectively.
+    \begin{align*}
+        \int u\dd{v} &= uv-\int v\dd{u}+C&
+        \int_{(1)}^{(2)}u\dd{v} &= uv\Big]_{(1)}^{(2)}-\int_{(1)}^{(2)}v\dd{u}
+    \end{align*}
+    \begin{itemize}
+        \item The indefinite integral formula can be derived from the differential of a product rule as follows.
+        \begin{align*}
+            \dd{(uv)} &= u\dd{v}+v\dd{u}\\
+            u\dd{v} &= \dd{(uv)}-v\dd{u}\\
+            \int u\dd{v} &= uv-\int v\dd{u}+C
+        \end{align*}
+        \begin{figure}[h!]
+            \centering
+            \begin{tikzpicture}[
+                scale=1.6,
+                every node/.style={black}
+            ]
+                \footnotesize
+                \fill [gay] (0,0.945) node[left]{$u_1$} -- plot [domain=0.7:2,smooth] (\x,{1.3+1.2*sin((\x-1) r)}) -- (0,2.31) node[left]{$u_2$};
+                \fill [yly] (0.7,0) node[below]{$v_1$} -- plot [domain=0.7:2,smooth] (\x,{1.3+1.2*sin((\x-1) r)}) -- (2,0) node[below]{$v_2$};
+                \draw [thick,ylx] plot [domain=0.3:2.3,smooth] (\x,{1.3+1.2*sin((\x-1) r)}) node[right]{$u=f(v)$};
+
+                \draw [-stealth] (-0.35,0) -- (3,0) node[right]{$v$};
+                \draw [-stealth] (0,-0.4) -- (0,3) node[above]{$u$};
+
+                \node [below left] {$O$};
+                \node at (1.35,0.7) {$\int u\dd{v}$};
+                \node at (0.53,1.65) {$\int v\dd{u}$};
+            \end{tikzpicture}
+            \caption{Geometric rationale for definite integration by parts.}
+            \label{fig:integrationByParts}
+        \end{figure}
+        \item The definite integral formula can be thought of as an adjustment of the above, or it can be conceived geometrically: In Figure \ref{fig:integrationByParts}, $\int_{(1)}^{(2)}u\dd{v}$ is the yellow area, which is clearly equivalent to the total area\footnote{Note that $uv\big]_{(1)}^{(2)}=u_2v_2-u_1v_1$, the latter of which, as the difference of two rectangles, clearly represents the total shaded area.} $uv\big]_{(1)}^{(2)}$ minus the grey area $\int_{(1)}^{(2)}v\dd{u}$.
+    \end{itemize}
+    \item Since $\int\dd v=v+C_1$, $\int u\dd{v}$ actually equals $u(v+C_1)-\int(v+C_1)\dd{u}$. However, since
+    \begin{align*}
+        u(v+C_1)-\int(v+C_1)\dd{u} &= uv+C_1u-\int v\dd{u}-\int C_1\dd{u}\\
+        &= uv-\int v\dd{u}
+    \end{align*}
+    it is customary to drop the first constant of integration.
+    \begin{itemize}
+        \item That being said, it is sometimes useful --- when evaluating $\int\ln(x+1)\dd{x}=\ln(x+1)(x+C_1)-\int\frac{x+C_1}{x+1}\dd{x}$, being able to choose $C_1=1$ greatly simplifies the second integral.
+    \end{itemize}
+    \item When integrating an inverse trig function, consider using integration by parts.
+    \begin{itemize}
+        \item For example, when confronted with $\int\tan^{-1}x\dd{x}$, integration by parts turns it into an inverse trig derivative problem.
+        \begin{equation*}
+            \int\tan^{-1}x\dd{x} = x\tan^{-1}x-\int\frac{x\dd{x}}{1+x^2}
+        \end{equation*}
+    \end{itemize}
+    \item When attempting integration by parts, don't be afraid to use it multiple times.
+    \begin{itemize}
+        \item For example, when confronted with $\int x^2\e[x]\dd{x}$, use integration by parts twice.
+        \begin{align*}
+            \int x^2\e[x]\dd{x} &= x^2\e[x]-\int 2x\e[x]\dd{x}\\
+            &= x^2\e[x]-\left( 2x\e[x]-\int 2\e[x]\dd{x} \right)
+        \end{align*}
+    \end{itemize}
+    \item When attempting integration by parts, look for the original integral showing up again --- if it does, combine like terms.
+    \item When integrating powers of $\cos x$, consider using a reduction formula.
+    \begin{itemize}
+        \item Begin by deriving a reduction formula (this will involve splitting the exponent!).
+        \begin{align*}
+            \int\cos^nx\dd{x} &= \int\cos^{n-1}x\cos x\dd{x}\\
+            &= \cos^{n-1}x\sin x+(n-1)\int\cos^{n-2}x\sin^2x\dd{x}\\
+            &= \cos^{n-1}x\sin x+(n-1)\int\cos^{n-2}x\dd{x}-(n-1)\int\cos^nx\dd{x}\\
+            (1+(n-1))\int\cos^nx\dd{x} &= \cos^{n-1}x\sin x+(n-1)\int\cos^{n-2}x\dd{x}\\
+            \int\cos^nx\dd{x} &= \frac{\cos^{n-1}x\sin x}{n}+\frac{n-1}{n}\int\cos^{n-2}x\dd{x}
+        \end{align*}
+        Since the reduction formula decreases the exponent by 2, work out two base cases.
+        \begin{gather*}
+            \int\cos^0x\dd{x} = x+C\\
+            \int\cos^1x\dd{x} = \sin x+C
+        \end{gather*}
+    \end{itemize}
+    \item When integrating powers of $\sin x$, consider using a reduction formula.
+    \begin{equation*}
+        \int\sin^nx\dd{x} = -\frac{\sin^{n-1}x\cos x}{n}+\frac{n-1}{n}\int\sin^{n-2}x\dd{x}
+    \end{equation*}
+\end{itemize}
+
+
+
+\section{Integration of Rational Functions of \texorpdfstring{$\sin x$}{TEXT} and \texorpdfstring{$\cos x$}{TEXT}, and Other Trigonometric Integrals}
+\begin{itemize}
+    \item \dq{It has been discovered that the substitution $z=\tan\frac{x}{2}$ enables one to reduce the problem of integrating any rational function of $\sin x$ and $\cos x$ to a problem involving a rational function of $z$. This in turn can be integrated by the method of partial fractions}{300}
+    \begin{itemize}
+        \item However, this substitution should be used only as a last resort --- the associated algebra is often quite cumbersome.
+    \end{itemize}
+    \item To increase the ease of use for this substitution, it will help to derive three results.
+    \begin{align*}
+        \cos x &= \frac{1-z^2}{1+z^2}&
+        \sin x &= \frac{2z}{1+z^2}&
+        \dd x &= \frac{2\dd{z}}{1+z^2}
+    \end{align*}
+    \item \dq{The following types of integrals\dots arise in connection with alternating-current theory, heat transfer problems, bending of beams, cable stress analysis in suspension bridges, and many other places where trigonometric series (or Fourier series) are applied to problems in mathematics, science, and engineering}{301}
+    \begin{align*}
+        \int\sin mx\sin nx\dd{x}&&
+        \int\sin mx\cos nx\dd{x}&&
+        \int\cos mx\cos nx\dd{x}
+    \end{align*}
+    \item When confronted with one of these integrals, integration by parts may be used. However, using one of the following three identities will be more simple.
+    \begin{align*}
+        \sin mx\sin nx &= \frac{1}{2}(\cos(m-n)x-\cos(m+n)x)\\
+        \sin mx\cos nx &= \frac{1}{2}(\sin(m-n)x+\sin(m+n)x)\\
+        \cos mx\cos nx &= \frac{1}{2}(\cos(m-n)x+\cos(m+n)x)
+    \end{align*}
+    \begin{itemize}
+        \item Note that \dq{these identities follow at once from $\cos(A+B)=\cos A\cos B-\sin A\sin B$, $\cos(A-B)=\cos A\cos B+\sin A\sin B$, and $\sin(A+B)=\sin A\cos B+\cos A\sin B$, $\sin(A-B)=\sin A\cos B-\cos A\sin B$}{301}
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Further Substitutions}
+\begin{itemize}
+    \item \dq{Some integrals involving fractional powers of the variable $x$ may be simplified by substituting $x=z^n$, where $n$ is the least common multiple of the denominators of the exponents}{302}
+    \begin{itemize}
+        \item For example, $\int\frac{\sqrt{x}\dd{x}}{1+\sqrt[4]{x}}$ can be simplified by taking $x=z^4$.
+    \end{itemize}
+    \item \dq{Even when it is not clear at the start that a substitution will work, it is advisable to try one that seems reasonable and pursue it until it either gives results or appears to make matters worse. In the latter case, try something else! Sometimes a chain of substitutions $u=f(x)$, $v=g(u)$, $z=h(v)$, and so on, will produce results when it is by no means obvious that this will work}{302}
+    \item \dq{The criterion of success is whether the new integrals so obtained appear to be simpler than the original integral. Here it is handy to remember that any rational function of $x$ can be integrated by the method of partial fractions and that any rational function of $\sin x$ and $\cos x$ can be integrated by using the substitution $z=\tan\frac{x}{2}$. If we can reduce a given integral to one of these types, we then know how to finish the job}{302}
+    \item To evaluate a definite integral after a (series of) substitution(s), either return the substitution(s) and keep the bounds or keep the substitution(s) and determine new bounds based on the new variable of integration.
+    \begin{itemize}
+        \item For example, if $z^2=\frac{1+x}{1-x}$ and $x\in[-1,1]$, then $z\in[0,\infty)$. And if $z=\tan\theta$, then $\theta\in\left[ 0,\frac{\pi}{2} \right]$.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Improper Integrals}
+\begin{itemize}
+    \item \textbf{Improper integral}: An integral of the form $\int_a^b f(x)\dd{x}$ where some $x\in[a,b]$ is infinite, and/or one or both of $a,b$ are infinite in magnitude.
+    \begin{figure}[h!]
+        \centering
+        \begin{subfigure}[b]{0.48\linewidth}
+            \centering
+            \begin{tikzpicture}[xscale=2.5,yscale=1.5]
+                \footnotesize
+                \fill [yly] plot [domain=-1:0.73,samples=100,smooth] (\x,{((1+\x)/(1-\x))^0.5}) -- (0.73,0) node[below,black]{$b$};
+
+                \draw [-stealth] (-1.3,0) -- (1.3,0) node[right]{$x$};
+                \draw [-stealth] (0,-0.4) -- (0,3.3) node[above]{$y$};
+                \draw (-1,0.1) -- ++(0,-0.2) node[below]{$-1$};
+                \draw (1,3.3) -- ++(0,-3.4) node[below]{$1$};
+                \foreach \y in {1,2} {
+                    \draw [xscale=0.6] (0.1,\y) -- ++(-0.2,0) node[left]{$\y$};
+                }
+
+                \draw [ylx,thick] plot [domain=-1:0.833,samples=100,smooth] (\x,{((1+\x)/(1-\x))^0.5});
+
+                \node [below left] {$0$};
+                \node at (-0.7,1.5) {$y=\sqrt{\dfrac{1+x}{1-x}}$};
+            \end{tikzpicture}
+            \caption{With respect to $x$.}
+            \label{fig:impropera}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.48\linewidth}
+            \centering
+            \begin{tikzpicture}[xscale=2.5,yscale=1.5]
+                \footnotesize
+                \fill [yly] (0.3,1.363) coordinate (P) rectangle (1,1.2);
+
+                \draw [-stealth] (-1.3,0) -- (1.3,0) node[right]{$x$};
+                \draw [-stealth] (0,-0.4) -- (0,3.3) node[above]{$y$};
+                \draw (-1,0.1) -- ++(0,-0.2) node[below]{$(-1,0)$};
+                \draw (1,3.3) -- ++(0,-3.4) node[below]{$(1,0)$};
+
+                \draw ($(P)+(0,-0.2)$) -- ++(0,-0.3);
+                \draw [<->] ($(P)+(0,-0.35)$) -- node[fill=white,inner sep=1.5pt]{$1-x$} ++(0.7,0);
+                \draw ($(P)+(0.72,0)$) -- ++(0.16,0) (1.02,1.2) -- ++(0.16,0);
+                \draw [->] (1.1,1.6) node[above]{$\dd y$} -- (P -| 1.1,0);
+                \draw [->] (1.1,0.963) -- (1.1,1.2);
+
+                \node [below left] {$O$};
+                \node at (-0.7,1.5) {$x=\dfrac{y^2-1}{y^2+1}$};
+                \node at (0.5,0.3) {$\dd{A}=(1-x)\dd{y}$};
+                \node at (0.25,2) {$P(x,y)$}
+                    edge (P)
+                ;
+
+                \draw [ylx,thick] plot [domain=-1:0.833,samples=100,smooth] (\x,{((1+\x)/(1-\x))^0.5});
+            \end{tikzpicture}
+            \caption{With respect to $y$.}
+            \label{fig:improperb}
+        \end{subfigure}
+        \caption{Defining improper integrals.}
+        \label{fig:improper}
+    \end{figure}
+    \item Say we wish to evaluate $\int_{-1}^1\sqrt{\frac{1+x}{1-x}}\dd{x}$, knowing that the integrand approaches $\infty$ as $x\to 1$ (see Figure \ref{fig:impropera}). Well, if the upper bound $b$ is some value slightly \emph{less than} 1, we \emph{can} evaluate the integral. Thus evaluating the original integral becomes a problem of evaluating
+    \begin{equation*}
+        \lim_{b\to 1^-}\int_{-1}^b\sqrt{\frac{1+x}{1-x}}\dd{x} = \lim_{b\to 1^-}\left( \sin^{-1}x-\sqrt{1-x^2}\Big]_{-1}^b \right)
+        = \lim_{b\to 1^-}\left( \sin^{-1}b-\sqrt{1-b^2}+\frac{\pi}{2} \right)
+    \end{equation*}
+    \begin{itemize}
+        \item Sometimes such a limit will converge. Sometimes it will not (it will diverge). Either way, it answers the question of the nature of the area under the curve (by yielding some finite value, or the infinite one).
+        \item Note that the integral works out just the same if we sum vertical elements instead (see Figure \ref{fig:improperb}), evaluating the following.
+        \begin{equation*}
+            \lim_{c\to\infty}\int_0^c(1-x)\dd{y} = \lim_{c\to\infty}\int_0^c\frac{2\dd{y}}{y^2+1}
+        \end{equation*}
+    \end{itemize}
+    \item When integrating a function $f(x)$ on $[a,b]$ where $f(x)\to\infty$ at some $x$-value $c\in(a,b)$, split the integral.
+    \begin{equation*}
+        \int_a^b f(x)\dd{x} = \lim_{c\to c^-}\int_a^c f(x)\dd{x}+\lim_{c\to c^+}\int_c^b f(x)\dd{x}
+    \end{equation*}
+    \item On determining whether or not an improper integral with a nonintegrable integrand exists, we can sometimes compare it with an integral that we know.
+    \begin{itemize}
+        \item For example,
+        \begin{equation*}
+            \int_1^b\e[-x^2]\dd{x} \leq \int_1^b\e[-x]
+        \end{equation*}
+        for all $b\geq 1$ since $0<\e[-x^2]\leq\e[-x]$ for all $x\geq 1$. Thus, $\int_1^\infty \e[-x^2]\dd{x}$ evaluates to some finite value.
+    \end{itemize}
+    \item Note that some improper integrals diverge by oscillation.
+    \begin{itemize}
+        \item For example, $\int_0^\infty \cos x\dd{x}$ diverges in this manner.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Numerical Methods for Approximating Definite Integrals}
+\begin{itemize}
+    \item One could use the \textbf{trapezoidal rule}.
+    \item A better choice, though, is \textbf{Simpson's rule}.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[scale=1.5]
+            \footnotesize
+            \colorlet{ylx}{yellow!50!black}
+            \colorlet{yly}{yellow!50!black!50}
+    
+            \fill [yly] plot [domain=0.5:3.5] (\x,{0.6*sin(1.2*(\x+0.4) r)+1.7}) -- (3.5,0) -- (0.5,0);
+            \draw [thick,ylx] plot [domain=0.2:3.9,smooth] (\x,{0.6*sin(1.2*(\x+0.4) r)+1.7});
+            \foreach \x in {1,1.5,...,3} {
+                \draw [thick,ylx] (\x,0) -- (\x,{0.6*sin(1.2*(\x+0.4) r)+1.7});
+            }
+            \foreach \x/\s in {0.5/1,1/4,1.5/2,2/4,2.5/2,3/4,3.5/1} {
+                \node [above right=-0.5pt,xshift=-0.5pt] at (\x,0) {\s};
+            }
+            \node [left=-3pt] at (0.5,0.5) {$y_0$};
+            \node [right=-2pt] at (1,0.8) {$y_1$};
+            \node [right=-2pt] at (1.5,0.8) {$y_2$};
+            \node [right=-2pt] at (3,0.8) {$y_{n-1}$};
+            \node [right=-2pt] at (3.5,0.5) {$y_n$};
+    
+            \node [below left] {$O$};
+            \node at (2.7,1.9) {$y=f(x)$};
+            \node [below] at (0.5,0) {$a$};
+            \node [below] at (3.5,0) {$b$};
+            \draw [<->] (1.5,-0.2) -- node[fill=white,inner sep=1.5pt]{$h$} (2,-0.2);
+            \draw (1.5,-0.05) -- (1.5,-0.35) (2,-0.05) -- (2,-0.35);
+    
+            \draw [-latex] (-0.3,0) -- (4,0) node[right]{$x$};
+            \draw [-latex] (0,-0.3) -- (0,2.5) node[above]{$y$};
+        \end{tikzpicture}
+        \caption{Simpson's rule.}
+        \label{fig:SimpsonsRule}
+    \end{figure}
+    \begin{itemize}
+        \item Simpson's rule approximates the curve via parabolas, which can be uniquely defined by three points and have a nice formula for the area underneath them.
+        \item We now derive Simpson's rule.
+        \begin{itemize}
+            \item Suppose we wish to approximate the area under the part of the curve from $x_i$ to $x_{i+2}$ in Figure \ref{fig:SimpsonsRule}. We know that there exists some parabola intersecting $(x_i,y_0)$, $(x_{i+1},y_1)$, and $(x_{i+2},y_2)$. However, for the sake of simplifying the algebra, we choose to consider the parabola intersecting $(-h,y_0)$, $(0,y_1)$, and $(h,y_2)$ (the area under both parabolas will be equivalent since $x_{i+1}-x_i=h$). Let this translated parabola be called $Ax^2+Bx+C$ for some $A,B,C\in\R$. Then the area underneath this parabola $A_p$ can be described by the following.
+            \begin{align*}
+                A_p &= \int_{-h}^h\left( Ax^2+Bx+C \right)\dd{x}\\
+                &= \frac{2Ah^3}{3}+2Ch
+            \end{align*}
+            \item We know that the area underneath this parabola is dependent only on $h$, $y_0$, $y_1$, and $y_2$. Thus, we look to express $A,C$ from the integral in terms of $h,y_0,y_1,y_2$. To accomplish this, we will use the facts that
+            \begin{align*}
+                y_0 &= Ah^2-Bh+C\\
+                y_1 &= C\\
+                y_2 &= Ah^2+Bh+C
+            \end{align*}
+            We can now see that $C=y_1$, so all that's left is to solve for $A$. This can be done by adding the first and third equations, substituting, and solving as follows.
+            \begin{align*}
+                y_0+y_2 &= 2Ah^2+2C\\
+                2Ah^2 &= y_0+y_2-2y_1\\
+                A &= \frac{y_0-2y_1+y_2}{2h^2}
+            \end{align*}
+            \item Thus, we can reformulate the area under the parabola as follows.
+            \begin{align*}
+                A_p &= \frac{2h^3}{3}\cdot\frac{y_0-2y_1+y_2}{2h^2}+2y_1h\\
+                &= \frac{h}{3}(y_0+4y_1+y_2)
+            \end{align*}
+            \item \dq{Simpson's rule follows from applying this result to successive pieces of the curve $y=f(x)$ between $x=a$ and $x=b$. Each separate piece of the curve, covering an $x$-subinterval of width $2h$, is approximated by an arc of a parabola through its ends and its mid-point. The area under each parabolic arc is then given by an expression like [the above] and the results are added to give [the following]}{309}
+            \begin{align*}
+                A_S &= \frac{h}{3}((y_0+4y_1+y_2)+(y_2+4y_3+y_4)+\cdots+(y_{n-2}+4y_{n-1}+y_n))\\
+                &= \frac{h}{3}(y_0+4y_1+2y_2+4y_3+2y_4+\cdots+2y_{n-2}+4y_{n-1}+y_n)
+            \end{align*}
+        \end{itemize}
+        \item Note that the number of subdivisions must be an even integer.
+    \end{itemize}
+    \item To find the error in a Simpson's rule approximation, use the fact\footnote{A proof of this fact is a topic best left until Analysis. The framework for such a proof may be found on \cite[146]{bib:Olmsted}.} that \dq{if $f$ is continuous on $[a,b]$ and four times differentiable on $(a,b)$, then there is a number $c$ between $a$ and $b$ such that [the following holds]}{310}
+    \begin{equation*}
+        \int_a^b f(x)\dd{x} = A_S-\frac{b-a}{180}f^{(4)}(c)\cdot h^4
+    \end{equation*}
 \end{itemize}
 
 

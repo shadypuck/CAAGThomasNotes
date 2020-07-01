@@ -33,7 +33,7 @@
 \deffootnotemark{\textsuperscript{[\thefootnotemark]}}
 \deffootnote[2.1em]{0em}{0em}{\textsuperscript{\thefootnotemark}}
 
-\usetikzlibrary{angles,backgrounds}
+\usetikzlibrary{angles,backgrounds,calc}
 \colorlet{ylx}{yellow!50!black}
 \colorlet{yly}{yellow!50!black!50}
 \colorlet{ylz}{yly!50!gray}
@@ -44,5 +44,6 @@
 
 \newcommand{\dq}[2]{``#1" \parencite[#2]{bib:Thomas}.}
 \newcommand{\e}[1][]{\text{e}^{#1}}
+\newcommand{\R}{\mathbb{R}}
 
 \usepackage{subfiles}
