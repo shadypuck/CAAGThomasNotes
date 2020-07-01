@@ -80,19 +80,21 @@
             \draw [-stealth] (-0.9,0) -- (2,0) node[right]{$x$};
             \draw [-stealth] (0,-0.3) -- (0,1.8) node[above]{$y$};
 
-            \draw [gray,thick,yshift=-0.4cm,xscale=1.25] plot [domain=-0.7:1.4,smooth] (\x,{0.5*(e^\x+e^(-\x))});
+            \draw [gax,thick,yshift=-0.4cm,xscale=1.25] plot [domain=-0.7:1.4,smooth] (\x,{0.5*(e^\x+e^(-\x))});
 
-            \draw (1.3,0.94) arc[start angle=0,end angle=27,radius=0.4cm] node[right,yshift=-1.3mm]{$\phi$};
-
-            \draw [ylx,very thick,-latex] (1,0.94) -- (1.7,1.44) node[fill=white,inner sep=2pt,above left]{$T$};
-            \draw [ylx,thick,-latex] (1,0.94) -- node[below]{$T\cos\phi$} ++(0.7,0);
-            \draw [ylx,thick,-latex] (1.7,0.94) -- (1.7,1.44) node[below right]{$T\sin\phi$};
+            \draw [ylx,very thick,-latex] (1,0.94) coordinate (P) -- (1.7,1.44) coordinate (A) node[fill=white,inner sep=2pt,above left]{$T$};
+            \draw [ylx,thick,-latex] (P) -- node[below]{$T\cos\phi$} ++(0.7,0) coordinate (B);
+            \draw [ylx,thick,-latex] (B) -- (A) node[below right]{$T\sin\phi$};
             \draw [ylx,very thick,-latex] (0,0.6) -- (-0.8,0.6) node[below right]{$H$};
             \foreach \x/\y in {0.1/0.6,0.37/0.64,0.63/0.73,0.9/0.87} {
                 \draw [ylx,thick,-latex] (\x,\y) -- ++(0,-0.3);
             }
 
-            \node [circle,fill,inner sep=1.5pt,label={above left:$P(x,y)$}] at (1,0.94) {};
+            \begin{scope}[on background layer]
+                \pic[draw,pic text={$\phi$},angle radius=6mm,angle eccentricity=1.3]{angle=B--P--A};
+            \end{scope}
+
+            \node [circle,fill,inner sep=1.5pt,label={above left:$P(x,y)$}] at (P) {};
             \node [circle,fill,inner sep=1.5pt,label={above left:$A$}] at (0,0.6) {};
             \node [below left] {$O$};
             \node at (0.5,0.3) {$W$};
@@ -103,12 +105,11 @@
                 \normalsize
                 \draw (0,0) rectangle (2.7,1.5);
                 \clip (0,0) rectangle (2.7,1.5);
-                \draw [gray,ultra thick] (0,0) -- (2,1.5);
+                \draw [gax,ultra thick] (0,0) -- (2,1.5);
 
-                \draw [ylx,line width=2pt] (1,0.75) -- node[below]{$\dd x$} (1.6,0.75) -- node[right]{$\dd y$} (1.6,1.2) -- node[above,xshift=-1mm]{$\dd s$} (1,0.75);
+                \draw [ylx,line width=2pt] (1,0.75) coordinate (a) -- node[below]{$\dd x$} (1.6,0.75) coordinate (b) -- node[right]{$\dd y$} (1.6,1.2) coordinate (c) -- node[above,xshift=-1mm]{$\dd s$} (1,0.75) pic[pic text={$\phi$},angle eccentricity=1.3]{angle=b--a--c};
 
                 \node [circle,fill,inner sep=2.2pt,label={above left:$P(x,y)$}] at (1,0.75) {};
-                \node at (1.3,0.87) {$\phi$};
 
                 \draw (0,0) rectangle (2.7,1.5);
             \end{scope}
@@ -158,14 +159,19 @@
             \centering
             \begin{tikzpicture}[scale=2]
                 \footnotesize
-                \fill [yly] (0,0) -- (1,0) node[above right=-1mm,yshift=2mm,black]{$A(1,0)$} arc[start angle=0,end angle=60,radius=1cm] node[above right=-1mm,black]{$P(x,y)$} -- cycle;
+                \coordinate (O) at (0,0);
+                \coordinate (A) at (1,0);
+                \coordinate (P) at (60:1);
+
+                \node [below left] at (O) {$O$};
+                \node [above right=-1mm,yshift=2mm,black] at (A) {$A(1,0)$};
+                \node [above right=-1mm,black] at (P) {$P(x,y)$};
+
+                \pic[fill=yly,angle radius=1cm,scale=2,pic text={$\theta$}]{angle=A--O--P};
     
                 \draw [-stealth] (-1.5,0) -- (1.5,0) node[right]{$x$};
                 \draw [-stealth] (0,-1.5) -- (0,1.5) node[above]{$y$};
                 \draw circle (1cm);
-    
-                \node [below left] {$O$};
-                \node at (0.5,0.3) {$\theta$};
             \end{tikzpicture}
             \caption{Circular radians.}
             \label{fig:hyperbolicGeometrica}
@@ -175,7 +181,7 @@
             \begin{tikzpicture}[scale=2]
                 \footnotesize
                 \fill [yly] (0,0) -- (1.8,0) -- (1.8,1.5) -- cycle;
-                \fill [yly!50!gray] plot [domain=0:1.19] ({0.5*(e^\x+e^(-\x))},{0.5*(e^\x-e^(-\x))}) -- (0,0);
+                \fill [ylz] plot [domain=0:1.19] ({0.5*(e^\x+e^(-\x))},{0.5*(e^\x-e^(-\x))}) -- (0,0);
     
                 \draw [very thin] (2.4,1.5) -- (1.8,1.5) -- (1.8,-0.8);
                 \draw [thin,<->] (0,-0.6) -- node[near start,xshift=2mm,fill=white,inner sep=1.5pt]{$x=\cosh u$} (1.8,-0.6);
