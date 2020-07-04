@@ -1,0 +1,142 @@
+\documentclass[../main.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter: #1}{}}
+
+\begin{document}
+
+
+
+
+\chapter{The Rate of Change of a Function}
+\section{Introduction}
+\begin{itemize}
+    \item \marginnote{7/3:}Discusses the importance of calculus, when it should be used, and why one should study it.
+    \item \textbf{Analytic geometry}: \dq{Uses algebraic methods and equations to study geometric problems. Conversely, it permits us to visualize algebraic equations in terms of geometric curves}{2}
+\end{itemize}
+
+
+
+\section{Coordinates}
+\begin{itemize}
+    \item \dq{The basic idea in analytic geometry is the establishment of a one-to-one correspondence between the points of a plane on the one hand and pairs of numbers $(x,y)$ on the other hand}{2}
+    \item Such a correspondence is most commonly established as follows.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \footnotesize
+            \draw [-stealth] (-2.8,0) -- (2.8,0) node[right]{$x$};
+            \draw [-stealth] (0,-3) -- (0,3) node[above]{$y$};
+
+            \draw (-2.1,0.1) -- ++(0,-0.2) node[below]{$-a$};
+            \draw (1,0.1) -- ++(0,-0.2) node[below]{$+1$};
+            \draw (2.1,0.1) -- ++(0,-0.2) node[below]{$+a$};
+            \draw (0.1,-1.7) -- ++(-0.2,0) node[left]{$-b$};
+            \draw (0.1,0.8) -- ++(-0.2,0) node[left]{$+1$};
+            \draw (0.1,1.7) -- ++(-0.2,0) node[left]{$+b$};
+
+            \draw [ylx,thick] (2.1,0) -- ++(0,1.7) node[right,black]{$P(a,b)$} -- ++(-2.1,0);
+
+            \node [below left] {$O$};
+            \node at (1.8,2.4) {$I(+,+)$};
+            \node at (1.8,-2.4) {$II(+,-)$};
+            \node at (-1.8,-2.4) {$III(-,-)$};
+            \node at (-1.8,2.4) {$IV(-,+)$};
+        \end{tikzpicture}
+        \caption{Cartesian coordinates.}
+        \label{fig:cartesianPlane}
+    \end{figure}
+    \begin{itemize}
+        \item \dq{A horizontal line in the plane, extending indefinitely to the left and to the right, is chosen as the $x$-axis or axis of \textbf{abscissas}. A reference point $O$ on this line and a unit of length are then chosen. The axis is scaled off in terms of this unit of length in such a way that the number zero is attached to $O$, the number $+a$ is attached to the point which is $a$ units to the right of $O$, and $-a$ is attached to the symmetrically located point to the left of $O$. In this way, a one-to-one correspondence is established between points of the $x$-axis and the set of all \textbf{real numbers}}{2-3}
+        \item \dq{Now through $O$ take a second, vertical line in the plane, extending indefinitely up and down. This line becomes the $y$-axis, or axis of \textbf{ordinates}. The unit of length used to represent $+1$ on the $y$-axis need not be the same as the unit of length used to represent $+1$ on the $x$-axis. The $y$-axis is scaled off in terms of the unit of length adopted for it, with the positive number $+b$ attached to the point $b$ units above $O$ and negative number $-b$ attached to the symmetrically located point $b$ units below $O$}{3}
+        \item \dq{If a line parallel to the $y$-axis is drawn through the point marked $a$ on the $x$-axis, and a line parallel to the $x$-axis is drawn through the point marked $b$ on the $y$-axis, their point of intersection $P$ is to be labeled $P(a,b)$. Thus, given the pair of real numbers $a$ and $b$, we find one and only one point with abscissa $a$ and ordinate $b$, and this point we denote by $P(a,b)$}{3}
+        \item \dq{Conversely, if we start with any point $P$ in the plane, we may draw lines through it parallel to the coordinate axes. If these lines intersect the $x$-axis at $a$ and the $y$-axis at $b$, we then regard the pair of numbers $(a,b)$ as corresponding to the point $P$. We say that the coordinates of $P$ are $(a,b)$}{3}
+        \item \dq{The two axes divide the plane into four quadrants, called the first quadrant, second quadrant, and so on, and labeled I, II, III, IV in [Figure \ref{fig:cartesianPlane}]. Points in the first quadrant have both coordinates positive, and in the second quadrant the $x$-coordinate (abscissa) is negative and the $y$-coordinate (ordinate) is positive. The notations $(-,-)$ and $(+,-)$ in quadrants III and IV of [Figure \ref{fig:cartesianPlane}] represent the signs of the coordinates of points in these quadrants}{3}
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Increments}
+\begin{itemize}
+    \item \textbf{Increments}: The values $\Delta x = x_2-x_1$ and $\Delta y = y_2-y_1$ concerning a particle, the initial position of which is $P_1(x_1,y_1)$ and the terminal position of which is $P_2(x_2,y_2)$.
+    \item If the unit of measurement for both axes is the same, then we may express distances in the plane in terms of this unit using the Pythagorean theorem.
+\end{itemize}
+
+
+
+\section{Slope of a Straight Line}
+\begin{itemize}
+    \item Let $L$ be a straight line not parallel to the $y$-axis intersecting distinct points $P_1(x_1,y_1)$ and $P_2(x_2,y_2)$. Then $L$ has a \textbf{rise}, \textbf{run}, and \textbf{slope}.
+    \item \textbf{Rise}: The increment $\Delta y$.
+    \item \textbf{Run}: The increment $\Delta x$.
+    \item \textbf{Slope}: The rate of rise per run $m=\frac{\text{rise}}{\text{run}}=\frac{\Delta y}{\Delta x}=\frac{y_2-y_1}{x_2-x_1}$. \emph{Also known as} \textbf{inclination}.
+    \begin{figure}[h!]
+        \centering
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \coordinate (A) at (0,0);
+                
+                \draw [-stealth,name path=x axis] (-2,0) -- (1.3,0) node[right]{$x$};
+                \draw [-stealth,name path=y axis] (0,-0.4) -- (0,2) node[above]{$y$};
+
+                \draw [ylx,thick,name path=line] (-1.9,-0.2) -- (1.2,1.9);
+
+                \path[name intersections={of=x axis and line,by=B}];
+                \path[name intersections={of=y axis and line,by=C}];
+                \pic[draw,->,pic text={$\phi$},angle eccentricity=1.3]{angle};
+
+                \node [below left] {$O$};
+            \end{tikzpicture}
+            \caption{Negative $x$-intercept.}
+            \label{fig:angleOfInclinationa}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \coordinate (A) at (2,0);
+                
+                \draw [-stealth,name path=x axis] (-0.5,0) -- (2.5,0) node[right]{$x$};
+                \draw [-stealth,name path=y axis] (0,-0.4) -- (0,2) node[above]{$y$};
+
+                \draw [ylx,thick,name path=line] (1.9,-0.2) -- (-0.4,1.9);
+
+                \path[name intersections={of=x axis and line,by=B}];
+                \path[name intersections={of=y axis and line,by=C}];
+                \pic[draw,->,pic text={$\phi$},angle eccentricity=1.3]{angle};
+
+                \node [below left] {$O$};
+            \end{tikzpicture}
+            \caption{Positive $x$-intercept.}
+            \label{fig:angleOfInclinationb}
+        \end{subfigure}
+        \caption{The slope and the angle of inclination.}
+        \label{fig:angleOfInclination}
+    \end{figure}
+    \begin{itemize}
+        \item If we chose different distinct points, the slope would be same because the triangles in the Cartesian plane would be similar.
+        \item $\Delta y$ is proportional to $\Delta x$ with $m$ as the proportionality factor.
+        \item On interpolation: If we're given the values of a function at $(x_1,y_1)$ and $(x_2,y_2)$, then we may approximate the function by a straight line $L$ passing through those two points and approximate the value $f(x)$ for any $x_1\leq x\leq x_2$.
+        \item If the scales on both axes are equal, then the slope of $L$ is equal to the tangent of the \textbf{angle of inclination} that $L$ makes with the positive $x$-axis. That is, $m=\tan\phi$ (see Figure \ref{fig:angleOfInclination}).
+    \end{itemize}
+    \item \textbf{Parallel} (lines): Two lines with equal inclinations ($m_1=m_2$).
+    \item \textbf{Perpendicular} (lines): Two lines with inclinations that differ by $90^\circ$ ($m_1=-\frac{1}{m_2}$).
+    \begin{itemize}
+        \item Note that we can prove the relation between the slopes using the angles of inclination as follows.
+        \begin{align*}
+            m_1 &= \tan\phi_1\\
+            &= \tan\left( \phi_2+90^\circ \right)\\
+            &= -\cot\phi_2\\
+            &= -\frac{1}{\tan\phi_2}\\
+            &= -\frac{1}{m_2}
+        \end{align*}
+    \end{itemize}
+\end{itemize}
+
+
+
+
+\end{document}
