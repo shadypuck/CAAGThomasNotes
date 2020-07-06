@@ -138,5 +138,165 @@
 
 
 
+\section{Equations of a Straight Line}
+\begin{itemize}
+    \item \marginnote{7/5:}How do you know if $P(x,y)$ is a point on the line $P_1P_2$ through distinct points $P_1(x_1,y_1)$ and $P_2(x_2,y_2)$?
+    \begin{itemize}
+        \item If $x_1=x_2$, then $P_1P_2$ is vertical and $P$ lies on $P_1P_2$ iff $x=x_1$.
+        \item If $x_1\neq x_2$, then the slope of $P_1P_2$ $m_{P_1P_2}=\frac{y_2-y_1}{x_2-x_1}$. Thus, $P$ lies on $P_1P_2$ iff $P=P_1$ or, for the line $PP_1$ through $P$ and $P_1$, $m_{P_1P_2}=m_{PP_1}=\frac{y-y_1}{x-x_1}$. In other words, the coordinates $x,y$ of $P$ must satisfy $y-y_1=m_{P_1P_2}(x-x_1)$.
+    \end{itemize}
+    \item \cite{bib:Thomas} calls the above equation the \textbf{point-slope form}.
+    \item \textbf{Variable}: \dq{A symbol, such as $x$, which may take on any value in some set of numbers}{10}
+    \item \textbf{Slope-intercept form}: $y=mx+b$.
+    \item \textbf{General form}: $Ax+By+C=0$.
+    \begin{itemize}
+        \item Such an equation (one that contains only first powers of $x$ and $y$ and constants) is said to be \textbf{linear in \emph{x} and \emph{y}}.
+        \item \dq{Every straight line in the plane is represented by a linear equation and, conversely, every linear equation represents a straight line}{10}
+    \end{itemize}
+    \item \textbf{\emph{y}-intercept}: The constant $b$ in the above equation.
+    \item Let $L$ be a line with the equation $Ax+By+C=0$. The shortest distance $d$ from a point $P_1(x_1,y_1)$ not on $L$ to $L$ is given by
+    \begin{equation*}
+        d = \frac{|Ax_1+By_1+C|}{\sqrt{A^2+B^2}}
+    \end{equation*}
+    \begin{itemize}
+        \item Derive by finding a line perpendicular to $L$ through $P_1$.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Functions and Graphs}
+\begin{itemize}
+    \item \textbf{Domain} (of a variable $x$): \dq{The set of numbers over which $x$ may vary}{12}
+    \item Defines \textbf{open intervals}, \textbf{half-open intervals}, and \textbf{closed intervals}.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[scale=1.7]
+            \footnotesize
+            \fill [grx] (0,0) rectangle (2,1.2);
+            \fill [yly] (0.7,0.2)
+                to[out=0,in=-90] (1.4,0.7)
+                to[out=90,in=0] (1.1,1)
+                to[out=180,in=90] (0.4,0.5)
+                to[out=-90,in=180] cycle
+            ;
+            \node (x) [circle,fill,inner sep=1.5pt,label={left:$x$}] at (1.1,0.55) {};
+            \node at (0.15,1.05) {$X$};
+            \node at (1.2,0.8) {$D_f$};
+
+            \begin{scope}[xshift=2.8cm]
+                \fill [grx] (0,0) rectangle (2,1.2);
+                \fill [yly] (0.9,0.2)
+                    to[out=0,in=-90] (1.6,0.7)
+                    to[out=90,in=0] (1,1.05)
+                    to[out=180,in=90] (0.4,0.5)
+                    to[out=-90,in=180] cycle
+                ;
+                \node (y) [circle,fill,inner sep=1.5pt,label={right:$y$}] at (0.8,0.5) {}
+                    edge [latex-,thick,bend left=20] node[above]{$f$} (x)
+                ;
+                \node at (0.15,1.05) {$Y$};
+                \node at (1.2,0.8) {$R_f$};
+            \end{scope}
+        \end{tikzpicture}
+        \caption{A function $f$ maps the domain $D_f$ onto the range $R_f$. The image of $x$ is $y=f(x)$.}
+        \label{fig:mapping}
+    \end{figure}
+    \item \textbf{Function}: For two nonempty sets $X,Y$, the collection $f$ of ordered pairs $(x,y)$ with $x\in X$ and $y\in Y$ that assigns to every $x\in X$ a unique $y\in Y$. \emph{Also known as} \textbf{mapping} (from $X$ to $Y$), $\bm{y=f(x)}$, $\bm{f:x\to y}$\footnote{"eff sends ex into wy"}.
+    \begin{itemize}
+        \item When using the latter notation, it is understood that the domain is $\R$ unless this is impossible (e.g., $f:x\to\frac{1}{x}$ must exclude 0 from the domain).
+    \end{itemize}
+    \item \textbf{Domain} (of a function $f$): \dq{The collection of all first elements $x$ of the pairs $(x,y)$ in $f$}{13} \emph{Also known as} $\bm{D_f}$.
+    \item \textbf{Range} (of a function $f$): \dq{The set of all second elements $y$ of the pairs $(x,y)$ in $f$}{13} \emph{Also known as} $\bm{R_f}$.
+    \item \textbf{Image} (of $x$): The value $y$ to which a function maps $x$.
+    \item \cite{bib:Thomas} considers functions from the reals to the reals, but also more abstract functions.
+    \begin{itemize}
+        \item For example, it considers the function from all triangles (a set of decidedly nonnumerical objects) to their enclosed areas (the set of positive real numbers).
+    \end{itemize}
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \footnotesize
+            \draw [-stealth] (-2.8,0) -- (2.8,0) node[right]{$x$};
+            \draw [-stealth] (0,-0.5) -- (0,4.8) node[above]{$y$};
+            \foreach \x in {-2,-1,1,2} {
+                \draw (\x,0.1) -- ++(0,-0.2) node[below]{$\x$};
+            }
+            \foreach \y in {1,2,3,4} {
+                \draw (0.1,\y) -- ++(-0.2,0) node[left]{$\y$};
+            }
+            \node [below left=1mm] {$0$};
+
+            \draw [ylx,thick] plot [domain=-2:2,smooth] (\x,{\x*\x}) node[above,black]{$y=x^2$, $-2\leq x\leq 2$};
+        \end{tikzpicture}
+        \caption{Graph of a function.}
+        \label{fig:graphOfFunction}
+    \end{figure}
+    \item \textbf{Graph} (of a function): \dq{The set of points which correspond to members of the function}{14}
+    \begin{itemize}
+        \item For example, let $X$ be the closed interval $[-2,2]$. To each $x\in X$, assign the number $x^2$. This describes the function
+        \begin{equation*}
+            f = \left\{ (x,y):-2\leq x\leq 2,\ y=x^2 \right\}
+        \end{equation*}
+        The graph of $f$ can be seen in Figure \ref{fig:graphOfFunction}.
+    \end{itemize}
+    \item \textbf{Independent variable}: The first variable $x$ in the ordered pair $(x,y)$. \emph{Also known as} \textbf{argument}.
+    \item \textbf{Dependent variable}: The second variable $y$ in the ordered pair $(x,y)$.
+    \item \textbf{Real-valued function of a real variable}: \dq{A function $f$ whose domain and range are sets of real numbers}{14}
+    \begin{itemize}
+        \item As a general rule, \emph{function} indicates a real-valued function of a real variable for the first seven chapters of \cite{bib:Thomas}.
+    \end{itemize}
+    \item $f$ can be represented by\dots
+    \begin{itemize}
+        \item A table of corresponding values (this will be incomplete, though).
+        \item Corresponding numerical scales, as on a slide rule (this will be incomplete, though).
+        \item A simple formula, such as $f(x)=x^2$ (this may be less exact than ordered pairs, but it is more easily understood/applicable/complete).
+        \item A graph (for any value $x$ in the domain, begin $x$ units from the origin along the $x$-axis, move vertically until intersecting the curve, and then move horizontally until intersecting the image $y$ on the $y$-axis).
+    \end{itemize}
+    \item Some mappings cannot be expressed in terms of algebraic operations on $x$.
+    \begin{itemize}
+        \item For example, the \textbf{greatest-integer function} \dq{maps any real number $x$ onto that unique integer which is the largest among all integers that are less than or equal to $x$}{15}
+        \begin{itemize}
+            \item The image of $x$ is represented by $[x]$, and the function by $f:x\to[x]$.
+            \item An example of a \textbf{step function}.
+            \item It exhibits points of \textbf{discontinuity}.
+        \end{itemize}
+    \end{itemize}
+    \item Note: The fact that a one-to-one mapping exists between the points in the interval $(0,1]$ and $[1,\infty)$ (namely, $f:x\to\frac{1}{x}$) proves that there are equally many points in both intervals.
+    \item The absolute value function can be geometrically interpreted in the context of distance from a point. As such, it is useful in describing \textbf{neighborhoods}.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[
+            scale=1.3,
+            every node/.style={black}
+        ]
+            \footnotesize
+            \draw [ylx,line width=2.5pt] (-1,0) node[above left]{$c-h$} -- node[above left]{$c$} (1,0) node[above right]{$c+h$};
+            \draw (-2,0) -- (2,0);
+            \draw circle (1cm);
+            \draw (0,0) -- node[above]{$h$} (35:1);
+        \end{tikzpicture}
+        \caption{The symmetric neighborhood $N_h(c)$, centered at $c$, with radius $h$.}
+        \label{fig:neighborhood+radius}
+    \end{figure}
+    \item \textbf{Symmetric neighborhood} (of a point $c$): \dq{The open interval $(c-h,c+h)$, where $h$ may be any positive number}{17} \emph{Also known as} $\bm{N_h(c)}$.
+    \item \textbf{Radius} (of a symmetric neighborhood): The value $h$ (see Figure \ref{fig:neighborhood+radius}).
+    \item \textbf{Neighborhood} (of a point $c$): The open interval $(c-h,c+k)$, where $h,k$ may be any positive numbers.
+    \begin{itemize}
+        \item Like requiring that $|x-c|$ is small.
+    \end{itemize}
+    \item \textbf{Deleted neighborhood} (of a point $c$): \dq{A neighborhood of $c$ from which $c$ itself has been removed}{17}
+    \begin{itemize}
+        \item Like requiring that $|x-c|>0$.
+    \end{itemize}
+    \item \textbf{Intersection} (of the neighborhoods $(c-h_1,c+k_1)$ and $(c-h_2,c+k_2)$): The neighborhood $(c-h,c+k)$, where $h=\min(h_1,h_2)$ and $k=\min(k_1,k_2)$.
+    \begin{itemize}
+        \item \dq{The intersection of two neighborhoods of $c$ is a neighborhood of $c$, and the intersection of two deleted neighborhoods of $c$ is a deleted neighborhood of $c$}{18}
+    \end{itemize}
+    \item Let $A$ be a neighborhood of $c$. Then denote the deleted neighborhood equivalent to $A$ with $c$ removed by $A^-$.
+\end{itemize}
+
+
+
 
 \end{document}
