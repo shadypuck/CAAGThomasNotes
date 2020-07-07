@@ -39,9 +39,9 @@
 
             \node [below left] {$O$};
             \node at (1.8,2.4) {$I(+,+)$};
-            \node at (1.8,-2.4) {$II(+,-)$};
+            \node at (-1.8,2.4) {$II(-,+)$};
             \node at (-1.8,-2.4) {$III(-,-)$};
-            \node at (-1.8,2.4) {$IV(-,+)$};
+            \node at (1.8,-2.4) {$IV(+,-)$};
         \end{tikzpicture}
         \caption{Cartesian coordinates.}
         \label{fig:cartesianPlane}
@@ -294,6 +294,33 @@
         \item \dq{The intersection of two neighborhoods of $c$ is a neighborhood of $c$, and the intersection of two deleted neighborhoods of $c$ is a deleted neighborhood of $c$}{18}
     \end{itemize}
     \item Let $A$ be a neighborhood of $c$. Then denote the deleted neighborhood equivalent to $A$ with $c$ removed by $A^-$.
+    \item \marginnote{7/6:}\dq{A function is determined by the domain and by any rule that tells what image in the range is to be associated with each element of the domain}{18}
+    \begin{itemize}
+        \item Thus, we can think of a "function machine" that takes in elements of the domain and computes the image based on the rule.
+        \item \cite{bib:Thomas} visualizes function machines as flow charts.
+        \item In theory, a function machine could store every pair $(x,y)$ in its memory to be recalled later. Since machines have limited memory, a fractional set of pairs could also be stored and the values in between calculated by interpolation.
+        \item In practice, though, calculating as we go is usually best.
+    \end{itemize}
+    \item Two restrictions should be inferred to apply to the domain of a function, even if they are unstated: First, never divide by 0. Second, do not consider complex outputs (yet).
+    \item Sometimes we have functions of more than one independent variable.
+    \begin{itemize}
+        \item For example, the volume $v=\frac{1}{3}\pi r^2h$ of a right circular cone is uniquely determined only when $r,h$ are given definite, positive, nonzero values.
+        \item \dq{Its domain is the set of all pairs $(r,h)$ with $r>0$, $h>0$. Its range is the set of positve numbers $v>0$}{20}
+        \item $r,h$ are independent variables. $v$ is a dependent variable.
+    \end{itemize}
+    \item \dq{More generally, suppose that some quantity $y$ is uniquely determined by $n$ other quantities $x_1,x_2,$ $x_3,\dots,x_n$. The set of all ordered $(n+1)$-tuples $(x_1,x_2,x_3,\dots,x_n,y)$ that can be obtained by substituting permissible values of the variables $x_1,x_2,\dots,x_n$ and the corresponding values of $y$ is a function whose domain is the set of all allowable $n$-tuples $(x_1,x_2,x_3,\dots,x_n)$ and whose range is the set of all possible values of $y$ corresponding to this domain. If values can be assigned independently to each of the $x$'s, we call them independent variables and say that $y$ is a function of the $x$'s. We also write $y=f(x_1,x_2,x_3,\dots,x_n)$ to indicate that $y$ is a function of the $n$ $x$'s, just as we write $y=f(x)$ to indicate that $y$ is a function of one independent variable $x$}{20}
+    \begin{itemize}
+        \item Note, though, that functions of a single variable will be the primary concern of this book.
+    \end{itemize}
+    \item \textbf{Signum function}: The function
+    \begin{equation*}
+        \text{sgn}\, x =
+        \begin{cases}
+            -1 & x<0\\
+            0 & x=0\\
+            1 & x>0
+        \end{cases}
+    \end{equation*}
 \end{itemize}
 
 
