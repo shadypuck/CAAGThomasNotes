@@ -325,5 +325,338 @@
 
 
 
+\section{Ways of Combining Functions}
+\begin{itemize}
+    \item \marginnote{7/7:}The domains of the sum, product, difference, and quotient of two functions $f$ and $g$ are the intersections of $D_f$ and $D_g$.
+    \begin{itemize}
+        \item Note that for the quotient, we must also exclude points where $g(x)=0$.
+    \end{itemize}
+    \item There is a distinction between $x\cdot\frac{1}{x}$ and $1$ (namely, the fact that the latter includes 0 in its domain while the former excludes it).
+    \item Translation.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[
+            scale=1.2,
+            every node/.style={black,text height=1.5ex,text depth=0.25ex}
+        ]
+            \footnotesize
+            \draw [-stealth] (-0.4,0) -- (5.2,0) node[right]{$x$};
+            \draw [-stealth] (0,-0.4) -- (0,3) node[above]{$y$};
+
+            \draw [ylx,thick,densely dashed] (0.4,1.5) node[above right,yshift=3.5mm]{$f$} parabola [bend at end] (2,2.7);
+            \draw [ylx,semithick,densely dashed] (0.4,1.5) -- (0.4,0) node[below]{$a$};
+            \draw [ylx,semithick,densely dashed] (1,2.23) -- node[right=-0.5mm]{$f(x-c)$} (1,0) node[below]{$x-c$};
+            \draw [ylx,semithick,densely dashed] (2,2.7) -- (2,0) node[below]{$b$};
+
+            \begin{scope}[xshift=2.3cm]
+                \draw [ylx,thick] (0.4,1.5) node[above right,yshift=3.5mm]{$g$} parabola [bend at end] (2,2.7);
+                \draw [ylx,semithick] (0.4,1.5) -- (0.4,0) node[below]{$a+c$};
+                \draw [ylx,semithick] (1,2.23) -- node[right=-0.5mm]{$g(x)$} (1,0) node[below]{$x$};
+                \draw [ylx,semithick] (2,2.7) -- (2,0) node[below]{$b+c$};
+            \end{scope}
+
+            \draw [-latex] (1.4,-0.4) to[bend right=20] (3,-0.4);
+
+            \node [below left] {$O$};
+        \end{tikzpicture}
+        \caption{Translation.}
+        \label{fig:translation}
+    \end{figure}
+    \begin{itemize}
+        \item \dq{Take the ordinate of $f$ at $x-c$ and shift it to the right $c$ units to get the ordinate of $g$ at $x$}{23}
+        \item $g(x)=f(x-c)$ implies that the graph of $g$ is that of $f$ translated $c$ units to the right.
+        \item If $D_f=[a,b]$ ($f(x)$ is only defined when $a\leq x\leq b$), then $f(x-c)$ is only defined when $a\leq x-c\leq b$. This implies that $g(x)$ is only defined when $a+c\leq x\leq b+c$; hence, $D_g=[a+c,b+c]$.
+    \end{itemize}
+    \item Change of scale.
+    \begin{figure}[h!]
+        \centering
+        \begin{subfigure}[b]{0.49\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=0.9]
+                \footnotesize
+                \draw [-stealth] (-4,0) -- (4,0) node[right]{$x$};
+                \draw [-stealth] (0,-2.6) -- (0,2.6) node[above]{$y$};
+                
+                \draw [yly,thick] plot [domain=-pi:pi,smooth] (\x,{sin(\x r)});
+                \draw [ylx,thick] plot [domain=-1:1,smooth] (\x,{sin(pi*\x r)});
+
+                \foreach \x/\text in {-pi/-\pi,-0.5*pi/-\frac{\pi}{2},-1,1,0.5*pi/\frac{\pi}{2},pi/\pi} {
+                    \draw (\x,0.1) -- ++(0,-0.2) node[below]{$\text$};
+                }
+                \foreach \y in {-2,-1,1,2} {
+                    \draw (0.1,\y) -- ++(-0.2,0) node[left]{$\y$};
+                }
+
+                \node [below right] {$0$};
+                \node [above right] at (0.5,1) {$y=g(x)=\sin\pi x$};
+                \node [below left] at (-0.5*pi,-1) {$y=f(x)=\sin x$};
+            \end{tikzpicture}
+            \caption{Horizontal scaling.}
+            \label{fig:scalinga}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.49\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=0.9]
+                \footnotesize
+                \draw [-stealth] (-4,0) -- (4,0) node[right]{$x$};
+                \draw [-stealth] (0,-2.6) -- (0,2.6) node[above]{$y$};
+                
+                \draw [yly,thick] plot [domain=-pi:pi,smooth] (\x,{sin(\x r)});
+                \draw [ylx,thick] plot [domain=-pi:pi,smooth] (\x,{2*sin(\x r)});
+
+                \foreach \x/\text in {-pi/-\pi,-0.5*pi/-\frac{\pi}{2},0.5*pi/\frac{\pi}{2},pi/\pi} {
+                    \draw (\x,0.1) -- ++(0,-0.2) node[below]{$\text$};
+                }
+                \foreach \y in {-2,-1,1,2} {
+                    \draw (0.1,\y) -- ++(-0.2,0) node[left]{$\y$};
+                }
+
+                \node [below right] {$0$};
+                \node [above,fill=white,inner sep=1pt] at (0.5*pi,1) {$y=f(x)=\sin x$};
+                \node [below] at (-0.5*pi,-2) {$y=g(x)=2\sin x$};
+            \end{tikzpicture}
+            \caption{Vertical scaling.}
+            \label{fig:scalingb}
+        \end{subfigure}
+        \caption{Change of scale.}
+        \label{fig:scaling}
+    \end{figure}
+    \begin{itemize}
+        \item Suppose $g(x)=f(kx)$. Then to transform the graph of $f$ into that of $g$, \dq{compress or stretch the $x$-axis by shrinking (if $k>1$) or stretching (if $k<1$) every interval of length $k$ on the $x$-axis into an interval of length 1}{24}
+        \begin{itemize}
+            \item Let $g(x)=f(kx)$. If $D_f=[a,b]$ ($f(x)$ is only defined when $a\leq x\leq b$), then $f(kx)$ is only defined when $a\leq kx\leq b$. This implies that $g(x)$ is only defined when $a/k\leq x\leq b/k$; hence, $D_g=[a/k,b/k]$.
+            \item Be wary when $k=0$.
+        \end{itemize}
+        \item Suppose $g(x)=k\cdot f(x)$. Then to transform the graph of $f$ into that of $g$, \dq{stretch the $f$ curve vertically (if $k>1$), or compress it (if $k<1$) [or] change the scale on the $y$-axis so that points labeled $1,2,3,\dots$ for the graph of $f$ are relabled $k,2k,3k,\dots$ for the graph of [$g$]}{25}
+        \begin{itemize}
+            \item This kind of stretching may cause $R_g$ to differ from $R_f$ by some factor $k$, but it will not affect $D_f$ and $D_g$.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Behavior of Functions}
+\begin{itemize}
+    \item Linear functions (refer to Figure \ref{fig:behavior-linear} throughout the following).
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[
+            scale=1.6,
+            every node/.style={black,text height=1.5ex,text depth=0.25ex}
+        ]
+            \footnotesize
+            \draw [-stealth] (-1,0) -- (2.5,0) node[right]{$x$};
+            \draw [-stealth] (0,-0.6) -- (0,3) node[above]{$y$};
+
+            \fill [yly] (0.45,1.35) -- node[below]{$h$} (0.9,1.35) -- node[right]{$3h$} (0.9,2.7) -- cycle;
+
+            \draw [ylx,thick] (-0.2,-0.6) -- (1,3) node[below right]{$\text{slope}=3$};
+            \draw [ylx,semithick] (0.45,1.35) -- (0.45,0) node[below]{$x_1$};
+            \draw [ylx,semithick] (0.9,1.35) -- (0.9,0) node[below,xshift=6mm]{$x_2=x_1+h$};
+
+            \node [below right] {$O$};
+        \end{tikzpicture}
+        \caption{Behavior of linear functions.}
+        \label{fig:behavior-linear}
+    \end{figure}
+    \begin{itemize}
+        \item For example, let $f(x)=3x$. The graph of $f$ is a straight line through the origin with slope $+3$.
+        \item Let $x_1$ be an initial value of $x$, and let $x_2=x_1+h$ be a new value of $x$ obtained by increasing $x_1$ by $h$ units\footnote{Note that $h$ is an alternative notation for $\Delta x$.}. The corresponding increase in $f(x)$ is given by
+        \begin{equation*}
+            f(x_1+h)-f(x_1) = 3(x_1+h)-3x_1
+            = 3h
+        \end{equation*}
+        Thus, we see that $f$ everywhere changes three times as fast as $x$.
+    \end{itemize}
+    \item Quadratic functions (refer to Figure \ref{fig:behavior-quadratic} throughout the following).
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[
+            yscale=0.35,
+            every node/.style={black}
+        ]
+            \footnotesize
+            \draw [-stealth] (-4.5,0) -- (4.5,0) node[right]{$x$};
+            \draw [-stealth] (0,-2.5) -- (0,16) node[above]{$y$};
+            \foreach \x in {-4,-3,-2,-1,1,2,3,4} {
+                \draw (\x,0.3) -- ++(0,-0.6) node[below]{$\x$};
+            }
+            \foreach \y in {4,8,12} {
+                \draw (0.1,\y) -- ++(-0.2,0) node[left]{$\y$};
+            }
+
+            \draw [ylx,semithick] (-3,6.25) -- (-3,0);
+            \draw [ylx,semithick] (-2.5,6.25) -- (-2.5,0);
+            \fill [yly] (-3,9) node[right]{$(-3,9)$} -- node[left]{$-6h+h^2$} (-3,6.25) -- node[below]{$h$} (-2.5,6.25) node[right,fill=white,inner sep=2pt]{$(-3+h,9-6h+h^2)$} -- cycle;
+            \draw [line width=0.3pt,->] (-2.5,-1.3) node[below]{$-3+h$} -- (-2.5,0);
+            
+            \draw [ylx,semithick] (3,9) -- (3,0);
+            \draw [ylx,semithick] (3.5,9) -- (3.5,0);
+            \fill [yly] (3,9) node[left]{$(3,9)$} -- node[below]{$h$} (3.5,9) -- node[right]{$6h+h^2$} (3.5,12.25) node[left]{$(3+h,9+6h+h^2)$} -- cycle;
+            \draw [line width=0.3pt,->] (3.5,-1.3) node[below]{$3+h$} -- (3.5,0);
+
+            \draw [ylx,thick] (-4,16) node[right]{$y=f(x)=x^2$} parabola bend (0,0) (4,16);
+
+            \draw ($(-3,9)!-2.3!(-2.5,6.25)$) node[below left,text width=2cm,align=right]{slope of chord $= -6+h$} -- ($(-3,9)!3!(-2.5,6.25)$);
+            \draw ($(3,9)!2!(3.5,12.25)$) node[below right,text width=2cm]{slope of chord $= 6+h$} -- ($(3,9)!-2!(3.5,12.25)$);
+
+            \node [below left=1mm] {$0$};
+        \end{tikzpicture}
+        \caption{Behavior of quadratic functions.}
+        \label{fig:behavior-quadratic}
+    \end{figure}
+    \begin{itemize}
+        \item Unlike linear functions, quadratic functions do not everywhere have a constant rate of change.
+        \item Let $f(x)=x^2$. In an analogous manner to the previous example, we find that the change between $x_1$ and $x_2=x_1+h$ is
+        \begin{equation*}
+            f(x_1+h)-f(x_1) = (x_1+h)^2-x_1^2
+            = 2x_1h+h^2
+        \end{equation*}
+        Thus, we see that the rate of change of $f$ is dependent on both the initial value of $x$ and the amount of increase in $x$.
+        \item While a linear function increases at a rate directly proportional to the increase in $x$, the above demonstrates that \dq{the increase in $x^2$, as $x$ increases from $x_1$ to $x_1+h$, is $2x_1+h$ times the increase in $x$}{27}
+        \item We can now define the \textbf{average rate of increase}.
+        \item Thus, the average rate of increase of $x^2$ is $2x_1+h$.
+        \item Now let's see what happens as $h$ shrinks.
+        \begin{table}[h!]
+            \centering
+            \setlength{\tabcolsep}{4mm}
+            \begin{tabular}{r|l|l|l|l|l}
+                \multicolumn{2}{c|}{\multirow{2}{*}{}} & \multicolumn{4}{c}{\rule[-0.2cm]{0pt}{0.6cm} $x_1$}\\
+                \cline{3-6}
+                 \multicolumn{2}{c|}{} & \multicolumn{1}{c|}{\rule[-0.2cm]{0pt}{0.6cm} 2} & \multicolumn{1}{c|}{3} & \multicolumn{1}{c|}{$-2$} & \multicolumn{1}{c}{$-3$}\\
+                \hline
+                \multirow{6}{*}{$h$} & 1 & 5 & 7 & $-3$ & $-5$\\
+                 & 0.5 & 4.5 & 6.5 & $-3.5$ & $-5.5$\\
+                 & 0.25 & 4.25 & 6.25 & $-3.75$ & $-5.75$\\
+                 & 0.1 & 4.1 & 6.1 & $-3.9$ & $-5.9$\\
+                 & 0.01 & 4.01 & 6.01 & $-3.99$ & $-5.99$\\
+                 & 0.001 & 4.001 & 6.001 & $-3.999$ & $-5.999$
+            \end{tabular}
+            \caption{Average rate of change of $x^2$ versus $h$.}
+            \label{tab:2x1+h}
+        \end{table}
+        \item From Table \ref{tab:2x1+h}, we see that smaller values of $h$ cause the average rate of change to tend toward $2x_1$. This is the beginning of \textbf{differential calculus}.
+    \end{itemize}
+    \item \textbf{Average rate of increase} (of $f(x)$, per unit of increase in $x$, from $x_1$ to $x_1+h$): The ratio,
+    \begin{equation*}
+        \frac{f(x_1+h)-f(x_1)}{(x_1+h)-x_1} = \frac{f(x_1+h)-f(x_1)}{h}
+        = \frac{\text{change in }f(x)}{\text{change in }x}
+    \end{equation*}
+    \item \textbf{Differential calculus}: The branch of calculus concerned with the \emph{instantaneous} rate of increase of a function, as opposed to the \emph{average} rate of increase.
+    \item So constant and linear functions are easy to analyze. But for more complicated functions, we need more advanced tools.
+    \item Let's begin exploring the instantaneous rate of change, continuing with the parabola example.
+    \begin{itemize}
+        \item For $x^2$, the average rate of change is given by $\frac{f(x_1+h)-f(x_1)}{h}=2x_1+h,\ h\neq 0$.
+        \item The $h\neq 0$ is critical --- we wish to consider the case where $h=0$, but we cannot. However, we can consider values of the slope function $m(h)=2x_1+h$ in a deleted neighborhood of $h=0$. By decreasing the radius of the neighborhood, we can get progressively closer to analytically approximating $m(0)$.
+        \begin{figure}[h!]
+            \centering
+            \begin{tikzpicture}[
+                scale=1.4,
+                every node/.style={black}
+            ]
+                \footnotesize
+                \draw [-stealth] (-1.5,0) -- (2.5,0) node[right]{$h$};
+                \draw [-stealth] (0,-0.5) -- (0,3) node[above]{$m(h)$};
+
+                \draw [ylx,thick,dashed,dash pattern=on 6pt off 2pt] (-1.4,-0.4) -- (1.5,2.5) node[below right]{$m(h)=2x_1+h$};
+
+                \draw [ylx,semithick] (-0.5,1.5) -- (-0.5,0) node[below]{$-\epsilon$};
+                \draw [ylx,semithick] (0.5,1.5) -- (0.5,0) node[below]{$\epsilon$};
+
+                \draw [ylx,semithick] (-1.5,0.5) -- (2,0.5) node[right]{$2x_1-\epsilon$};
+                \draw [ylx,semithick] (-1.5,1) -- (2,1) node[right]{$2x_1$};
+                \draw [ylx,semithick] (-1.5,1.5) -- (2,1.5) node[right]{$2x_1+\epsilon$};
+
+                \draw [semithick,<->] (1.8,0.52) -- node[right]{$\epsilon$} (1.8,0.98);
+                \draw [semithick,<->] (1.8,1.02) -- node[right]{$\epsilon$} (1.8,1.48);
+
+                \draw [ylx,thick,postaction={decorate},decoration={markings, mark=between positions 0 and 1 step 0.5 with \fill [white] circle (1.5pt);\draw circle (1.5pt);}] (-0.5,0.5) -- (0.5,1.5);
+
+                \node [below left] {$O$};
+            \end{tikzpicture}
+            \caption{Deleted neighborhood of a slope function.}
+            \label{fig:slopeFunction}
+        \end{figure}
+        \item From Figure \ref{fig:slopeFunction}, we can see that $m(h)$ is bounded between $2x_1+\epsilon$ and $2x_1-\epsilon$ when $|h|$ is less than $\epsilon$ (or any positive number smaller than $\epsilon$)\footnote{Note that $\epsilon$ is used to denote an arbitrary (often arbitrarily small) positive number.}.
+        \item In fact, $0<|h|<\epsilon$, or $-\epsilon<h<\epsilon$, directly implies $2x_1-\epsilon<2x_1+h<2x_1+\epsilon$.
+        \item We can now formally define \textbf{approximation}, such as what was just described.
+    \end{itemize}
+    \item \textbf{Approximation} (of $f(x)$ by $L$ to within $\epsilon$ on $(a,b)$): The value $L$ approximates $f(x)$ to within $\epsilon$ on the interval $(a,b)$ if $L-\epsilon<f(x)<L+\epsilon$ when $a<x<b$.
+\end{itemize}
+
+
+
+\section{Slope of a Curve}
+\begin{itemize}
+    \item \textbf{Slope of the curve} (at $P$): The limiting value of the slope of the secant between distinct points $P,Q$ on the curve $y=f(x)$ as $Q$ moves along the curve progressively closer to $P$. \emph{Also known as} \textbf{slope of the tangent to the curve} (at $P$).
+    \begin{itemize}
+        \item A purely geometric definition also exists: \dq{Let $C$ be a curve and $P$ a point on $C$. If there exists a line $L$ through $P$ such that the measure of one of the angles between $L$ and the secand line $PQ$ approaches zero as $Q$ approaches $P$ along $C$, then $L$ is said to be tangent to $C$ at $P$}{30}
+        \item An advantage of the geometric definition is that it does not depend on the coordinate axes and allows vertical lines.
+        \item However, in most cases, we will stick with the algebraic definition.
+    \end{itemize}
+    \item \cite{bib:Thomas} considers the average rate of increase equation for a cubic function, informally allowing $\Delta x$ to tend towards 0 to derive a slope function.
+\end{itemize}
+
+
+
+\section{Derivative of a Function}
+\begin{itemize}
+    \item We now formalize our notion of a slope function.
+    \begin{itemize}
+        \item We know that the slope $m_\text{sec}$ of the secant from $P(x,y)$ to a point on the curve $y=f(x)$ at $(x+\Delta x,f(x+\Delta x))$ is given by
+        \begin{equation*}
+            m_\text{sec} = \frac{f(x+\Delta x)-f(x)}{\Delta x}
+        \end{equation*}
+        \item Now as $\Delta x$ tends toward 0, $m_\text{sec}$ tends toward the slope $m_\text{tan}$ of the tangent at $P$. The mathematical symbols which summarize this discussion are
+        \begin{equation*}
+            m_\text{tan} = \lim_{Q\to P}m_\text{sec}
+            = \lim_{\Delta x\to 0}\frac{\Delta y}{\Delta x}
+            = \lim_{\Delta x\to 0}\frac{f(x+\Delta x)-f(x)}{\Delta x}
+        \end{equation*}
+    \end{itemize}
+    \item The number given by the last operation in the above equation is clearly related to $f$. Thus, to indicate relation, we define
+    \begin{equation*}
+        \bm{f'(x)} = \lim_{\Delta x\to 0}\frac{f(x+\Delta x)-f(x)}{\Delta x}
+    \end{equation*}
+    \emph{Also known as} $\bm{y'}$, $\bm{\frac{\mathrm{d}y}{\mathrm{d}x}}$, $\bm{D_xy}$.
+    \item This limit may sometimes fail to exist. However, at each point where it does exist, $f$ is said to have a \textbf{derivative}, or to be \textbf{differentiable}. Similarly, $f'(x)$ is said to be the \textbf{derivative} (of $f$ at $x$).
+    \item Differential calculus is concerned with two problems.
+    \begin{enumerate}
+        \item \dq{Given a function $f$, determine those values of $x$ (in the domain of $f$) at which the function possesses a derivative}{32}
+        \item \dq{Given a function $f$ and an $x$ at which the derivative exists, find $f'(x)$}{32}
+    \end{enumerate}
+    \item \textbf{Derived function}: \dq{The set of all pairs of numbers $(x,f'(x))$ that can be formed by this process}{33} \emph{Also known as} \textbf{derivative} (of $f$).
+    \begin{itemize}
+        \item \dq{The domain of $f'$ is a subset of the domain of $f$}{33}
+        \item Symbolically, $D_{f'}\subset D_f$. However, for most functions considered in this book, $D_{f'}=D_f$ with maybe a few exceptions.
+    \end{itemize}
+    \item On computing $f'(x)$ by eliminating the division by 0 and then substituting: \dq{We may say that after the division by $\Delta x$ has been carried out and the expression has been reduced to a form\dots which `makes sense' (that is, does not involve division by zero) when $\Delta x$ is taken equal to zero, then the limit as $\Delta x$ approaches zero does exist and may be found by simply replacing $\Delta x$ by zero in this reduced form}{34}
+    \item Essentially, what we are doing when we eliminate the division by zero is we are expanding the domain of the function, the limit of which we are taking, to include a point of interest (\cite{bib:Thomas} elaborates quite a bit on this point).
+\end{itemize}
+
+
+
+\section{Velocity and Rates}
+\begin{itemize}
+    \item Mainly just applies average and instantaneous rates of change to the physical problem of distance and velocity. However\dots
+    \item \dq{Derivatives are important in economic theory, where they are usually indicated by the adjective \textbf{marginal}}{37}
+    \begin{itemize}
+        \item \dq{Suppose that in order to produce $x+\Delta x$ tons of steel weekly, it would cost $y+\Delta y$ dollars. The increase in cost per unit increase in output would be $\Delta y/\Delta x$. The limit of this ratio, as $\Delta x$ tends to zero, is called the \textbf{marginal cost}}{37}
+        \item There also exists \textbf{marginal revenue} $\dv*{P}{x}$ and \textbf{marginal profit} $\dv*{T}{x}$.
+    \end{itemize}
+    \item Note: \dq{The \emph{average} rate of change of $y$ per unit change in $x$, $\Delta y/\Delta x$, when multiplied by the number of units change in $x$, $\Delta x$, gives the actual change in $y$:
+    \begin{equation*}
+        \Delta y = \frac{\Delta y}{\Delta x}\, \Delta x
+    \end{equation*}
+    The \emph{instantaneous} rate of change of $y$ per unit change in $x$, $f'(x)$, multiplied by the number of units change in $x$, $\Delta x$, gives the change that would be produced in $y$ if the point $(x,y)$ were to move along the tangent line instead of moving along the curve; that is
+    \begin{equation*}
+        \Delta y_\text{tan} = f'(x)\, \Delta x
+    \end{equation*}
+    One reason calculus is important is that it enables us to find quantitatively how a change in one of two related variables affects the second variable}{38}
+\end{itemize}
+
+
+
 
 \end{document}
