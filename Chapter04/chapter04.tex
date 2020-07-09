@@ -1,0 +1,318 @@
+\documentclass[../main.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter: #1}{}}
+\setcounter{chapter}{3}
+
+\begin{document}
+
+
+
+
+\chapter{Applications}
+\section{Increasing or Decreasing Functions: The Sign of \texorpdfstring{$\dv*{y}{x}$}{TEXT}}
+\begin{itemize}
+    \item \marginnote{7/8:}\textbf{Increasing} (function $f$ on $[a,b]$): A function $f$ such that $f(x_1)>f(x_2)$ when $x_1>x_2$ for all $x_1,x_2$ in the interval $[a,b]$. \emph{Also known as} \textbf{rising}.
+    \item \textbf{Decreasing} (function $f$ on $[a,b]$): A function $f$ such that $f(x_1)<f(x_2)$ for $a\leq x_2<x_1\leq b$. \emph{Also known as} \textbf{falling}.
+    \begin{itemize}
+        \item Sometimes, we consider functions that increase or decrease on open or half-open intervals.
+    \end{itemize}
+    \item \textbf{Increasing} (function $f$ at a point $c$): A function $f$ such that in some neighborhood $N$ of $c$, $x>c \Rightarrow f(x)>f(x)$ and $x<c \Rightarrow f(x)<f(x)$ for all $x\in N$.
+    \item \textbf{Decreasing} (function $f$ at a point $c$): A function $f$ such that in some neighborhood $N$ of $c$, $x>c \Rightarrow f(x)<f(x)$ and $x<c \Rightarrow f(x)>f(x)$ for all $x\in N$.
+    \begin{itemize}
+        \item As an odd example, $\text{sgn}\, x$ is increasing at $x=0$.
+    \end{itemize}
+    \item A function may oscillate sufficiently fast at a point to be neither increasing nor decreasing.
+    \begin{itemize}
+        \item For example, for
+        \begin{equation*}
+            f(x) =
+            \begin{cases}
+                x\sin\frac{1}{x} & x\neq 0\\
+                0 & x=0
+            \end{cases}
+        \end{equation*}
+        \dq{no matter how small a neighborhood of zero $N$ may be, there are $x$'s in $N$ for which $f(x)$ is positive and those for which it is negative. This function oscillates infinitely often between positive and negative values in ever neighborhood of $x=0$}{107}
+    \end{itemize}
+    \item When $\dv*{y}{x}>0$, $y$ is increasing. When $\dv*{y}{x}<0$, $y$ is decreasing. When $\dv*{y}{x}=0$, $y$ may be increasing (consider $y=x^3$), decreasing (consider $y=-x^3$), or neither (consider $y=x^2$).
+    \item There is a relation between increasing and decreasing points, and positive and negative slopes, respectively, of the tangent lines to those points.
+    \item Knowing where a function is increasing or decreasing can help in sketching the curve.
+\end{itemize}
+
+
+
+\section{Related Rates}
+\begin{itemize}
+    \item In certain physical settings, we must consider not only quantities but the rates at which those quantities are changing to answer questions.
+    \item For a \textbf{problem in related rates}, it is typical that \dq{(a) certain variables are related in a definite way for all value of $t$ under consideration, (b) the values of some or all of these variables and the rates of change of some of them are given at some particular instant, and (c) it is required to find the rate of change of one or more of them at this instant}{110}
+    \begin{itemize}
+        \item \dq{The variables may then all be considered to be functions of time, and if the equations which relate them for all values of $t$ are differentiated with respect to $t$, the new equations so obtained will tell how their rates of change are related}{110}
+    \end{itemize}
+    \item We explore three examples to illustrate the most common techniques used.
+    \item Suppose (see Figure \ref{fig:relatedrates-pulleya}) there is a \dq{rope running through a pulley at $P$, bearing a weight $W$ at one end. The other end is held in a man's hand $M$ at a distance of 5 feet above the ground as he walks in a straight line at the rate of 6 [ft/s]}{108} Additionally (see Figure \ref{fig:relatedrates-pulleyb}), \dq{suppose that the pulley is 25 ft above the ground, the rope is 45 ft long, and at a given instant the distance $x$ is 15 ft and the man is walking away from the pulley. How fast is the weight being raised at this particular instant?}{109}
+    \begin{figure}[h!]
+        \centering
+        \begin{subfigure}[b]{0.4\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \draw [ylx,semithick] (0,0) -- (5.8,0);
+                \draw (0,1) -- (5,1);
+
+                \draw [ylx,thick] (5,1) -- (0.5,3.3) node[above left,black]{$P$} -- (0.5,2);
+                \node [fill=gay,minimum width=1cm,minimum height=6.4mm] at (0.5,2) {$W$};
+
+                \draw [very thin]
+                    (0.5,0.1) -- (0.5,1.58)
+                    (5,0.1) -- (5,0.9)
+                    (5.1,1) -- (5.8,1) node[right]{$M$}
+                ;
+                \draw [<->] (0.5,0.5) -- node[fill=white,inner sep=1.5pt]{$x$} (5,0.5);
+                \draw [<->] (5.4,0) -- node[fill=white,inner sep=1.5pt]{5 ft} (5.4,1);
+                \draw [-latex] (4.7,1.3) -- node[above]{6 ft/s} (5.9,1.3);
+            \end{tikzpicture}
+            \caption{The man and the pulley.}
+            \label{fig:relatedrates-pulleya}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.4\linewidth}
+            \centering
+            \begin{tikzpicture}[
+                scale=1.6,
+                every node/.style={black},
+                length/.style={fill=white,inner sep=1.5pt}
+            ]
+                \footnotesize
+                \draw [ylx,semithick] (1.5,0) -- (0,0) node[below left]{$O$} -- (0,0.87);
+                \draw [ylx,thick,line join=round] (1.5,0) node[below right]{$M$} -- (0,2) node[above]{$P$} -- (0,1);
+                \node [fill=gay,minimum width=1cm,minimum height=6.4mm] at (0,1.1) {$W$};
+
+                \draw [very thin]
+                    (0,-0.04) -- (0,-0.3)
+                    (1.5,-0.04) -- (1.5,-0.3)
+                    (-0.04,0) -- (-1,0)
+                    (-0.04,2) -- (-1,2)
+                    (-0.34,0.9) -- (-0.6,0.9)
+                    ($(0,2)!0.015!90:(1.5,0)$) -- ($(0,2)!0.135!90:(1.5,0)$)
+                    ($(1.5,0)!0.015!-90:(0,2)$) -- ($(1.5,0)!0.135!-90:(0,2)$)
+                ;
+                \draw [<->] (0,-0.17) -- node[length]{$x$} (1.5,-0.17);
+                \draw [<->] (-0.47,0) -- node[length]{$h$} (-0.47,0.9);
+                \draw [<->] (-0.47,2) -- node[length]{$y$} (-0.47,0.9);
+                \draw [<->] (-0.8,0) -- node[length]{20 ft} (-0.8,2);
+                \draw [<->] ($(0,2)!0.075!90:(1.5,0)$) -- node[length]{$z$} ($(1.5,0)!0.075!-90:(0,2)$);
+            \end{tikzpicture}
+            \caption{Construction of the pulley.}
+            \label{fig:relatedrates-pulleyb}
+        \end{subfigure}
+        \caption{Related rates: The pulley.}
+        \label{fig:relatedrates-pulley}
+    \end{figure}
+    \begin{itemize}
+        \item We begin by assessing what is given and what we want to find.\par
+        We are given\dots
+        \begin{enumerate}[label={(\alph*)}]
+            \item Relationships between the variables which are to hold for all instants of time:
+            \begin{align*}
+                y+z &= 45&
+                h+y &= 20&
+                20^2+x^2 &= z^2
+            \end{align*}
+            \item Quantities at a given instant in time, which we may take to be $t=0$:
+            \begin{align*}
+                x &= 15&
+                \dv{x}{t} &= 6
+            \end{align*}
+        \end{enumerate}
+        We want to find\dots
+        \begin{equation*}
+            \dv{h}{t}
+        \end{equation*}
+        at the instant $t=0$.
+        \item We obtain a relationship between $x$ (whose rate is given) and $h$ (whose rate we want).
+        \begin{gather*}
+            y = 20-h\\
+            z = 45-(20-h) = 25+h\\
+            20^2+x^2 = (25+h)^2
+        \end{gather*}
+        \item We now implicitly differentiate the above equation with respect to $t$ and solve for $\dv*{h}{t}$.
+        \begin{align*}
+            \dv{t}\left( 20^2+x^2 \right) &= \dv{t}(25+h)^2\\
+            0+2x\dv{x}{t} &= 2(25+h)\dv{h}{t}\\
+            \dv{h}{t} &= \frac{x}{25+h}\dv{x}{t}
+        \end{align*}
+        \item We see that we will need the value of $h$ at $t=0$. This can be found via the equation $20^2+x^2=(25+h)^2$ since we know the value of $x$ at $t=0$.
+        \begin{align*}
+            (25+h)^2 &= 20^2+(15)^2\\
+            h &= 0
+        \end{align*}
+        \item Since we now have every value that we have set equal to $\dv*{h}{t}$, all that is left is to plug and chug.
+        \begin{align*}
+            \dv{h}{t} &= \frac{x}{25+h}\dv{x}{t}\\
+            &= \frac{15}{25+0}\cdot 6\\
+            &= \frac{18}{5}\text{ ft/s}
+        \end{align*}
+    \end{itemize}
+    \item Suppose (see Figure \ref{fig:relatedrates-ladder}) there is a \dq{ladder 26 ft long which leans against a vertical wall. At a particular instant, the foot of the laddeer is 10 ft out from the base of the wall and is being drawn away from the wall at the rate of 4 [ft/s]. How fast is the top of the ladder moving down the wall at this instant?}{110}
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[
+            scale=1.2,
+            length/.style={fill=white,inner sep=1.5pt}
+        ]
+            \footnotesize
+            \draw [ylx,semithick] (0,3) -- (0,0) -- (3.5,0);
+            \draw [ylx,thick] (0,2.5) coordinate (A) -- (2.2,0) coordinate (B);
+
+            \draw [very thin]
+                (0,-0.04) -- (0,-0.4)
+                ($(B)+(0,-0.04)$) -- ($(B)+(0,-0.4)$)
+                (-0.04,0) -- (-0.4,0)
+                ($(A)+(-0.04,0)$) -- ($(A)+(-0.4,0)$)
+                ($(A)!0.02!90:(B)$) -- ($(A)!0.16!90:(B)$)
+                ($(B)!0.02!-90:(A)$) -- ($(B)!0.16!-90:(A)$)
+            ;
+            \draw [<->] (0,-0.22) -- node[length]{$x$} ($(B)+(0,-0.22)$);
+            \draw [<->] (-0.22,0) -- node[length]{$y$} ($(A)+(-0.22,0)$);
+            \draw [<->] ($(A)!0.1!90:(B)$) -- node[length]{26 ft} ($(B)!0.1!-90:(A)$);
+            \draw [-latex] ($(B)+(0.3,0.5)$) -- node[above]{4 ft/s} ($(B)+(1.2,0.5)$);
+        \end{tikzpicture}
+        \caption{Related rates: The ladder.}
+        \label{fig:relatedrates-ladder}
+    \end{figure}
+    \begin{itemize}
+        \item Symbolically, the problem is asking this: given
+        \begin{align*}
+            x^2+y^2 &= 26^2&
+            x &= 10&
+            \dv{x}{t} &= 4
+        \end{align*}
+        find
+        \begin{equation*}
+            \dv{y}{t}
+        \end{equation*}
+        \item As before, differentiate and solve for $\dv*{y}{t}$.
+        \begin{align*}
+            \dv{t}\left( x^2+y^2 \right) &= \dv{t}\left( 26^2 \right)\\
+            2x\dv{x}{t}+2y\dv{y}{t} &= 0\\
+            \dv{y}{t} &= -\frac{x}{y}\dv{x}{t}
+        \end{align*}
+        \item Now find $y$ and substitute.
+        \begin{align*}
+            10^2+y^2 &= 26^2\\
+            y &= 24
+        \end{align*}
+        \begin{align*}
+            \dv{y}{t} &= -\frac{x}{y}\dv{x}{t}\\
+            &= -\frac{10}{24}\cdot 4\\
+            &= -\frac{5}{3}\text{ ft/s}
+        \end{align*}
+        \item Note that the negative sign indicates that $y$ is decreasing; that the top of the ladder is moving \emph{down} at $5/3$ ft/s (or up at $-5/3$ ft/s).
+    \end{itemize}
+    \item Suppose there is an inverted right \dq{conical reservoir [of height 10 ft and base radius 5 ft] into which water runs at the constant rate of 2 ft\textsuperscript{3} per minute. How fast is the water level rising when it is 6 ft deep?}{111}
+    \begin{itemize}
+        \item Let $h$ be the height (in ft) of the reservoir, $r$ be the base radius (in ft) of the reservoir, $x$ be the radius (in ft) of the section of the cone at the water line at time $t$ (in min), $y$ be the depth (in ft) of water in the tank at time $t$ (in min), and $v$ be the volume (in ft\textsuperscript{3}) of water in the tank at time $t$ (in min).
+        \item Thus, the problem is asking this: given
+        \begin{align*}
+            v &= \frac{1}{3}\pi x^2y&
+            \frac{x}{y} &= \frac{r}{h}
+        \end{align*}
+        \begin{align*}
+            h &= 10&
+            r &= 5&
+            y &= 6&
+            \dv{v}{t} &= 2
+        \end{align*}
+        find
+        \begin{equation*}
+            \dv{y}{t}
+        \end{equation*}
+        \item Like with the pulley, we need to find an equation relating just $v$ and $y$. Use a substitution based on similar triangles.
+        \begin{align*}
+            v &= \frac{1}{3}\pi x^2y\\
+            &= \frac{1}{3}\pi \left( \frac{ry}{h} \right)^2y\\
+            &= \frac{\pi r^2}{3h^2}y^3
+        \end{align*}
+        \item Differentiate, solve, and substitute.
+        \begin{align*}
+            \dv{v}{t} &= \frac{\pi r^2}{h^2}y^2\dv{y}{t}\\
+            \dv{y}{t} &= \frac{h^2}{\pi r^2y^2}\dv{v}{t}\\
+            &= \frac{10^2}{\pi 5^26^2}\cdot 2\\
+            &= \frac{2}{9\pi} \approx 0.071\text{ ft/min}
+        \end{align*}
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Significance of the Sign of the Second Derivative}
+\begin{itemize}
+    \item Note: if $\dv*{y}{x}$ fails to exist at some point $P$, \emph{but} $\dv*{x}{y}=0$, the tangent to $P$ is vertical.
+    \begin{itemize}
+        \item On obtaining $\dv*{x}{y}$\footnote{This is another place where Leibniz's notation is particularly useful.}:
+        \begin{equation*}
+            \dv{x}{y} = \left( \dv{y}{x} \right)^{-1}
+        \end{equation*}
+    \end{itemize}
+    \item \dq{The sign of the second derivative tells whether the graph of $y=f(x)$ is concave upward ($y''$ positive) or downward ($y''$ negative)}{113}
+    \item \textbf{Point of inflection}: \dq{A point where the curve changes the direction of its concavity from downward to upward or vice versa [that is not a \textbf{cusp}]}{114} \emph{Also known as} \textbf{inflection point}.
+    \begin{itemize}
+        \item Inflection points occur where $y''$ changes sign. This can happen when $y''=0$ or when $y''$ fails to exist.
+    \end{itemize}
+    \item \textbf{Cusp}: A sharp corner on a graph (a place where $y''$ fails to exist).
+\end{itemize}
+
+
+
+\section{Curve Plotting}
+\begin{itemize}
+    \item When sketching curves given the equation, use the following procedure.
+    \begin{enumerate}[label={\Alph*.}]
+        \item \dq{Calculate $\dv*{y}{x}$ and $\dv*[2]{y}{x}$}{115}
+        \item \dq{Find the values of $x$ for which $\dv*{y}{x}$ is positive and for which it is negative. Calculate $y$ and $\dv*[2]{y}{x}$ at the points of transition between positive and negative values of $\dv*{y}{x}$. These may give maximum or minimum points on the curve}{115}
+        \item \dq{Find the values of $x$ for which $\dv*[2]{y}{x}$ is positive and for which it is negative. Calculate $y$ and $\dv*{y}{x}$ at the points of transition between positive and negative values of $\dv*[2]{y}{x}$. These may give points of inflection of the curve}{115}
+        \item \dq{Plot a few additional points. In particular, points which lie between the transition points already determined or points which lie to the left and to the right of all of them will ordinarily be useful. The nature of the curve for large values of $|x|$ should also be indicated}{115}
+        \item \dq{Sketch a smooth curve through the points found above, unless there are discontinuitites in the curve or its slope. Have the curve pass through its points rising or falling as indicated by the sign of $\dv*{y}{x}$, and concave upward or downward as indicated by the sign of $\dv*[2]{y}{x}$}{115}
+    \end{enumerate}
+    \item As you plot points, consider sketching their tangents, too.
+    \item Consider making a table with columns of significant $x$ values, their assigned $y$, $y'$, and $y''$ values, and any important remarks before starting to draw.
+    \item If $f(x)=\frac{P(x)}{Q(x)}$, solve $Q(x)=0$ to find vertical asymptotes.
+\end{itemize}
+
+
+
+\section{Maxima and Minima: Theory}
+\begin{itemize}
+    \item \textbf{Relative maximum} (of $f$): A point $(a,f(a))$ of a function $f$ such that $f(a)\geq f(a+h)$ for all positive and negative values of $h$ sufficiently near zero. \emph{Also known as} \textbf{local maximum}.
+    \item \textbf{Relative minimum} (of $f$): A point $(b,f(b))$ of a function $f$ such that $f(b)\leq f(x)$ for all $x$ in some neighborhood of $a$. \emph{Also known as} \textbf{local minimum}.
+    \item \textbf{Absolute maximum} (of $f$): A point $(a,f(a))$ of a function $f$ such that $f(a)\geq f(x)$ for all $x\in D_f$.
+    \item \textbf{Absolute minimum} (of $f$): A point $(b,f(b))$ of a function $f$ such that $f(b)\geq f(x)$ for all $x\in D_f$.
+    \item We now prove a relationship between $f'$ and the maxima and minima of $f$.
+    \begin{thm}
+        Let the function $f$ be defined for $a\leq x\leq b$ and have a relative maximum or minimum at $x=c$, where $a<c<b$. If thee derivative $f'(x)$ exists as a finite number at $x=c$, then $f'(c)=0$.
+        \begin{proof}
+            If $f'(c)$ were positive, then $f$ would be increasing. But $f$ is neither increasing nor decreasing at $c$ because $f$ has a local maximum or minimum at $c$. Hence, $f'(c)$ cannot be positive. Likewise, $f'(c)$ cannot be negative. Therefore, $f'(c)=0$.
+        \end{proof}
+    \end{thm}
+    \begin{itemize}
+        \item Note that the theorem does not pertain to cases where $f'(c)$ does not exist, nor does it pertain to cases where $c$ is at one of the endpoints of the interval $[a,b]$.
+        \item Also note that the converse of the theorem does not hold.
+    \end{itemize}
+    \item The inverse of an increasing function is increasing. This also holds for decreasing functions.
+    \item If $f$ is only defined on $[a,b]$, then $f'(a)$ and $f'(b)$ do not exist (because the limit is different on both sides). However,
+    \begin{align*}
+        f'(a^+) &= \lim_{h\to 0^+}\frac{f(x+h)-f(x)}{h}&
+        f'(b^-) &= \lim_{h]to 0^-}\frac{f(x+h)-f(x)}{h}
+    \end{align*}
+    may exist. These are called the \textbf{right-hand derivative} and \textbf{left-hand derivative} respectively.
+    \begin{itemize}
+        \item It's imprecise to say that $f$ is differentiable at these endpoints, but many mathematicians will allow it\footnote{Really?} as they expect us to just know that what is really meant is it is differentiable on $(a,b)$ and one-side differentiable at the endpoints.
+    \end{itemize}
+    \item \dq{If the domain of $f$ is the bounded, closed interval $[a,b]$ and if $f'(a^+)$ and $f'(b^-)$ exist, then it is easy to verify that $f$ has a local [maximum or minimum] at $a$ if [$f'(a^+)<0$ or $f'(a^+)>0$, respectively] and $f$ has a local [minimum or maximum] at $b$ if [$f'(b^-)<0$ or $f'(b^-)>0$]}{121}
+    \item Maxima and minima are more generally referred to as \textbf{critical points} or \textbf{extrema}.
+    \item Candidates for extrema exist at points where (1) the derivative is zero, (2) the derivative fails to exist, and (3) the domain of the function has an end.
+\end{itemize}
+
+
+
+
+\end{document}

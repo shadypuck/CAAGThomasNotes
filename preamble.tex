@@ -5,11 +5,12 @@
 \usepackage{marginnote}
 \usepackage{scrextend}
 \usepackage[bottom]{footmisc}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath,amssymb,amsthm}
 \usepackage{xparse,physics,mathtools,bm}
 \usepackage{subcaption}
 \usepackage{tikz}
 \usepackage{multirow}
+\usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
 
 \fancypagestyle{main}{
@@ -33,6 +34,9 @@
 
 \deffootnotemark{\textsuperscript{[\thefootnotemark]}}
 \deffootnote[2.1em]{0em}{0em}{\textsuperscript{\thefootnotemark}}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}[chapter]
 
 \usetikzlibrary{angles,backgrounds,calc,intersections,decorations.markings}
 \colorlet{ylx}{yellow!50!black}
