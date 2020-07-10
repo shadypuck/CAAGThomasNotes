@@ -17,10 +17,10 @@
     \begin{itemize}
         \item Sometimes, we consider functions that increase or decrease on open or half-open intervals.
     \end{itemize}
-    \item \textbf{Increasing} (function $f$ at a point $c$): A function $f$ such that in some neighborhood $N$ of $c$, $x>c \Rightarrow f(x)>f(x)$ and $x<c \Rightarrow f(x)<f(x)$ for all $x\in N$.
-    \item \textbf{Decreasing} (function $f$ at a point $c$): A function $f$ such that in some neighborhood $N$ of $c$, $x>c \Rightarrow f(x)<f(x)$ and $x<c \Rightarrow f(x)>f(x)$ for all $x\in N$.
+    \item \textbf{Increasing} (function $f$ at a point $c$): A function $f$ such that in some neighborhood $N$ of $c$, $x>c \Rightarrow f(x)>f(c)$ and $x<c \Rightarrow f(x)<f(c)$ for all $x\in N$.
+    \item \textbf{Decreasing} (function $f$ at a point $c$): A function $f$ such that in some neighborhood $N$ of $c$, $x>c \Rightarrow f(x)<f(c)$ and $x<c \Rightarrow f(x)>f(c)$ for all $x\in N$.
     \begin{itemize}
-        \item As an odd example, $\text{sgn}\, x$ is increasing at $x=0$.
+        \item As a strange example, $\text{sgn}\, x$ is increasing at $x=0$.
     \end{itemize}
     \item A function may oscillate sufficiently fast at a point to be neither increasing nor decreasing.
     \begin{itemize}
@@ -44,7 +44,7 @@
 \section{Related Rates}
 \begin{itemize}
     \item In certain physical settings, we must consider not only quantities but the rates at which those quantities are changing to answer questions.
-    \item For a \textbf{problem in related rates}, it is typical that \dq{(a) certain variables are related in a definite way for all value of $t$ under consideration, (b) the values of some or all of these variables and the rates of change of some of them are given at some particular instant, and (c) it is required to find the rate of change of one or more of them at this instant}{110}
+    \item For a \textbf{problem in related rates}, it is typical that \dq{(a) certain variables are related in a definite way for all values of $t$ under consideration, (b) the values of some or all of these variables and the rates of change of some of them are given at some particular instant, and (c) it is required to find the rate of change of one or more of them at this instant}{110}
     \begin{itemize}
         \item \dq{The variables may then all be considered to be functions of time, and if the equations which relate them for all values of $t$ are differentiated with respect to $t$, the new equations so obtained will tell how their rates of change are related}{110}
     \end{itemize}
@@ -152,7 +152,7 @@
             &= \frac{18}{5}\text{ ft/s}
         \end{align*}
     \end{itemize}
-    \item Suppose (see Figure \ref{fig:relatedrates-ladder}) there is a \dq{ladder 26 ft long which leans against a vertical wall. At a particular instant, the foot of the laddeer is 10 ft out from the base of the wall and is being drawn away from the wall at the rate of 4 [ft/s]. How fast is the top of the ladder moving down the wall at this instant?}{110}
+    \item Suppose (see Figure \ref{fig:relatedrates-ladder}) there is a \dq{ladder 26 ft long which leans against a vertical wall. At a particular instant, the foot of the ladder is 10 ft out from the base of the wall and is being drawn away from the wall at the rate of 4 [ft/s]. How fast is the top of the ladder moving down the wall at this instant?}{110}
     \begin{figure}[h!]
         \centering
         \begin{tikzpicture}[
@@ -258,7 +258,7 @@
     \begin{itemize}
         \item Inflection points occur where $y''$ changes sign. This can happen when $y''=0$ or when $y''$ fails to exist.
     \end{itemize}
-    \item \textbf{Cusp}: A sharp corner on a graph (a place where $y''$ fails to exist).
+    \item \textbf{Cusp}: A sharp corner on a graph (a place where $y'$ fails to exist).
 \end{itemize}
 
 
@@ -287,8 +287,8 @@
     \item \textbf{Absolute maximum} (of $f$): A point $(a,f(a))$ of a function $f$ such that $f(a)\geq f(x)$ for all $x\in D_f$.
     \item \textbf{Absolute minimum} (of $f$): A point $(b,f(b))$ of a function $f$ such that $f(b)\geq f(x)$ for all $x\in D_f$.
     \item We now prove a relationship between $f'$ and the maxima and minima of $f$.
-    \begin{thm}
-        Let the function $f$ be defined for $a\leq x\leq b$ and have a relative maximum or minimum at $x=c$, where $a<c<b$. If thee derivative $f'(x)$ exists as a finite number at $x=c$, then $f'(c)=0$.
+    \begin{thm}\label{thm:f'is0atextrema}
+        Let the function $f$ be defined for $a\leq x\leq b$ and have a relative maximum or minimum at $x=c$, where $a<c<b$. If the derivative $f'(x)$ exists as a finite number at $x=c$, then $f'(c)=0$.
         \begin{proof}
             If $f'(c)$ were positive, then $f$ would be increasing. But $f$ is neither increasing nor decreasing at $c$ because $f$ has a local maximum or minimum at $c$. Hence, $f'(c)$ cannot be positive. Likewise, $f'(c)$ cannot be negative. Therefore, $f'(c)=0$.
         \end{proof}
@@ -301,7 +301,7 @@
     \item If $f$ is only defined on $[a,b]$, then $f'(a)$ and $f'(b)$ do not exist (because the limit is different on both sides). However,
     \begin{align*}
         f'(a^+) &= \lim_{h\to 0^+}\frac{f(x+h)-f(x)}{h}&
-        f'(b^-) &= \lim_{h]to 0^-}\frac{f(x+h)-f(x)}{h}
+        f'(b^-) &= \lim_{h\to 0^-}\frac{f(x+h)-f(x)}{h}
     \end{align*}
     may exist. These are called the \textbf{right-hand derivative} and \textbf{left-hand derivative} respectively.
     \begin{itemize}
@@ -310,6 +310,383 @@
     \item \dq{If the domain of $f$ is the bounded, closed interval $[a,b]$ and if $f'(a^+)$ and $f'(b^-)$ exist, then it is easy to verify that $f$ has a local [maximum or minimum] at $a$ if [$f'(a^+)<0$ or $f'(a^+)>0$, respectively] and $f$ has a local [minimum or maximum] at $b$ if [$f'(b^-)<0$ or $f'(b^-)>0$]}{121}
     \item Maxima and minima are more generally referred to as \textbf{critical points} or \textbf{extrema}.
     \item Candidates for extrema exist at points where (1) the derivative is zero, (2) the derivative fails to exist, and (3) the domain of the function has an end.
+\end{itemize}
+
+
+
+\section{Maxima and Minima: Problems}
+\begin{itemize}
+    \item \marginnote{7/9:}Basically optimization: Maximizing or minimizing functions using differential calculus.
+    \item We explore a number of problems to illustrate the most common techniques used.
+    \item \dq{Find two positive numbers whose sum is 20 and such that their product is as large as possible}{122}
+    \begin{itemize}
+        \item We want $x+y=20$ and $x\cdot y=\text{max}$. Thus, we need to use calculus on $xy$. But $xy$ is a function of multiple variables. However, using the substitution, $y=20-x$, we can change $xy$ into $20x-x^2$ and optimize that.
+        \item Since $x,y$ are positive, $x\geq 0$ and $20-x=y\geq 0 \Rightarrow x\leq 20$. Thus, the domain of $20x-x^2$ is $[0,20]$.
+        \item Critical points exist where $0=\dv*{y}{x}=20-2x$, or where $x=10$, and at the endpoints. Since $\dv*[2]{y}{x}=-2$ (is negative), we know that the point at $x=10$ is a maximum. Since $20(10)-(10)^2>20(0)-(0)^2=20(20)-20^2$, the point at $x=10$ is \emph{the} maximum that we're looking for.
+        \item Thus, $x=10$, $y=20-10=10$ are the two numbers whose sum is 20 and whose product is as large as possible.
+    \end{itemize}
+    \item \dq{A square sheet of tin $a$ inches on a side is to be used to make an open-top box by cutting a small square of tin from each corner and bending up the sides. How large a square should be cut from each corner for the box to have as large a volume as possible?}{122}
+    \begin{itemize}
+        \item Suppose we cut a square of $x\times x$ in\textsuperscript{2} from each corner of the tin sheet. Then the base of the box, when folded up, would be $a-2x\times a-2x$ in\textsuperscript{2}, and the height would be $x$ in. Thus, the volume $v$ of the box as a function of the side length $x$ of one of the squares removed is
+        \begin{equation*}
+            v(x) = x(a-2x)^2
+        \end{equation*}
+        \item Since we cannot remove a negative area, $x\geq 0$. Furthermore, since we cannot remove more area than exists, $a-2x\geq 0 \Rightarrow x\leq a/2$. Thus, $D_v=[0,a/2]$.
+        \item Critical points exist where $0=\dv*{y}{x}=12x^2-8ax+a^2=(2x-a)(6x-a)$, or where $x=\frac{a}{2},\frac{a}{6}$, and at the left endpoint (the right endpoint is already one of the critical points indicated by the first derivative). Since
+        \begin{align*}
+            \dvat{\dv[2]{y}{x}}{x=\frac{a}{6}} &= -4a&
+            \dvat{\dv[2]{y}{x}}{x=\frac{a}{2}} &= 4a
+        \end{align*}
+        we know that only the point at $x=\frac{a}{6}$ is a maximum. In comparison with the point at $x=0$, since $v\left( \frac{a}{6} \right)>v(0)$, the point at $x=\frac{a}{6}$ is \emph{the} maximum.
+        \item Thus, every corner square removed should have dimensions $\frac{a}{6}\times\frac{a}{6}$ in\textsuperscript{2}.
+    \end{itemize}
+    \item \dq{An oil can is to be made in the form of a right circular cylinder and is to contain one quart of oil. What dimensions of the can will require the least amount of material?}{123}
+    \begin{itemize}
+        \item There are 57.75 in\textsuperscript{3} in a quart. Thus, we require that $57.75=V=\pi r^2h$.
+        \item We interpret "least amount of material" to mean "cylinder with the smallest surface area." Thus, we seek to minimize $A=2\pi r^2+2\pi rh$.
+        \item We need to substitute either $r$ or $h$ from the volume equation into the area equation. Since $h=\frac{V}{\pi r^2}$ is comparatively simpler algebraically than $r=\sqrt{\frac{V}{\pi h}}$, choose to substitute out the $h$ in the area equation, giving
+        \begin{equation*}
+            A = 2\pi r^2+\frac{2V}{r}
+        \end{equation*}
+        \item Considering the physical situation, we find that $r\in(0,\infty)$.
+        \item We differentiate $A$ with respect to $r$ and find the points where $\dv*{A}{r}$ is equal to zero. Note that in this case, there are no endpoints to consider.
+        \begin{align*}
+            0 &= \dv{A}{r}\\
+            &= 4\pi r-2Vr^{-2}\\
+            4\pi r^3 &= 2V\\
+            r &= \sqrt[3]{\frac{V}{2\pi}}
+        \end{align*}
+        \item At this value of $r$,
+        \begin{equation*}
+            \dvat{\dv[2]{A}{r}}{r=\sqrt[3]{V/2\pi}} = \dvat{4\pi+4Vr^{-3}}{r=\sqrt[3]{V/2\pi}} = 12\pi
+        \end{equation*}
+        Thus, the point at $r=\sqrt[3]{\frac{V}{2\pi}}$ is a relative minimum. Since $\dv[2]{A}{r}$ is positive for all $r\in D_A$, the point at $r=\sqrt[3]{\frac{V}{2\pi}}$ is the absolute minimum.
+        \item Therefore, the radius and height of the desired oil can are given by
+        \begin{align*}
+            r &= \sqrt[3]{\frac{V}{2\pi}}\approx 2.09\text{ in}&
+            h &= 2\sqrt[3]{\frac{V}{2\pi}}\approx 4.19\text{ in}
+        \end{align*}
+        \item Note that there is an alternate method of solving problems of this type: Related rates.
+        \begin{itemize}
+            \item We have $V=\pi r^2h$ and $A=2\pi r^2+2\pi rh$. Since $V$ is a constant, $\dv*{V}{r}=0$. Since we want to find critical points of $A$, we set $\dv*{A}{r}=0$.
+            \item We find that
+            \begin{equation*}
+                \dv{A}{r} = 4\pi r+2\pi\left( h+r\dv{h}{r} \right)\footnote{Remember product rule implicit differentiation!}
+            \end{equation*}
+            \item We can find $\dv*{h}{r}$ by implicitly differentiating $V=\pi r^2h$.
+            \begin{equation*}
+                \dv{V}{r} = 2\pi rh+\pi r^2\dv{h}{r}
+            \end{equation*}
+            Thus,
+            \begin{align*}
+                0 &= 2\pi rh+\pi r^2\dv{h}{r}\\
+                \dv{h}{r} &= -\frac{2h}{r}
+            \end{align*}
+            \item Substituting, we find that
+            \begin{equation*}
+                \dv{A}{r} = 4\pi r-2\pi h
+            \end{equation*}
+            which implies (since we only care about the above equation when $\dv*{A}{r}=0$) that
+            \begin{equation*}
+                h = 2r
+            \end{equation*}
+            \item Bringing back $V=\pi r^2h$, we can now find that
+            \begin{align*}
+                V &= \pi r^2(2r)&
+                    V &= \pi \left( \frac{h}{2} \right)^2h\\
+                r &= \sqrt[3]{\frac{V}{2\pi}}&
+                    h &= 2\sqrt[3]{\frac{V}{2\pi}}
+            \end{align*}
+            \item Since
+            \begin{equation*}
+                \dv[2]{A}{r} = 4\pi+\frac{4\pi h}{r}
+            \end{equation*}
+            the second derivative is positive for all permissible values of $r,h$. Thus, the values that we have found are minimums.
+        \end{itemize}
+    \end{itemize}
+    \item \dq{A wire of length $L$ is to be cut into two pieces, one of which is bent to form a circle and the other to form a square. How should the wire be cut if the sum of the areas enclosed by the two pieces is to be a maximum?}{125}
+    \begin{itemize}
+        \item Note: choose your variable names wisely. One could choose $x+y=L \Rightarrow \frac{x^2}{16}+\frac{y^2}{4\pi}=\text{max}$, \emph{or} one could choose $2\pi r+4x=L \Rightarrow \pi r^2+x^2=\text{max}$.
+        \item We use related rates, as in the second answer to the previous problem. Because of the similarity in method, I will transcribe the intro math alone, without prose.
+        \begin{align*}
+            L &= 2\pi r+4x&
+                A &= \pi r^2+x^2\\
+            \dv{L}{r} &= 2\pi+4\dv{x}{r}&
+                \dv{A}{r} &= 2\pi r-\pi x\\
+            \dv{x}{r} &= -\frac{\pi}{2}&
+                \dv[2]{A}{r} &= 2\pi+\frac{\pi^2}{2}
+        \end{align*}
+        \begin{equation*}
+            x = 2r \Rightarrow
+            \begin{cases}
+                r = \frac{L}{2\pi+8}\\
+                x = \frac{L}{\pi+4}
+            \end{cases}
+        \end{equation*}
+        \item Now is where it gets interesting. Since the second derivative is always positive, the $r,x$ values above represent the \emph{minimum} area, not the \emph{maximum}. Thus, in this case, it is actually \emph{necessary} to consider the endpoints.
+        \item Let $r\in[0,L/2\pi]$. Thus,
+        \begin{align*}
+            A &= \frac{1}{16}L^2,\ r=0&
+            A &= \frac{1}{4\pi+16}L^2,\ r=\frac{L}{2\pi+8}&
+            A &= \frac{1}{4\pi}L^2,\ r=\frac{L}{2\pi}
+        \end{align*}
+        It is now clear that $A=\text{max}$ at the right endpoint. Thus, to maximize the enclosed area, dedicate the entirety of the wire to making a circle.
+    \end{itemize}
+    \item \dq{Fermat's principle in optics states that light travels from a point $A$ to a point $B$ along that path for which the time of travel is a minimum. Let us find the path that a ray of light will follow in going from a point $A$ in a medium where the velocity of light is $c_1$ to a point $B$ in a second medium where the velocity of light is $c_2$, when both points lie in the $xy$-plane and the $x$-axis separates the two media}{125}
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[
+            scale=1.5,
+            every node/.style={black}
+        ]
+            \footnotesize
+            \fill [yly]
+                (2,0) coordinate (P) node[above right]{$P$} -- node[below]{$x$}
+                (0,0) coordinate (O) node[below left] {$O$} -- node[left] {$a$}
+                (0,1) coordinate (A) node[left]       {$A$}
+                    pic[draw=black,pic text={$\theta_1$},angle eccentricity=1.4]{angle=O--A--P}
+            ;
+            \fill [gay]
+                (P)                                        -- node[left]{$b$}
+                (2,-1.1)   coordinate (C)                  -- node[below]{$d-x$}
+                (2.8,-1.1) coordinate (B) node[right]{$B$}
+                    pic[draw=black,pic text={$\theta_2$},angle eccentricity=1.4]{angle=C--P--B}
+            ;
+            \draw [very thin] (2,0.05) -- (2,0.45) coordinate (D) pic[draw,thin,pic text={$\theta_1$},angle eccentricity=1.4]{angle=D--P--A};
+
+            \draw [-stealth] (-0.3,0) -- (3.5,0) node[right]{$x$};
+            \draw [-stealth] (0,-1.5) -- (0,1.5) node[above]{$y$};
+            \draw (2.8,0.07) -- ++(0,-0.14) node[below]{$d$};
+
+            \draw [ylx,thick] (A) -- (P) -- (B);
+        \end{tikzpicture}
+        \caption{Optimization: Fermat's principle (optics).}
+        \label{fig:bendinglight}
+    \end{figure}
+    \begin{itemize}
+        \item WLOG, let point $A$ lie on the positive $y$-axis, as in Figure \ref{fig:bendinglight}.
+        \item In either medium, light will travel in a straight line since "shortest time" and "shortest path" are equivalent statements. Thus, the path will consist of a straight line segment from $A$ to some point $P$ along the $x$-axis, and then another straight line segment from $P$ to $B$.
+        \item Since $v=\frac{\Delta x}{\Delta t}$ relates velocity, distance, and time, and we are looking to minimize time, we observe that
+        \begin{align*}
+            t_{AP} &= \frac{\sqrt{a^2+x^2}}{c_1}&
+            t_{PB} &= \frac{\sqrt{b^2+(d-x)^2}}{c_2}
+        \end{align*}
+        \item We want to collectively minimize $t=t_{AP}+t_{PB}$, a function of $x$. Thus, we find
+        \begin{equation*}
+            \dv{t}{x} = \frac{x}{c_1\sqrt{a^2+x^2}}-\frac{d-x}{c_2\sqrt{b^2+(d-x)^2}}
+        \end{equation*}
+        \item As it so happens, from Figure \ref{fig:bendinglight}, we can see that
+        \begin{equation*}
+            \dv{t}{x} = \frac{\sin\theta_1}{c_1}-\frac{\sin\theta_2}{c_2}
+        \end{equation*}
+        \item Thus, $\dv*{t}{x}=0$ when
+        \begin{equation*}
+            \frac{\sin\theta_1}{c_1} = \frac{\sin\theta_2}{c_2}
+        \end{equation*}
+        and when $\theta_1,\theta_2$ are in domains that makes sense for the physical problem.
+        \item Note that \dq{instead of determining this value of $x$ explicitly, it is customary to characterize the path followed by the ray of light by leaving the equation for $\dv*{t}{x}=0$ in the above form\footnote{This is known as the law of refraction or Snell's law. More can be read about this law on \cite[27]{bib:Sears}.}}{126}
+    \end{itemize}
+    \item \dq{Suppose a manufacturer can sell $x$ items per week at a price $P=200-0.01x$ cents, and that it costs $y=50x+20000$ cents to produce the $x$ items. What is the production level for maximum profits?}{127}
+    \begin{itemize}
+        \item The total revenue per week on $x$ items is $xP=200x-0.01x^2$.
+        \item The total profit $T$ per week on $x$ items is $T=xP-y=-0.01x^2+150x-20000$.
+        \item $T$ maximizes when
+        \begin{align*}
+            0 &= \dv{T}{x}\\
+            &= -0.02x+150\\
+            x &= 7500\text{ units}
+        \end{align*}
+        \item These units should be sold at \$1.25 per item.
+    \end{itemize}
+    \item We conclude by outlining a general procedure to be followed for optimization questions.
+    \begin{enumerate}
+        \item \dq{When possible, draw a figure to illustrate the problem and label those parts that are important in the problem. Constants and variables should be clearly distinguished}{126}
+        \item \dq{Write an equation for the quantity that is to be a maximum or a minimum. If this quantity is denoted by $y$, it is desirable to express it in terms of a single independent variable $x$. This may require some algebraic manipulation to make use of auxiliary conditions of the problem}{127}
+        \item \dq{If $y=f(x)$ is the quantity to be a maximum or a minimum, find those values of $x$ for which\dots $f'(x)=0$}{127}
+        \item \dq{Test each value of $x$ for which $f'(x)=0$ to determine wheether it provides a maximum or minimum or neither. The usual tests are:
+        \begin{enumerate}
+            \item If $\dv*[2]{y}{x}$ is positive when $\dv*{y}{x}=0$, then $y$ is a minimum.\par
+            If $\dv*[2]{y}{x}$ is negative when $\dv*{y}{x}=0$, then $y$ is a minimum.\par
+            If $\dv*[2]{y}{x}=0$ when $\dv*{y}{x}=0$, then the test fails.
+            \item If
+            \begin{equation*}
+                \dv{y}{x}\text{ is }
+                \begin{cases}
+                    \text{positive} & \text{for }x<x_c\\
+                    \text{zero}     & \text{for }x=x_c\\
+                    \text{negative} & \text{for }x>x_c
+                \end{cases}
+            \end{equation*}
+            then a maximum occurs at $x_c$. But if $\dv*{y}{x}$ changes from negative to zero to positive as $x$ advances through $x_c$, there is a minimum. If $\dv*{y}{x}$ does not change its sign, neither a maximum or a minimum need occur}{127}
+        \end{enumerate}
+        \item \dq{If the derivative fails to exist at some point, examine this point as possible maximum or minimum}{127}
+        \item \dq{If the function $y=f(x)$ is defined for only a limited range of values $a\leq x\leq b$, examine $x=a$ and $x=b$ for possible extreme values of $y$}{127}
+    \end{enumerate}
+    \item Note that it is sometimes acceptable to forego the second-derivative test (as it was in the last problem, above): \dq{It is often obvious from the formulas, or from physical conditions, that we have a continuous and everywhere-differentiable function that does not attain its maximum at an end point. Hence it has at least one maximum at an interior point, at which its derivative must be zero. So if we find just one zero for the derivative, we have the maximum without any appeal to second-derivative or other tests}{127}
+\end{itemize}
+
+
+
+\section{Rolle's Theorem}
+\begin{itemize}
+    \item Rolle's Theorem formalizes the idea that between two point where a smooth\footnote{A function with a cusp could clearly disobey this rule.} curve crosses the $x$-axis, there should be at least one point where the tangent to the curve is flat.
+    \item We now formally state and prove Rolle's Theorem.
+    \begin{thm}[Rolle's Theorem]
+        Let the function $f$ be defined and continuous on the closed interval $[a,b]$ and differentiable in the open interval $(a,b)$. Furthermore, let $f(a)=f(b)=0$. Then there is at least one number $c$ between $a$ and $b$ where $f'(x)$ is zero; that is, $f'(c)=0$ for some $c$ in $(a,b)$.
+        \begin{proof}
+            We use casework.\par
+            \textsc{Case 1} ($f(x)=0$ for all $x\in[a,b]$): Thus, $f'(x)=0$ for all $x\in(a,b)$, and the theorem holds in this case.\par
+            \textsc{Case 2} ($f(x)\neq 0$ for all $x\in[a,b]$): Thus, $f(x)$ is positive or negative somewhere on the interval. In any case, it will have a maximum positive or minimum negative value $f(c)$ at some point $x=c$ on the interval. As a positive or negative value, $f(c)\neq 0$. Thus, $f(c)\neq f(a)$ and $f(c)\neq f(b)$. Therefore, by Theorem \ref{thm:f'is0atextrema}, $f'(c)=0$, and the theorem holds in this case, too.
+        \end{proof}
+    \end{thm}
+    \item As a corollary: \dq{Suppose $a$ and $b$ are two real numbers such that (a) $f(x)$ is continuous on $[a,b]$ and its first derivative $f'(x)$ exists on $(a,b)$, (b) $f(a)$ and $f(b)$ have opposite signs, and (c) $f'(x)$ is different from zero for all values of $x$ in $(a,b)$. Then there is one and only one real root of the equation $f(x)=0$ between $a$ and $b$}{130}
+\end{itemize}
+
+
+
+\section{The Mean Value Theorem}
+\begin{itemize}
+    \item We now look to generalize Rolle's Theorem.
+    \item This theorem considers a \dq{function $y=f(x)$ which is continuous on $[a,b]$ and which has a nonvertical tangent at each point between $A(a,f(a))$ and $B(b,f(b))$, although the tangent may be vertical at one or both of the end points $A$ and $B$}{131}
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[
+            scale=1.3,
+            every node/.style={black},
+            bottom/.style={text height=1.5ex,text depth=0.25ex}
+        ]
+            \footnotesize
+            \draw [-stealth] (-0.5,0) -- (5,0) node[right]{$x$};
+            \draw [-stealth] (0,-0.4) -- (0,2.5) node[above]{$y$};
+
+            \fill [yly,name path=triangle]
+                (0.5,0.65)  coordinate (A) node[above left] {$A$} --
+                (4.3,0.65) --
+                (4.3,1.904) coordinate (B) node[above right]{$B$} --
+                cycle
+            ;
+
+            \draw [ylx,semithick] (A) -- (A |- 0,0) node[below,bottom]{$a$};
+            \draw [ylx,semithick] (2.4,1.8185) coordinate (C) node[above left]{$C$} -- (C |- 0,0) node[below,bottom]{$c$};
+            \draw [ylx,semithick,name path=x] (3.6,1.9985) coordinate (S) node[below left]{$S$} -- (S |- 0,0) node[below,bottom]{$x$} node[above left]{$P$};
+            \path [name intersections={of=triangle and x}];
+            \node [above left] at (intersection-1) {$Q$};
+            \node [below left,yshift=-0.8mm] at (intersection-2) {$R$};
+            \draw [ylx,semithick] (B) -- (B |- 0,0) node[below,bottom]{$b$};
+
+            \draw [ylx,thick,postaction={decorate,decoration={markings,mark=at position 0.25 with \node [above left] {$y=f(x)$};}}] plot [domain=0.3:4.5,smooth] (\x,{-0.15*(\x-3.5)^2+2});
+
+            \draw (A) -- (B);
+            \draw ($(C)-(1,0.33)$) -- ($(C)+(1,0.33)$);
+
+            \node [below left] {$O$};
+        \end{tikzpicture}
+        \caption{The mean value theorem.}
+        \label{fig:meanValueTheorem}
+    \end{figure}
+    \item \dq{Geometrically, the Mean Value Theorem states that if the function $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, then there is at least one number $c$ in $(a,b)$ where the tangent to the curve is parallel to the chord through $A$ and $B$}{131}
+    \begin{itemize}
+        \item This intuitively makes sense --- consider moving the chord $AB$ vertically upward or downward until it intersects only 1 point of the curve (as opposed to 0 or 2 [or, in theory, more than 2]). In Figure \ref{fig:meanValueTheorem}, this happens at $C$.
+        \item Note that this one point will occur where the vertical distance between $AB$ and the curve is maximized.
+    \end{itemize}
+    \item The idea of vertical distance is actually key to analytically proving the Mean Value Theorem.
+    \begin{itemize}
+        \item The vertical distance between the chord and the curve is equal to the length of $RS$ in Figure \ref{fig:meanValueTheorem}.
+        \item Also from Figure \ref{fig:meanValueTheorem}, it is clear that $RS=PS-PR$.
+        \item Now the length of $PS$ is equal to $f(x)$, and the length of $PR$ is equal to the following.
+        \begin{equation*}
+            PR = f(a)+\frac{f(b)-f(a)}{b-a}(x-a)
+        \end{equation*}
+        \item Thus, the length $F(x)$ of $RS$ at $x$ is given by
+        \begin{equation*}
+            F(x) = f(x)-f(a)-\frac{f(b)-f(a)}{b-a}(x-a)
+        \end{equation*}
+        \item We prove the Mean Value Theorem by applying Rolle's Theorem to $F(x)$.
+        \item Indeed, Rolle's Theorem guarantees that $F'(c)=0$ for some $c\in(a,b)$. Since $F'(x)=f'(x)-\frac{f(b)-f(a)}{b-a}$, $f'(c)=\frac{f(b)-f(a)}{b-a}$. Thus, the slope of $f$ is indeed equal to the slope of the chord $AB$ for at least one point in $(a,b)$.
+    \end{itemize}
+    \item We now formally state the Mean Value Theorem.
+    \begin{thm}[The Mean Value Theorem]
+        Let $y=f(x)$ be continuous on $[a,b]$ and be differentiable in the open interval $(a,b)$. Then there is at least one number $c$ between $a$ and $b$ such that
+        \begin{equation*}
+            f(b)-f(a) = f'(c)(b-a)
+        \end{equation*}
+    \end{thm}
+    \item Obviously, we can use differential calculus to pinpoint the values of $c$ that satisfy the Mean Value Theorem.
+    \item Applied to kinematics, the Mean Value Theorem tells us that on any interval where position is described by a continuous, differentiable function of time, the instantaneous velocity is equal to the average velocity at least once.
+    \item With the Mean Value Theorem, we can prove some corollaries.
+    \begin{cly}\label{cly:zeroDerivative->constantFunction}
+        If a function $F$ has a derivative which is equal to zero for all values of $x$ in an interval $(a,b)$, that is, if $F'(x)=0$ for $x\in(a,b)$, then the function is constant throughout the interval: $F(x)=\text{constant}$ for $x\in(a,b)$.
+        \begin{proof}
+            Suppose for the sake of contradiction that $x_1,x_2$ are two distinct elements of the interval $(a,b)$ for which $F(x_1)\neq F(x_2)$. WLOG, let $x_1<x_2$. Since $F$ is differentiable everywhere on $(a,b)$, the Mean Value Theorem applies. Therefore, there exists some number $c\in(a,b)$ such that $F(x_1)-F(x_2)=F'(c)(x_1-x_2)$. Since $F'(c)=0$ everywhere on the interval by the hypothesis, $F(x_1)=F(x_2)$, a contradiction. Thus, the value of $F$ at $x_1$ is the same as its value at $x_2$ for all $x_1,x_2$ in $(a,b)$. 
+        \end{proof}
+    \end{cly}
+    \begin{cly}
+        If $F_1$ and $F_2$ are two functions each of which has its derivative equal to $f(x)$ for $a<x<b$, that is, if $\dv*{F_1}{x}=\dv*{F_2}{x}=f(x)$ for $a<x<b$, then $F_1(x)-F_2(x)=\text{constant}$ for all $x\in(a,b)$.
+        \begin{proof}
+            Apply Corollary \ref{cly:zeroDerivative->constantFunction} to $F(x)=F_1(x)-F_2(x)$ (the derivative of this function $F$ is equal to zero everywhere on the interval since $F'(x)=F_1'(x)-F_2'(x)=f(x)-f(x)=0$).
+        \end{proof}
+    \end{cly}
+    \begin{cly}
+        Let $f$ be continuous on $[a,b]$ and differentiable on $(a,b)$. If $f'(x)$ is positive throughout $(a,b)$, then $f$ is an increasing function on $[a,b]$, and if $f'(x)$ is negative throughout $(a,b)$, then $f$ is decreasing on $[a,b]$.
+        \begin{proof}
+            Let $x_1$ and $x_2$ be any two numbers in $[a,b]$, such that $x_1<x_2$. By the Mean Value Theorem, $f(x_2)-f(x_1)=f'(c)(x_2-x_1)$ for some $c\in(x_1,x_2)$. Since $(x_2-x_1)>0$, $f'(c)(x_2-x_1)$ has the same sign as $f'(c)$. Thus, $f(x_2)>f(x_1)$ if $f'(x)$ is positive on $(a,b)$, and $f(x_2)<f(x_1)$ if $f'(x)$ is negative on $(a,b)$.
+        \end{proof}
+    \end{cly}
+\end{itemize}
+
+
+
+\section{Extension of the Mean Value Theorem}
+\begin{itemize}
+    \item We extend the Mean Value Theorem to prove a result about using the tangent line to a function to approximate future values of it.
+    \begin{thm}[Extended Mean Value Theorem]
+        Let $f(x)$ and its first derivative $f'(x)$ be continuous on the closed interval $[a,b]$, and suppose its second derivative $f''(x)$ exists in the open interval $(a,b)$. Then there is a number $c_2$ between $a$ and $b$ such that the following holds.
+        \begin{equation*}
+            f(b) = f(a)+f'(a)(b-a)+\frac{1}{2}f''(c_2)(b-a)^2
+        \end{equation*}
+        \begin{proof}
+            Let $K$ be the number defined by the following equation.
+            \begin{equation}\label{eqn:extendedMVT-1}
+                f(b) = f(a)+f'(a)(b-a)+K(b-a)^2
+            \end{equation}
+            Let $F(x)$ be the function defined by replacing every instance of $b$ in Equation \ref{eqn:extendedMVT-1} with $x$ and subtracting the right-hand side from the left; that is,
+            \begin{equation}\label{eqn:extendedMVT-2}
+                F(x) = f(x)-f(a)-f'(a)(x-a)+K(x-a)^2
+            \end{equation}
+            By Equation \ref{eqn:extendedMVT-2}, we have $F(a)=0$. By Equation \ref{eqn:extendedMVT-1}, we have $F(b)=0$. Moreover, $F$ and $F'$ are continuous on $[a,b]$, and
+            \begin{equation*}
+                F'(x) = f'(x)-f'(a)-2K(x-a)
+            \end{equation*}
+            Therefore, $F$ satisfies the hypotheses of Rolle's Theorem, i.e., there exists a number $c_1\in(a,b)$ such that $F'(c_1)=0$. This, coupled with the facts that $F'(a)=0$ and $F''$ is continuous on $(a,c_1)$, proves that there exists a number $c_2\in(a,c_1)$ such that $F''(c_2)=0$. Since
+            \begin{equation*}
+                F''(x) = f''(x)-2K
+            \end{equation*}
+            we have $K=\frac{1}{2}f''(c_2)$. Substituting this result into Equation \ref{eqn:extendedMVT-1} gives the desired result.
+        \end{proof}
+    \end{thm}
+    \item There is an even more general version of the Extended Mean Value Theorem available as an exercise. This serves as the beginning of the calculus of sequences and series.
+    \item Let's consider an application of the Extended Mean Value theorem: \dq{Use the linearization of $f(x)=\sqrt{x}$ at $a=4$ to approximate $\sqrt{5}$, and estimate the size of the error in the approximation}{135}
+    \begin{itemize}
+        \item The linearization of $f$ at $a$ is $L_a(x)=f(a)+f'(a)(x-a)$.
+        \item Thus, for $f(x)=\sqrt{x}$, $L_4(x)=2+\frac{1}{4}(x-4)$. Therefore, we find $\sqrt{5}\approx 2.25$.
+        \item By the Extended Mean Value Theorem, $f(b)-L_a(b)=\frac{1}{2}f''(c_2)(b-a)^2$ for some $c_2\in(a,b)$.
+        \item Applied to this problem, the above means that the error equals $-\frac{1}{8x^{3/2}}(5-4)^2$ for some $x\in(4,5)$. Inputting the bounds on the interval into the error function, we find that the error is between $-0.011$ and $-0.016$, i.e., $\sqrt{5}=2.25-e$ for some $e\in(0.011,0.016)$.
+        \item Thus, even on the upper end of possible error, we have less than 1\% error.
+        \item Practically, we'd correct our estimate to between 2.234 and 2.239, which is extremely close to the actual three-decimal value of 2.236.
+    \end{itemize}
+    \item Note that \dq{if the hypotheses of the Extended Mean Value Theorem are satisfied on $[a,b]$, then they also hold on $[a,x]$ for any $x\in(a,b)$}{135}
+    \begin{itemize}
+        \item For values of $x$ close to $a$, we can reasonably approximate $f$ with the quadratic function
+        \begin{equation*}
+            Q_a(x) = f(a)+f'(a)(x-a)+\frac{1}{2}f''(a)(x-a)^2
+        \end{equation*}
+        This is also closely related to the beginning of sequences and series.
+    \end{itemize}
+    \item Further evidence that the sign of the second derivative indicates concavity: If $f''$ is continuous and positive at $x=a$, then it is positive in any sufficiently small neighborhood of $a$. Then by the Extended Mean Value Theorem, the graph of $f$ near $a$ lies above the tangent at $a$.
+    \begin{itemize}
+        \item A similar argument holds for when $f''$ is continuous and negative at $a$.
+        \item This algebraic argument analytically supersedes our previous geometric argument.
+    \end{itemize}
 \end{itemize}
 
 
