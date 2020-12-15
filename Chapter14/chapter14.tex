@@ -1,0 +1,257 @@
+\documentclass[../main.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter:\ #1}{}}
+\setcounter{chapter}{13}
+
+\begin{document}
+
+
+
+
+\chapter{Vector Functions and Their Derivatives}
+\section{Introduction}
+\begin{itemize}
+    \item \marginnote{12/14:}\textbf{Vector function} (of $h$): A function $\textbf{F}(h)$ with $n$ components where each component is a function. Essentially, $\textbf{F}=(f_1,f_2,\dots,f_n)$.
+    \item \textbf{Limit} (of $\textbf{F}(h)$ as $h\to a$): If each component $f_1,\dots,f_n$ of $\textbf{F}$ has a limit $L_1,\dots,L_n$ as $h\to a$, then
+    \begin{equation*}
+        \lim_{h\to a}\textbf{F}(h) = (L_1,\dots,L_n)
+    \end{equation*}
+    \item \textbf{Continuous} (vector function $\textbf{F}$ at $a$): A vector function $\textbf{F}$ where for every $\epsilon>0$, there corresponds a $\delta>0$ such that
+    \begin{equation*}
+        |\textbf{F}(h)-\textbf{F}(a)|<\epsilon\quad\text{when}\quad|h-a|<\delta
+    \end{equation*}
+    \begin{itemize}
+        \item \cite{bib:Thomas} shows that this is equivalent to the requirement that each component of $\textbf{F}$ is continuous at $a$.
+    \end{itemize}
+    \item \textbf{Derivative} (of a vector function at $c$): The derivative $\textbf{F}'(c)$ of a vector function $\textbf{F}$ at $c$ is given by the equation
+    \begin{equation*}
+        \textbf{F}'(c) = \lim_{h\to 0}\frac{\textbf{F}(c+h)-\textbf{F}(c)}{h}
+    \end{equation*}
+    \begin{itemize}
+        \item It can be proven that $\textbf{F}$ is differentiable at $c$ if and only if each of its components are differentiable at $c$, and that if this condition is met,
+    \end{itemize}
+    \begin{equation*}
+        \textbf{F}'(c) = (f_1'(c),\dots,f_n'(c))
+    \end{equation*}
+\end{itemize}
+
+
+
+\section{Velocity and Acceleration}
+\begin{itemize}
+    \item Results from here on out will generally pertain to 2D questions, but these methods can easily be generalized to higher dimensions.
+    \item Applications of vectors to physics problems.
+    \begin{itemize}
+        \item To solve \textbf{statics} problems, we only need to know the \textbf{algebra} of vectors.
+        \item To solve \textbf{dynamics} problems, we also need to know the \textbf{calculus} of vectors.
+    \end{itemize}
+    \item \textbf{Position vector}: The vector from the origin to a point $P$ that moves along a parametrically defined curve. \emph{Denoted by} $\textbf{R}$.
+    \item \textbf{Velocity vector}: The vector tangent to a point $P$ that moves along a parametrically defined curve and with magnitude $|\text{d}s/\text{d}t|$. \emph{Denoted by} $\textbf{v}$.
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[
+            every node/.append style={black}
+        ]
+            \footnotesize
+            \draw [->] (0,-1) -- (0,3.5) node[above]{$y$};
+            \draw [->] (-0.6,0) -- (5,0) node[right]{$x$};
+            \node [anchor=north east] {$O$};
+
+            \draw [ylx,thick] (0.3,-0.5)
+                to[out=-45,in=180] (1,-0.8)
+                to[out=0,in=-105,in looseness=1.2] node[below right]{$s$} (2.8,0.9)
+                to[out=75,in=180,in looseness=0.8] node[above left]{$\Delta s$} (4.2,3.3)
+                to[out=0,in=140] (4.7,3.1)
+            ;
+
+            \draw [yly,thick,-latex] (2.8,0.9) -- node[near end,below]{$\textbf{i}\Delta x$} (4.2,0.9);
+            \draw [yly,thick,-latex] (4.2,0.9) -- node[near end,right]{$\textbf{j}\Delta y$} (4.2,3.3);
+            \draw [ylx,thick,-latex] (0,0) -- node[pos=0.85,below]{$\textbf{R}$} (2.8,0.9) node[above left]{$P(x,y)$};
+            \draw [ylx,thick,-latex] (2.8,0.9) -- node[pos=0.4,right]{$\Delta\textbf{R}$} (4.2,3.3) node[above]{$Q$};
+
+            \draw (1,-0.7) node[above]{$(x_0,y_0)$} -- ++(0,-0.2) node[below]{$
+                \begin{aligned}
+                    t &= 0\\[-3pt]
+                    s &= 0
+                \end{aligned}
+            $};
+        \end{tikzpicture}
+        \caption{Velocity vector.}
+        \label{fig:velocityVector}
+    \end{figure}
+    \begin{itemize}
+        \item \cite{bib:Thomas} semi-rigorously proves from Figure \ref{fig:velocityVector} that if $\textbf{R}$ is the position vector, then $\dv*{\textbf{R}}{t}$ is the velocity vector.
+        \item Essentially, he proves that
+        \begin{equation*}
+            \dv{\textbf{R}}{t} = \textbf{i}\dv{x}{t}+\textbf{j}\dv{y}{t}
+        \end{equation*}
+        It follows from this that
+        \begin{align*}
+            \text{slope of }\dv{\textbf{R}}{t} &= \frac{\textbf{j}\text{-component}}{\textbf{i}\text{-component}}
+            = \frac{\dv*{y}{t}}{\dv*{x}{t}}
+            = \dv{y}{x}\\
+            \left| \dv{R}{t} \right| &= \left| \textbf{i}\dv{x}{t}+\textbf{j}\dv{y}{t} \right|
+            = \sqrt{\left( \dv{x}{t} \right)^2+\left( \dv{y}{t} \right)^2}
+            = \left| \dv{s}{t} \right|
+        \end{align*}
+    \end{itemize}
+    \item \textbf{Acceleration vector}: The derivative of the velocity vector and second derivative of the position vector. \emph{Denoted by} $\textbf{a}$.
+    \begin{equation*}
+        \textbf{a} = \dv{\textbf{v}}{t} = \textbf{i}\dv[2]{x}{t}+\textbf{j}\dv[2]{y}{t}
+    \end{equation*}
+    \item Sometimes, we are given a force vector $\textbf{F}=m\textbf{a}$ and initial conditions.
+    \begin{itemize}
+        \item From these, we can solve for velocity and position vectors via fairly straightforward component integration.
+        \item Note, however, that constants of integration are now vectors.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Tangential Vectors}
+\begin{itemize}
+    \item Let $P_0$ be a point on a curve. The distance $s$ from $P_0$ to some point $P$ along the curve is clearly related to the position of $P$. Thus, we may think of $\textbf{R}$ as a function of $s$, and investigate the properties of $\dv*{\textbf{R}}{s}$.
+    \item \textbf{Tangent vector}: The unit vector tangent to a point $P$ along a curve.
+    \begin{figure}[h!]
+        \centering
+        \begin{subfigure}[b]{0.33\linewidth}
+            \centering
+            \begin{tikzpicture}[
+                every node/.append style={black}
+            ]
+                \footnotesize
+                \draw [->] (-0.5,0) -- (4,0) node[right]{$x$};
+                \draw [->] (0,-0.7) -- (0,3) node[above]{$y$};
+                \node [anchor=north east] {$O$};
+
+                \draw [yly,thick,-latex] (2.4,0.52) -- node[near end,below]{$\textbf{i}\Delta x$} (3.3,0.52);
+                \draw [yly,thick,-latex] (3.3,0.52) -- node[near end,right]{$\textbf{j}\Delta y$} (3.3,2.36);
+                \draw [ylx,thick,-latex] (2.4,0.52) -- node[very near end,left]{$\Delta\textbf{R}$} (3.3,2.36) node[above left]{$Q$};
+                \draw [ylx,thick,-latex] (0,0) -- node[pos=0.7,above]{$\textbf{R}$} (2.4,0.52) node[above left]{$P$};
+
+                \draw [ylx,thick,decoration={markings,mark=at position 0.5 with {\node[below,xshift=-4mm,yshift=-6mm]{$s$};},mark=at position 0.65 with {\node[right]{$\Delta s$};}},postaction={decorate}] plot[domain=0.1:3.5,smooth] (\x,{0.17*\x^2.5-1});
+
+                \draw (0.95,-0.7) node[above]{$P_0$} -- (1.05,-0.96) node[below]{$s=0$};
+            \end{tikzpicture}
+            \caption{$\Delta s>0$.}
+            \label{fig:tangentVectora}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.32\linewidth}
+            \centering
+            \begin{tikzpicture}[
+                every node/.append style={black}
+            ]
+                \footnotesize
+                \draw [->] (-0.5,0) -- (4,0) node[right]{$x$};
+                \draw [->] (0,-0.7) -- (0,3) node[above]{$y$};
+                \node [anchor=north east] {$O$};
+
+                \draw [yly,thick,-latex] (2.4,0.52) -- node[near end,right]{$\textbf{j}\Delta y$} (2.4,-0.45);
+                \draw [yly,thick,-latex] (2.4,-0.45) -- node[pos=0.4,below]{$\textbf{i}\Delta x$} (1.6,-0.45);
+                \draw [ylx,thick,-latex] (2.4,0.52) -- node[near end,left=1mm]{$\Delta\textbf{R}$} (1.6,-0.45) node[below]{$Q$};
+                \draw [ylx,thick,-latex] (0,0) -- node[pos=0.7,above]{$\textbf{R}$} (2.4,0.52) node[above left]{$P$};
+
+                \draw [ylx,thick,decoration={markings,mark=at position 0.5 with {\node[right,xshift=-5mm,yshift=-6mm]{$\Delta s$};}},postaction={decorate}] plot[domain=0.1:3.5,smooth] (\x,{0.17*\x^2.5-1});
+
+                \draw (0.95,-0.7) node[above]{$P_0$} -- (1.05,-0.96) node[below]{$s=0$};
+            \end{tikzpicture}
+            \caption{$\Delta s<0$.}
+            \label{fig:tangentVectorb}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.33\linewidth}
+            \centering
+            \begin{tikzpicture}[
+                every node/.append style={black}
+            ]
+                \footnotesize
+                \draw [->] (-0.5,0) -- (4,0) node[right]{$x$};
+                \draw [->] (0,-0.7) -- (0,3) node[above]{$y$};
+                \node [anchor=north east] {$O$};
+
+                \draw [ylx,thick,-latex] (2.4,0.52) -- node[right]{$\textbf{T}$} (3.3,1.95);
+                \draw [ylx,thick,-latex] (0,0) -- node[pos=0.7,above]{$\textbf{R}$} (2.4,0.52) node[above left]{$P$};
+
+                \draw [ylx,thick,decoration={markings,mark=at position 0.5 with {\node[below,xshift=-4mm,yshift=-6mm]{$s$};}},postaction={decorate}] plot[domain=0.1:3.5,smooth] (\x,{0.17*\x^2.5-1});
+
+                \draw (0.95,-0.7) node[above]{$P_0$} -- (1.05,-0.96) node[below]{$s=0$};
+            \end{tikzpicture}
+            \caption{$\Delta s\to 0$.}
+            \label{fig:tangentVectorc}
+        \end{subfigure}
+        \caption{Tangent vector.}
+        \label{fig:tangentVector}
+    \end{figure}
+    \begin{itemize}
+        \item Since $\Delta\textbf{R}$ and $\Delta s$ approach the same quantity as $\Delta s\to 0$, $\Delta\textbf{R}/\Delta s$ approaches unity, i.e., $|\text{d}\textbf{R}/\text{d}s|=1$.
+        \item Because of the sign change, whether $\Delta s$ is positive or negative, $\Delta\textbf{R}/\Delta s$ points in the same general direction for sufficiently small $\Delta s$. Indeed, it converges to pointing tangentially.
+        \item Thus,
+        \begin{equation*}
+            \textbf{T} = \dv{\textbf{R}}{s} = \textbf{i}\dv{x}{s}+\textbf{j}\dv{y}{s}
+        \end{equation*}
+    \end{itemize}
+    \item There are two different ways to find $\textbf{T}$: Straight differentiation combined with manipulations of differentials, and the chain rule combined with the dot product. We will explore each, in turn, with an example.
+    \item \dq{Find the unit vector $\textbf{T}$ tangent to the circle $x=a\cos\theta$, $y=a\sin\theta$ at any point $P(x,y)$}{471}
+    \begin{itemize}
+        \item From the given equations, we have
+        \begin{align*}
+            \dd{x} &= -a\sin\theta\dd{\theta}&
+                \dd{y} &= a\cos\theta\dd{\theta}&
+                    \dd{s}^2 &= \dd{x}^2+\dd{y}^2\\
+            &&
+                &&
+                    &= a^2(\sin^2\theta+\cos^2\theta)\dd{\theta}^2\\
+            &&
+                &&
+                    &= a^2\dd{\theta}^2\\
+            &&
+                &&
+                    \dd{s} &= \pm a\dd{\theta}
+        \end{align*}
+        \begin{itemize}
+            \item We could alternatively obtain $\dd{s}$ by expressing the arc length formula $S=R\theta$ in terms of differentials.
+        \end{itemize}
+        \item \dq{If we measure arc length in the counterclockwise direction, with $s=0$ at $(a,0)$, $s$ will be an increasing function of $\theta$, so the $+$-sign should be taken: $\dd{s}=a\dd{\theta}$}{471}
+        \item Therefore,
+        \begin{align*}
+            \textbf{T} &= \textbf{i}\dv{x}{s}+\textbf{j}\dv{y}{s}\\
+            &= \textbf{i}\left( \frac{-a\sin\theta\dd{\theta}}{a\dd{\theta}} \right)+\textbf{j}\left( \frac{a\cos\theta\dd{\theta}}{a\dd{\theta}} \right)\\
+            &= -\textbf{i}\sin\theta+\textbf{j}\cos\theta
+        \end{align*}
+    \end{itemize}
+    \item The equations
+    \begin{align*}
+        x &= a\cos\omega t&
+            y &= a\sin\omega t&
+                z &= bt
+    \end{align*}
+    where $a,b,\omega$ are positive constants define a circular helix in $E^3$\footnote{Three-dimensional Euclidean space, equivalent to $\mathbb{R}^3$}.
+    \begin{itemize}
+        \item Let $P_0=(a,0,0)$, since this is the point on the locus of the parametric equations where $t=0$. Additionally, let arc length be measured in the direction in which $P$ moves away from $P_0$ as $t$ increases from 0.
+        \item Using the chain rule to differentiate, we have
+        \begin{align*}
+            \textbf{T} &= \textbf{i}\dv{x}{s}+\textbf{j}\dv{y}{s}+\textbf{k}\dv{z}{s}\\
+            &= \textbf{i}\left( -a\omega\sin\omega t\, \dv{t}{s} \right)+\textbf{j}\left( a\omega\cos\omega t\, \dv{t}{s} \right)+\textbf{k}\left( b\, \dv{t}{s} \right)
+        \end{align*}
+        \item Since $\textbf{T}$ is a unit vector, we have $1=|\textbf{T}|=|\textbf{T}|^2=\textbf{T}\cdot\textbf{T}$. Thus,
+        \begin{align*}
+            1 &= \textbf{T}\cdot\textbf{T}\\
+            &= \textbf{i}\cdot\textbf{i}\left( -a\omega\sin\omega t\, \dv{t}{s} \right)^2+\textbf{j}\cdot\textbf{j}\left( a\omega\cos\omega t\, \dv{t}{s} \right)^2+\textbf{k}\cdot\textbf{k}\left( b\, \dv{t}{s} \right)^2\\
+            % &= 1\left( a^2\omega^2\sin^2\omega t\left( \dv{t}{s} \right)^2 \right)+1\left( a^2\omega^2\cos^2\omega t\left( \dv{t}{s} \right)^2 \right)+1\left( b^2\left( \dv{t}{s} \right)^2 \right)\\
+            % &=\left( a^2\omega^2\sin^2\omega t+a^2\omega^2\cos^2\omega t+b^2 \right)\left( \dv{t}{s} \right)^2\\
+            % &=\left( a^2\omega^2\left( \sin^2\omega t+\cos^2\omega t \right)+b^2 \right)\left( \dv{t}{s} \right)^2\\
+            &=\left( a^2\omega^2+b^2 \right)\left( \dv{t}{s} \right)^2\\
+            \dv{t}{s} &= \pm\frac{1}{\sqrt{a^2\omega^2+b^2}}
+        \end{align*}
+        \item We choose the $+$-sign because $s$ should be a positive function of $t$.
+        \item Putting this all together, we get
+        \begin{equation*}
+            \textbf{T} = \frac{a\omega(-\textbf{i}\sin\omega t+\textbf{j}\cos\omega t)+\textbf{k}b}{\sqrt{a^2\omega^2+b^2}}
+        \end{equation*}
+    \end{itemize}
+\end{itemize}
+
+
+
+
+\end{document}
