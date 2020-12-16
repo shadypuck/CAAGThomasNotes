@@ -253,5 +253,302 @@
 
 
 
+\section{Curvature and Normal Vectors}
+\begin{itemize}
+    \item \marginnote{12/15:}\textbf{Curvature}: The rate of change of the slope angle $\phi$ between $\textbf{T}$ and the $x$-axis with respect to the arc length $s$. \emph{Denoted by} $\kappa$.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[
+            every node/.append style={black}
+        ]
+            \footnotesize
+            \draw [->] (-0.5,0) -- (4,0) node[right]{$x$};
+            \draw [->] (0,-0.5) -- (0,3.5) node[above]{$y$};
+            \node [anchor=north east] {$O$};
+
+            \coordinate (P) at (1.8,0.99);
+            \coordinate (A) at (3.5,0.99);
+            \coordinate (B) at (3,1.67);
+            \draw (P) -- (A);
+            \draw [yly,thick,-latex] (P) node[above left]{$P$} -- (B) node[right]{$\textbf{T}=\dv{\textbf{R}}{s}$};
+            \draw [ylx,thick] plot[domain=0.1:3.8,smooth] (\x,{0.2*(\x-0.4)^2+0.6});
+            \pic [draw,->,angle radius=8mm,angle eccentricity=1.2,pic text={$\phi$}] {angle=A--P--B};
+            
+            \draw (0.4,0.7) -- ++(0,-0.2) node[below]{$P_0$};
+            \node at (1.2,0.6) {$s$};
+        \end{tikzpicture}
+        \caption{Curvature.}
+        \label{fig:curvature}
+    \end{figure}
+    \begin{itemize}
+        \item Measured in radians per unit length.
+    \end{itemize}
+    \item From the facts that
+    \begin{align*}
+        \kappa &= \dv{\phi}{s}&
+            \tan\phi &= \dv{y}{x}&
+                \dd{s} &= \pm\sqrt{\dd{x}^2+\dd{y}^2}
+    \end{align*}
+    we can derive a formula for $\kappa$ in terms of the original function $y=f(x)$ as follows.
+    \begin{align*}
+        \phi &= \tan^{-1}\dv{y}{x}&
+            \dv{s}{x} &= \pm\sqrt{1+\left( \dv{y}{x} \right)^2}\\
+        \dv{\phi}{x} &= \frac{\dv[2]{y}{x}}{1+\left( \dv{y}{x} \right)^2}
+    \end{align*}
+    \begin{align*}
+        \kappa &= \left| \dv{\phi}{s} \right|
+        = \left| \frac{\dv*{\phi}{x}}{\dv*{s}{x}} \right|\\
+        &= \frac{\left| \dv[2]{y}{x} \right|}{\left[ 1+\left( \dv{y}{x} \right)^2 \right]^{3/2}}
+    \end{align*}
+    \item We can similarly derive that
+    \begin{equation*}
+        \kappa = \frac{\left| \dv[2]{x}{y} \right|}{\left[ 1+\left( \dv{x}{y} \right)^2 \right]^{3/2}}
+    \end{equation*}
+    \item If the equations for $y$ and $x$ are given parametrically in terms of $t$, we have
+    \begin{align*}
+        \kappa &= \frac{\left| \dv{x}{t}\dv[2]{y}{t}-\dv{y}{t}\dv[2]{x}{t} \right|}{\left[ \left( \dv{x}{t} \right)^2+\left( \dv{y}{t} \right)^2 \right]^{3/2}}\\
+        &= \frac{|\dot{x}\ddot{y}-\dot{y}\ddot{x}|}{\left[ \dot{x}^2+\dot{y}^2 \right]^{3/2}}
+    \end{align*}
+    \item Naturally, the curvature of a straight line should be 0. Indeed, we find this from the above equations.
+    \item Naturally, the curvature of a circle should be constant, and should somehow decrease as the radius increases. Indeed, we find from the facts that $s=r\theta$ and $\phi=\theta+\frac{\pi}{2}$ that
+    \begin{equation*}
+        \kappa = \left| \dv{\phi}{s} \right|
+        = \left| \frac{\dd{\theta}}{r\dd{\theta}} \right|
+        = \frac{1}{r}
+    \end{equation*}
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[
+            scale=1.6,
+            every node/.append style={black}
+        ]
+            \footnotesize
+            \draw [yly,thick] (-0.5,1.25) circle ({2^0.5});
+            \draw [ylx,semithick,decoration={markings,mark=at position 0 with {\fill circle (1.5pt);}},postaction={decorate}] (-0.5,1.25) node[above,text width=2cm,align=center]{center of curvature} -- node[pos=0.25,right=-2mm,text width=2cm,align=center]{radius of curvature} (0.5,0.25);
+            \draw [ylx,thick,decoration={markings,mark=at position 0.9 with {\node[right]{curve};}},postaction={decorate}] plot[domain=-1.3:1.3,smooth] (\x,{\x*\x});
+            \node [text width=2cm,align=center] at (0.8,2.4) {osculating circle};
+
+            \draw (0,-0.25) -- node[below right]{$P(x,y)$} (1,0.75);
+        \end{tikzpicture}
+        \caption{Circle, radius, and center of curvature.}
+        \label{fig:circleCurvature}
+    \end{figure}
+    \item \textbf{Circle of curvature} (at $P$): \dq{The circle that is tangent to a given curve at $P$, whose center lies on the concave side of the curve and which has the same curvature as the curve has at $P$}{475} \emph{Also known as} \textbf{osculating circle}.
+    \begin{itemize}
+        \item Calling the circle of curvature the "osculating circle" refers to the fact that its first and second derivatives at $P$ are equal to the first and second derivatives of the curve at $P$, meaning that it has a higher degree of contact with the curve at $P$ than any other circle.
+    \end{itemize}
+    \item \textbf{Radius of curvature} (at $P$): The radius of the circle of curvature at $P$. \emph{Denoted by} $\rho$.
+    \begin{equation*}
+        \rho = \frac{1}{\kappa}
+        = \frac{\left[ 1+\left( \dv{y}{x} \right)^2 \right]^{3/2}}{\left| \dv[2]{y}{x} \right|}
+    \end{equation*}
+    \item \textbf{Normal vector}: The unit vector normal to a point $P$ along a curve.
+    \begin{itemize}
+        \item Observe that $\textbf{T}$ can be expressed in terms of the slope angle $\phi$:
+        \begin{equation*}
+            \textbf{T} = \textbf{i}\cos\phi+\textbf{j}\sin\phi
+        \end{equation*}
+        \item Since $\textbf{T}$ can be thought of as a function of $\phi$, we can investigate the properties of $\dv*{\textbf{T}}{\phi}$.
+        \item Indeed, it is not difficult to show that
+        \begin{align*}
+            \dv{\textbf{T}}{\phi} &= -\textbf{i}\sin\phi+\textbf{j}\cos\phi&
+                \left| \dv{\textbf{T}}{\phi} \right| &= \sqrt{\sin^2\phi+\cos^2\phi} = 1&
+                    \textbf{T}\cdot\dv{\textbf{T}}{\phi} &= 0
+        \end{align*}
+        \item Thus,
+        \begin{equation*}
+            \textbf{N} = \dv{\textbf{T}}{\phi} = -\textbf{i}\sin\phi+\textbf{j}\cos\phi
+        \end{equation*}
+    \end{itemize}
+    \item In 3D space, it is harder to define a single normal vector, so we define the\dots
+    \item \textbf{Principal normal vector}: The vector
+    \begin{equation*}
+        \textbf{N} = \frac{\dv*{\textbf{T}}{s}}{|\text{d}\textbf{T}/\text{d}s|}
+    \end{equation*}
+    \begin{itemize}
+        \item We will soon prove that $\textbf{T}\cdot\dv*{\textbf{T}}{s}=0$.
+        \item If $\phi$ is an increasing function of $s$, then by the chain rule,
+        \begin{equation*}
+            \dv{\textbf{T}}{s} = \dv{\textbf{T}}{\phi}\dv{\phi}{s} = \textbf{N}\kappa
+        \end{equation*}
+        \item Since $\textbf{N}$ is a unit vector and $\kappa$ is a constant, $\kappa$ is equal to the magnitude of $\dv*{\textbf{T}}{s}$.
+        \item Thus, we can define the principal normal as above.
+    \end{itemize}
+    \item \cite{bib:Thomas} uses $\dv*{\textbf{T}}{s}$ to find both the curvature and principal normal vector of the general circular helix investigated earlier. He also checks limiting cases to rederive the curvature of a circle and of a straight line.
+    \item \textbf{Binormal vector}: The vector perpendicular to both $\textbf{T}$ and $\textbf{N}$, as defined by
+    \begin{equation*}
+        \textbf{B} = \textbf{T}\times\textbf{N}
+    \end{equation*}
+\end{itemize}
+
+
+
+\section{Differentiation of Products of Vectors}
+\begin{itemize}
+    \item Let $\textbf{U}$ and $\textbf{V}$ be vectors whose components are differentiable functions of $t$.
+    \item Then we can verify by components that
+    \begin{align*}
+        \dv{t}(\textbf{U}\cdot\textbf{V}) &= \dv{\textbf{U}}{t}\cdot\textbf{V}+\textbf{U}\cdot\dv{\textbf{V}}{t}&
+            \dv{t}(\textbf{U}\times\textbf{V}) &= \dv{\textbf{U}}{t}\times\textbf{V}+\textbf{U}\times\dv{\textbf{V}}{t}
+    \end{align*}
+    \begin{itemize}
+        \item Note that we can \emph{derive} the above, too, through the $\Delta$-process.
+        \item Let $\textbf{W}=\textbf{U}\times\textbf{V}$. Then
+        \begin{align*}
+            \textbf{W}+\Delta\textbf{W} &= (\textbf{U}+\Delta\textbf{U})\times(\textbf{V}+\Delta\textbf{V})\\
+            &= \textbf{U}\times\textbf{V}+\textbf{U}\times\Delta\textbf{V}+\Delta\textbf{U}\times\textbf{V}+\Delta\textbf{U}\times\Delta\textbf{V}\\
+            \Delta\textbf{W} &= \textbf{U}\times\Delta\textbf{V}+\Delta\textbf{U}\times\textbf{V}+\Delta\textbf{U}\times\Delta\textbf{V}\\
+            \frac{\Delta\textbf{W}}{\Delta t} &= \textbf{U}\times\frac{\Delta\textbf{V}}{\Delta t}+\frac{\Delta\textbf{U}}{\Delta t}\times\textbf{V}+\frac{\Delta\textbf{U}}{\Delta t}\times\Delta\textbf{V}\\
+            \dv{\textbf{W}}{t} &= \textbf{U}\times\dv{\textbf{V}}{t}+\dv{\textbf{U}}{t}\times\textbf{V}
+        \end{align*}
+    \end{itemize}
+    \item Differentiating the triple scalar product:
+    \begin{equation*}
+        \dv{t}(\textbf{U}\cdot\textbf{V}\times\textbf{W}) = \dv{\textbf{U}}{t}\cdot\textbf{V}\times\textbf{W}+\textbf{U}\cdot\dv{\textbf{V}}{t}\times\textbf{W}+\textbf{U}\cdot\textbf{V}\times\dv{\textbf{W}}{t}
+    \end{equation*}
+    \begin{itemize}
+        \item Equivalently,
+    \end{itemize}
+    \begin{equation*}
+        \dv{t}
+        \begin{vmatrix}
+            u_1 & u_2 & u_3\\
+            v_1 & v_2 & v_3\\
+            w_1 & w_2 & w_3\\
+        \end{vmatrix}
+        =
+        \begin{vmatrix}
+            \dv{u_1}{t} & \dv{u_2}{t} & \dv{u_3}{t}\\
+            v_1 & v_2 & v_3\\
+            w_1 & w_2 & w_3\\
+        \end{vmatrix}
+        +
+        \begin{vmatrix}
+            u_1 & u_2 & u_3\\
+            \dv{v_1}{t} & \dv{v_2}{t} & \dv{v_3}{t}\\
+            w_1 & w_2 & w_3\\
+        \end{vmatrix}
+        +
+        \begin{vmatrix}
+            u_1 & u_2 & u_3\\
+            v_1 & v_2 & v_3\\
+            \dv{w_1}{t} & \dv{w_2}{t} & \dv{w_3}{t}\\
+        \end{vmatrix}
+    \end{equation*}
+    \item Differentiating $\textbf{V}\cdot\textbf{V}=|\textbf{V}|^2$ gives
+    \begin{align*}
+        \textbf{V}\cdot\dv{\textbf{V}}{t}+\dv{\textbf{V}}{t}\cdot\textbf{V} &= 0\\
+        2\textbf{V}\cdot\dv{\textbf{V}}{t} &= 0
+    \end{align*}
+    \begin{itemize}
+        \item Thus, for any vector function $\textbf{V}$, there are three cases: (1) $\textbf{V}=\textbf{0}$, (2) $\dv*{\textbf{V}}{t}=\textbf{0}$, so $\textbf{V}$ is constant in both direction and magnitude, and (3) $\textbf{V}$ and $\dv*{\textbf{V}}{t}$ are perpendicular.
+        \item Note that this fact allows to verify that $\textbf{T}\cdot\dv*{\textbf{T}}{s}=0$.
+    \end{itemize}
+    \item We can use the calculus of tangential and normal vectors to break velocity and acceleration vectors into tangential and normal components.
+    \begin{align*}
+        \textbf{v} &= \dv{\textbf{R}}{t}&
+            \textbf{a} &= \dv{\textbf{v}}{t}&
+                \textbf{a} &= \textbf{T}\dv[2]{s}{t}+\dv{s}{t}\dv{\textbf{T}}{s}\dv{s}{t}\\
+        &= \dv{\textbf{R}}{s}\dv{s}{t}&
+            &= \textbf{T}\dv[2]{s}{t}+\dv{s}{t}\dv{\textbf{T}}{t}&
+                &= \textbf{T}\dv[2]{s}{t}+\textbf{N}\kappa\left( \dv{s}{t} \right)^2\\
+        &= \textbf{T}\dv{s}{t}&
+            &&
+                &= \textbf{T}\dv[2]{s}{t}+\textbf{N}\left( \frac{\textbf{v}^2}{\rho} \right)
+    \end{align*}
+    \begin{itemize}
+        \item $\textbf{v}^2/\rho$ is very similar to $v^2/r$ (think about the circle and radius of curvature)!
+        \item Another important related equation:
+        \begin{equation*}
+            |\textbf{a}| = a_T^2+a_N^2
+        \end{equation*}
+        \item Lastly, we can derive a formula for the curvature in terms of velocity and acceleration.
+        \begin{align*}
+            \textbf{v}\times\textbf{a} &= \textbf{T}\dv{s}{t}\times\left[ \textbf{T}\dv[2]{s}{t}+\textbf{N}\kappa\left( \dv{s}{t} \right)^2 \right]\\
+            &= \textbf{T}\times\textbf{N}\kappa\left( \dv{s}{t} \right)^3\\
+            |\textbf{v}\times\textbf{a}| &= \left| \textbf{B}\kappa|\textbf{v}|^3 \right|\\
+            \kappa &= \frac{|\textbf{v}\times\textbf{a}|}{|\textbf{v}|^3}
+        \end{align*}
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Polar and Cylindrical Coordinates}
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[
+        every node/.append style={black}
+    ]
+        \footnotesize
+        \draw [->] (-0.5,0) -- (4,0) coordinate (X) node[right]{$x$};
+        \draw [->] (0,-0.6) -- (0,3) node[above]{$y$};
+        \node [anchor=north east] {$O$};
+
+        \draw [ylx,thick,-latex] (0,0) coordinate (O) -- node[above]{$r$} node[pos=0.82,above]{$\textbf{R}$} (2.7,1) coordinate (P);
+        \draw [yly,thick,-latex] (P) -- node[near end,below]{$\textbf{u}_r$} ($(O)!1.4!(P)$) coordinate (ur);
+        \draw [yly,thick,-latex] (P) -- node[near end,left]{$\textbf{u}_\theta$} ($(P)!1!90:(ur)$);
+        \draw [ylx,thick] (1.3,-0.5) to[out=30,in=-110,in looseness=0.6] (P) node[below right]{$P$} to[out=70,in=-80,out looseness=0.4,in looseness=1.3] (2.8,2.9);
+        \pic [draw,->,angle radius=1cm,pic text={$\theta$},angle eccentricity=1.2] {angle=X--O--P};
+    \end{tikzpicture}
+    \caption{Vectors in polar coordinates.}
+    \label{fig:polarVectors}
+\end{figure}
+\begin{itemize}
+    \item To analyze polar coordinates, we introduce the unit vectors
+    \begin{align*}
+        \textbf{u}_r &= \textbf{i}\cos\theta+\textbf{j}\sin\theta&
+            \textbf{u}_\theta &= -\textbf{i}\sin\theta+\textbf{j}\cos\theta
+    \end{align*}
+    \item Clearly, we have
+    \begin{align*}
+        \dv{\textbf{u}_r}{\theta} &= \textbf{u}_\theta&
+            \dv{\textbf{u}_\theta}{\theta} &= -\textbf{u}_r
+    \end{align*}
+    \item Additionally, we can see that
+    \begin{equation*}
+        \textbf{R} = r\textbf{u}_r
+    \end{equation*}
+    \item The velocity vector can easily be expressed in terms of these quantities (and visualized as such geometrically, as in Figure \ref{fig:polarVelocityVector}).
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[
+            every node/.append style={black}
+        ]
+            \footnotesize
+            \draw [->] (-0.5,0) -- (4,0) coordinate (X) node[right]{$x$};
+            \draw [->] (0,-0.6) -- (0,3) node[above]{$y$};
+            \node [anchor=north east] {$O$};
+    
+            \draw [ylx,thick,-latex] (0,0) coordinate (O) -- node[above]{$r$} node[pos=0.82,above]{$\textbf{R}$} (2.7,1) coordinate (P);
+            \draw [yly,thick,-latex] (P) -- node[pos=0.8,below]{$\textbf{u}_r\dv{r}{t}$} (3.81,1.41);
+            \draw [yly,thick,-latex] (3.81,1.41) -- node[pos=0.8,right]{$r\dv{\theta}{t}\textbf{u}_\theta$} (3.3,2.8);
+            \draw [ylx,thick,-latex] (P) -- node[pos=0.35,right]{$\textbf{T}\dv{s}{t}$} (3.3,2.8);
+            \draw [ylx,thick] (1.3,-0.5) to[out=30,in=-110,in looseness=0.6] (P) node[below right]{$P$} to[out=70,in=-80,out looseness=0.4,in looseness=1.3] (2.8,2.9);
+            \pic [draw,->,angle radius=1cm,pic text={$\theta$},angle eccentricity=1.2] {angle=X--O--P};
+        \end{tikzpicture}
+        \caption{Polar velocity vector.}
+        \label{fig:polarVelocityVector}
+    \end{figure}
+    \begin{align*}
+        \textbf{v} &= \dv{\textbf{R}}{t}\\
+        &= \textbf{u}_r\dv{r}{t}+r\dv{\textbf{u}_r}{t}\\
+        &= \textbf{u}_r\dv{r}{t}+r\textbf{u}_\theta\dv{\theta}{t}
+    \end{align*}
+    \item The acceleration vector can also be expressed in terms of these quantities (the following can be derived by differentiating the above with respect to $t$ and substituting).
+    \begin{equation*}
+        \textbf{a} = \textbf{u}_r\left[ \dv[2]{r}{t}-r\left( \dv{\theta}{t} \right)^2 \right]+\textbf{u}_\theta\left[ r\dv[2]{\theta}{t}+2\dv{r}{t}\dv{\theta}{t} \right]
+    \end{equation*}
+    \item In three dimensions (esp. for cylindrical coordinates), we have
+    \begin{align*}
+        \textbf{R} &= r\textbf{u}_r+\textbf{k}z\\
+        \textbf{v} &= \textbf{u}_r\dv{r}{t}+r\textbf{u}_\theta\dv{\theta}{t}+\textbf{k}\dv{z}{t}\\
+        \textbf{a} &= \textbf{u}_r\left[ \dv[2]{r}{t}-r\left( \dv{\theta}{t} \right)^2 \right]+\textbf{u}_\theta\left[ r\dv[2]{\theta}{t}+2\dv{r}{t}\dv{\theta}{t} \right]+\textbf{k}\dv[2]{z}{t}
+    \end{align*}
+    \item \cite{bib:Thomas} goes into an lengthy application of the above definitions to deriving Kepler's Laws.
+\end{itemize}
+
+
+
 
 \end{document}
