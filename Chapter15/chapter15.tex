@@ -12,7 +12,7 @@
 \chapter{Partial Differentiation}
 \section{Functions of Two or More Variables}
 \begin{itemize}
-    \item \textbf{Function} (from $D$ to $E^1$): A mapping that assigns a unique number $w$ to each point $(x_1,\dots,x_n)\in D\subset E^n$.
+    \item \marginnote{12/16:}\textbf{Function} (from $D$ to $E^1$): A mapping that assigns a unique number $w$ to each point $(x_1,\dots,x_n)\in D\subset E^n$.
     \begin{itemize}
         \item We write $w=f(x_1,\dots,x_n)$ and say that $w$ is the value of the function $f$ at $(x_1,\dots,x_n)$.
     \end{itemize}
@@ -37,9 +37,9 @@
     \begin{itemize}
         \item The formula for such a curve can be derived by setting $w_0=f(x,y)$, where $w_0\in R_f$.
     \end{itemize}
-    \item \textbf{Directional derivative} (of $f(x,y)$ at $(x_0,y_0)$ in the direction of $L$): The limit
+    \item \textbf{Directional derivative} (of $f(x,y)$ at $(x_0,y_0)$ in the $\phi$-direction): The limit
     \begin{equation*}
-        \dv{w}{s} = \lim_{\Delta s\to 0}\frac{\Delta w}{\Delta s} = \lim_{P_1\to P_0}\frac{f(x_1,y_1)-f(x_0,y_0)}{\sqrt{\Delta x^2+\Delta y^2}}
+        \dv{w}{s} = \lim_{\Delta s\to 0}\Dv{w}{s} = \lim_{P_1\to P_0}\frac{f(x_1,y_1)-f(x_0,y_0)}{\sqrt{\Delta x^2+\Delta y^2}}
     \end{equation*}
     \begin{figure}[h!]
         \centering
@@ -70,7 +70,7 @@
         \label{fig:directionalDerivative}
     \end{figure}
     \begin{itemize}
-        \item Basically, we let $P_1$ approach $P_0$ along a smooth curve (a line for simplicity and to be definite) and watch how $\Delta w=w_1-w_0=f(x_1,y_1)-f(x_0,y_0)$, $\Delta x=x_1-x_0$, and $\Delta y=y_1-y_0$ change.
+        \item Basically, we let $P_1$ approach $P_0$ along a smooth curve (the line $L$ connecting $P_1$ and $P_0$ for simplicity and to be definite; $L$ makes an angle $\phi$ with the $x$-axis) and watch how $\Delta w=w_1-w_0=f(x_1,y_1)-f(x_0,y_0)$, $\Delta x=x_1-x_0$, and $\Delta y=y_1-y_0$ change.
         \item Note that the directional derivative does depend on the \emph{direction} from which $P_1$ approaches $P_0$, not just the absolute distance between $P_1$ and $P_0$.
     \end{itemize}
     \item We now consider two special cases: When \dq{$P_1$ approaches $P_0$ along the line $y=y_0$ parallel to the $x$-axis, [and when] $P_1$ approaches $P_0$ along the line $x=x_0$ parallel to the $y$-axis}{498}
@@ -122,7 +122,7 @@
     \item \textbf{Tangent plane} (to $w=f(x,y)$ at $P_0(x_0,y_0,w_0)$): A plane $T$ such that for any point $P$ on the surface described by $f(x,y)$, as $P\to P_0$, the angle between $T$ and $\overline{PP_0}$ approaches 0.
     \item \textbf{Normal line} (to $w=f(x,y)$ at $P_0(x_0,y_0,w_0)$): The line through $P_0$ which is normal to the tangent plane to $f(x,y)$ at $P_0$.
     \item The tangent plane is determined by the lines $L_1$ and $L_2$ tangent to the curves $C_1:w=f(x_0,y)$ and $C_2:w=f(x,y_0)$; the slopes of these lines are given by $\pdv*{w}{y}$ and $\pdv*{w}{x}$, respectively.
-    \item Formulae for the tangent plane and normal line follow easily after finding a normal vector $\textbf{N}$ to the plane of $L_1$ and $L_2$. To find $\textbf{N}$, we can use the cross product of the vectors $\textbf{v}_1$ and $\textbf{v}_2$ lying along $L_1$ and $L_2$, respectively.
+    \item Formulae for the tangent plane and normal line follow easily after finding a normal vector $\vb{N}$ to the plane of $L_1$ and $L_2$. To find $\vb{N}$, we can use the cross product of the vectors $\vb{v}_1$ and $\vb{v}_2$ lying along $L_1$ and $L_2$, respectively.
     \begin{figure}[h!]
         \centering
         \includegraphics[width=0.4\linewidth]{ExtFiles/deriveTangentPlane.jpg}
@@ -132,12 +132,12 @@
     \begin{itemize}
         \item From Figure \ref{fig:deriveTangentPlane}, we can see that
         \begin{align*}
-            \textbf{v}_1 &= \textbf{j}+f_y(x_0,y_0)\textbf{k}&
-                \textbf{v}_2 &= \textbf{i}+f_x(x_0,y_0)\textbf{k}
+            \vb{v}_1 &= \vb{j}+f_y(x_0,y_0)\vb{k}&
+                \vb{v}_2 &= \vb{i}+f_x(x_0,y_0)\vb{k}
         \end{align*}
         \item Thus,
         \begin{equation*}
-            \textbf{N} = \textbf{i}f_x(x_0,y_0)+\textbf{j}f_y(x_0,y_0)-\textbf{k}
+            \vb{N} = \vb{i}f_x(x_0,y_0)+\vb{j}f_y(x_0,y_0)-\vb{k}
         \end{equation*}
         \item Therefore, the formulae for the tangent plane and normal line, respectively, are
         \begin{align*}
@@ -145,11 +145,11 @@
                 (x,y,w) &= (x_0,y_0,w_0)+t(A,B,C)
         \end{align*}
         where $A=f_x(x_0,y_0)$, $B=f_y(x_0,y_0)$, $C=-1$, and $t\in(-\infty,\infty)$.
-        \item In vector form, if $\textbf{R}=\textbf{i}x+\textbf{j}y+\textbf{k}z$ and $\textbf{R}_0=\textbf{i}x_0+\textbf{j}y_0+\textbf{k}z_0$, then
+        \item In vector form, if $\vb{R}=\vb{i}x+\vb{j}y+\vb{k}z$ and $\vb{R}_0=\vb{i}x_0+\vb{j}y_0+\vb{k}z_0$, then
         \begin{align*}
-            \textbf{N} &= \textbf{i}f_x(x_0,y_0)+\textbf{j}f_y(x_0,y_0)-\textbf{k}&
-                \textbf{N}\cdot(\textbf{R}-\textbf{R}_0) &= 0&
-                    \textbf{R} &= \textbf{R}_0+t\textbf{N}
+            \vb{N} &= \vb{i}f_x(x_0,y_0)+\vb{j}f_y(x_0,y_0)-\vb{k}&
+                \vb{N}\cdot(\vb{R}-\vb{R}_0) &= 0&
+                    \vb{R} &= \vb{R}_0+t\vb{N}
         \end{align*}
     \end{itemize}
 \end{itemize}
@@ -168,7 +168,7 @@
     \end{equation*}
     meaning that to calculate $\Delta w_\text{tan}$, we need only add the tangential components; no other interaction term is needed.
     \item Important results:
-    \begin{thm}
+    \begin{thm}\label{thm:deltaW}
         Let the function $w=f(x,y)$ be continuous and possess partial derivatives $f_x,f_y$ throughout a region $R:|x-x_0|<h,\ |y-y_0|<k$ of the $xy$-plane. Let $f_x$ and $f_y$ be continuous at $(x_0,y_0)$. Let $\Delta w = f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)$. Then
         \begin{equation*}
             \Delta w = f_x(x_0,y_0)\Delta x+f_y(x_0,y_0)\Delta y+\epsilon_1\Delta x+\epsilon_2\Delta y
@@ -180,6 +180,275 @@
     \end{cly}
     \begin{itemize}
         \item These results extend into finitely higher dimensions.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{The Directional Derivative: General Case}
+\begin{itemize}
+    \item \marginnote{12/17:}We first prove that the directional derivative can be expressed in terms of the partial derivatives.
+    \begin{thm}
+        Let $w=f(x,y)$ be continuous and possess partial derivatives $f_x$, $f_y$ throughout some neighborhood of the point $P_0(x_0,y_0)$. Let $f_x$ and $f_y$ be continuous at $P_0$. Then the directional derivative at $P_0$ exists for any direction angle $\phi$ and is given by
+        \begin{equation*}
+            \dv{w}{s} = f_x(x_0,y_0)\cos\phi+f_y(x_0,y_0)\sin\phi
+        \end{equation*}
+        \begin{proof}
+            By Theorem \ref{thm:deltaW}, we know that $\Delta w=f_x(x_0,y_0)\Delta x+f_y(x_0,y_0)\Delta y+\epsilon_1\Delta x+\epsilon_2\Delta y$ where $\epsilon_1,\epsilon_2\to 0$ as $\Delta x,\Delta y\to 0$. Thus,
+            \begin{equation*}
+                \Dv{w}{s} = f_x(x_0,y_0)\Dv{x}{s}+f_y(x_0,y_0)\Dv{y}{s}+\epsilon_1\Dv{x}{s}+\epsilon_2\Dv{y}{s}
+            \end{equation*}
+            where $\epsilon_1,\epsilon_2\to 0$ as $\Delta x,\Delta y\to 0$. Hence, since $\lim\Dv{w}{s}=\dv{w}{s}$, $\lim\Dv{x}{s}=\dv{x}{s}=\cos\phi$, and $\lim\Dv{y}{s}=\dv{y}{s}=\sin\phi$, we have
+            \begin{equation*}
+                \dv{w}{s} = f_x(x_0,y_0)\cos\phi+f_y(x_0,y_0)\sin\phi
+            \end{equation*}
+            as desired.
+        \end{proof}
+    \end{thm}
+    \begin{itemize}
+        \item Note that $\phi=0,\frac{\pi}{2},\pi,\frac{3\pi}{2}$ lead to $\dv*{w}{s}=\pdv*{w}{x},\pdv*{w}{y},-\pdv*{w}{x},-\pdv*{w}{y}$, respectively.
+    \end{itemize}
+    \item The directional derivative in three dimensions is given by
+    \begin{equation*}
+        \dv{w}{s} = f_x(x_0,y_0,z_0)\cos\alpha+f_y(x_0,y_0,z_0)\cos\beta+f_z(x_0,y_0,z_0)\cos\gamma
+    \end{equation*}
+    \begin{itemize}
+        \item If we have a direction vector $\vb{u}=\vb{i}\cos\alpha+\vb{j}\cos\beta+\vb{k}\cos\gamma$ and another one that depends on the function and $P_0$ (the \textbf{gradient}) given by $\vb{v}=\vb{i}f_x(x_0,y_0,z_0)+\vb{j}f_y(x_0,y_0,z_0)+\vb{k}f_z(x_0,y_0,z_0)$, then
+    \end{itemize}
+    \begin{equation*}
+        \dv{w}{s} = \vb{u}\cdot\vb{v}
+    \end{equation*}
+\end{itemize}
+
+
+
+\section{The Gradient}
+\begin{itemize}
+    \item \textbf{Gradient} (of $w$): The vector function
+    \begin{equation*}
+        \gradd w = \nabla w = \vb{i}\pdv{w}{x}+\vb{j}\pdv{w}{y}+\vb{k}\pdv{w}{z}
+    \end{equation*}
+    \item The inverted capital delta is the \textbf{del operator}. In its own right, it is defined by
+    \begin{equation*}
+        \nabla = \vb{i}\pdv{x}+\vb{j}\pdv{y}+\vb{k}\pdv{z}
+    \end{equation*}
+    \item Recall that the directional derivative at $P_0(x_0,y_0,z_0)$ can be written as
+    \begin{equation*}
+        \left( \dv{w}{s} \right)_0 = (\nabla w)_0\cdot\vb{u}
+    \end{equation*}
+    \begin{itemize}
+        \item The significance of this is that it implies that
+        \begin{equation*}
+            \left( \dv{w}{s} \right)_0 = |(\nabla w)_0|\, |u|\, \cos\theta = |(\nabla w)_0|\, \cos\theta
+        \end{equation*}
+        which means that the directional derivative is the \dq{scalar projection of $\gradd w$ at $P_0$, onto the direction $\vb{u}$}{511}
+        \item Since $\dv*{w}{s}$ is maximized when $\cos\theta=1$, it must be that \dq{the function $w=f(x,y,z)$ changes most rapidly in the direction given by the vector $\gradd w$ itself. Moreover, the directional derivative in this direction is equal to the magnitude of the gradient}{511}
+    \end{itemize}
+    \item The gradient vector at $P_0(x_0,y_0,z_0)$, where $w_0=f(x_0,y_0,z_0)$ is also normal to the contour surface consisting of all points $P(x,y,z)$ for which $f(x,y,z)=w_0$.
+    \begin{itemize}
+        \item We can prove this from the fact that the directional derivative in the direction of any line tangent to $P_0$ along the contour surface will be 0. But since $(\nabla w)_0\neq\vb{0}$, we must have $\cos\theta=0$, meaning that $\nabla w$ is perpendicular to any line tangent to $P_0$. It follows that it is normal to the contour surface, itself.
+    \end{itemize}
+    \item Be careful with dimensions: The 3D vector $\gradd w$ is points in the direction in 3-space of greatest change for a function with a 3D domain (a function best graphed in 4D), but is normal to a 2D surface that is a subset of this 3D domain.
+\end{itemize}
+
+
+
+\section{The Chain Rule for Partial Derivatives}
+\begin{itemize}
+    \item Let $w=f(x,y,z)$ be a function with continuous partial derivatives $f_x,f_y,f_z$ throughout some region $R$ of $xyz$-space. If $C$ is a curve lying in $R$ defined by the parameterization $x=x(t)$, $y=y(t)$, and $z=z(t)$, then
+    \begin{equation*}
+        \dv{w}{t} = \pdv{w}{x}\dv{x}{t}+\pdv{w}{y}\dv{y}{t}+\pdv{w}{z}\dv{z}{t}
+    \end{equation*}
+    \begin{itemize}
+        \item By generalizing Theorem \ref{thm:deltaW} to three dimensions and dividing by $\Delta t$, we have
+        \begin{equation*}
+            \Dv{w}{t} = \left( \pdv{w}{x} \right)_0\Dv{x}{t}+\left( \pdv{w}{t} \right)_0\Dv{y}{t}+\left( \pdv{w}{z} \right)_0\Dv{z}{t}+\epsilon_1\Dv{x}{t}+\epsilon_2\Dv{y}{t}+\epsilon_3\Dv{z}{t}
+        \end{equation*}
+        where $\epsilon_1,\epsilon_2,\epsilon_3\to 0$ as $\Delta x,\Delta y,\Delta z\to 0$.
+        \item Now if $C$ is differentiable in $R$, too, (i.e., $\dv*{x}{t},\dv*{y}{t},\dv*{z}{t}$ all exist) then $\Delta x,\Delta y,\Delta z\to 0$ as $\Delta t\to 0$.
+        \item Therefore, if we take the limit as $\Delta t\to 0$ of the above equation, we get the desired result.
+    \end{itemize}
+    \item Note that we can also write
+    \begin{equation*}
+        \dv{w}{t} = \nabla w\cdot\vb{v}
+    \end{equation*}
+    where $\vb{v}$ is the velocity vector along the curve $C$.
+    \item We can also consider the behavior of a function along a surface $S$ lying in $R$ parameterized by $x=x(r,s)$, $y=y(r,s)$, and $z=z(r,s)$. In this case we can take
+    \begin{align*}
+        \pdv{w}{r} &= \pdv{w}{x}\pdv{x}{r}+\pdv{w}{y}\pdv{y}{r}+\pdv{w}{z}\pdv{z}{r}&
+            \pdv{w}{s} &= \pdv{w}{x}\pdv{x}{s}+\pdv{w}{y}\pdv{y}{s}+\pdv{w}{z}\pdv{z}{s}
+    \end{align*}
+    \begin{itemize}
+        \item We can also expand this to many more dimensions. This idea is best summarized in matrix form (for a function $w=f(x_1,\dots,x_n)$ parameterized by $x_1=x_1(y_1,\dots,y_m)$, \dots, $x_n=(y_1,\dots,y_m)$):
+        \begin{equation*}
+            \renewcommand{\arraystretch}{1.6}
+            \begin{bmatrix}
+                \pdv{w}{y_1} & \pdv{w}{y_2} & \cdots & \pdv{w}{y_m}\\
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+                \pdv{w}{x_1} & \pdv{w}{x_2} & \cdots & \pdv{w}{x_n}\\
+            \end{bmatrix}
+            \begin{bmatrix}
+                \pdv{x_1}{y_1} & \pdv{x_1}{y_2} & \cdots & \pdv{x_1}{y_m}\\
+                \pdv{x_2}{y_1} & \pdv{x_2}{y_2} & \cdots & \pdv{x_2}{y_m}\\
+                \vdots         & \vdots         & \ddots & \vdots        \\
+                \pdv{x_n}{y_1} & \pdv{x_n}{y_2} & \cdots & \pdv{x_n}{y_m}\\
+            \end{bmatrix}
+        \end{equation*}
+    \end{itemize}
+    \item To clarify the above results, we investigate a few problems.
+    \item \dq{Suppose that $w=r^2\cos2\theta$, where $x=r\cos\theta$, $y=r\sin\theta$, $r=\sqrt{x^2+y^2}$, [and] $\theta=\tan^{-1}(y/x)$. Find $\pdv*{w}{x}$ and $\pdv*{w}{y}$}{516}
+    \begin{itemize}
+        \item We use the matrix methods to get an equation for the desired results.
+        \renewcommand{\arraystretch}{1.6}
+        \begin{align*}
+            \begin{bmatrix}
+                \pdv{w}{x} & \pdv{w}{y}\\
+            \end{bmatrix}
+            &=
+            \begin{bmatrix}
+                \pdv{w}{r} & \pdv{w}{\theta}\\
+            \end{bmatrix}
+            \begin{bmatrix}
+                \pdv{r}{x} & \pdv{r}{y}\\
+                \pdv{\theta}{x} & \pdv{\theta}{y}\\
+            \end{bmatrix}\\
+            &=
+            \begin{bmatrix}
+                2r\cos 2\theta & -2r^2\sin 2\theta\\
+            \end{bmatrix}
+            \begin{bmatrix}
+                \frac{x}{r} & \frac{y}{r}\\
+                -\frac{y}{r^2} & \frac{x}{r^2}\\
+            \end{bmatrix}\\
+            &=
+            \begin{bmatrix}
+                2x\cos 2\theta+2y\sin 2\theta & 2y\cos2\theta-2x\sin 2\theta
+            \end{bmatrix}
+        \end{align*}
+        \item Now, we can use some substitutions to put the above results in terms of the variable with respect to which we are differentiating.
+        \begin{align*}
+            \pdv{w}{x} &= 2(x\cos 2\theta+y\sin 2\theta)&
+                \pdv{w}{y} &= 2(y\cos 2\theta-x\sin 2\theta)\\
+            &= 2r(\cos\theta\cos 2\theta+\sin\theta\sin 2\theta)&
+                &= 2r(\sin\theta\cos 2\theta-\cos\theta\sin 2\theta)\\
+            &= 2r\cos(2\theta-\theta)&
+                &= 2r\sin(\theta-2\theta)\\
+            &= 2x&
+                &= -2y
+        \end{align*}
+    \end{itemize}
+    \item \dq{Show that the change of variables from $x$ and $y$ to $r=y-ax$ [and] $s=y+ax$ transforms the differential equation $$\pdv{w}{x}-a\pdv{w}{y}=0$$ into a form that is more easily solved, and solve it. (Here $a$ is a constant.)}{516}
+    \begin{itemize}
+        \item We divide into two cases ($a\neq 0$ and $a=0$), beginning with the former.
+        \item Imagine that $w=f(x,y)$ is transformed into $w=\tilde{f}(r,s)$ via substitutions which can be derived by treating the definitions of $r$ and $s$ as a two-variable system of equations and solving for $x$ and $y$.
+        \begin{align*}
+            x &= \frac{1}{2a}(s-r)&
+                y &= \frac{1}{2}(r+s)
+        \end{align*}
+        \item Now to find $\pdv*{w}{x}$ and $\pdv*{w}{y}$, we use the chain rule.
+        \begin{align*}
+            \begin{bmatrix}
+                \pdv{w}{x} & \pdv{w}{y}\\
+            \end{bmatrix}
+            &=
+            \begin{bmatrix}
+                \pdv{w}{r} & \pdv{w}{s}\\
+            \end{bmatrix}
+            \renewcommand{\arraystretch}{1.6}
+            \begin{bmatrix}
+                \pdv{r}{x} & \pdv{r}{y}\\
+                \pdv{s}{x} & \pdv{s}{y}\\
+            \end{bmatrix}\\
+            &=
+            \begin{bmatrix}
+                \pdv{w}{r} & \pdv{w}{s}\\
+            \end{bmatrix}
+            \begin{bmatrix}
+                -a & 1\\
+                a & 1\\
+            \end{bmatrix}\\
+            &=
+            \begin{bmatrix}
+                -a\pdv{w}{r}+a\pdv{w}{s} & \pdv{w}{r}+\pdv{w}{s}
+            \end{bmatrix}
+        \end{align*}
+        \item By substituting into the original differential equation, we get $-2a\pdv*{w}{r}=0$, or $\pdv{w}{r}=0$.
+        \item Thus, this differential equation is easy to solve --- we need only require that $w$ is constant in the $r$-direction. Indeed, $w$ can be any function of $s$. Therefore, the solution is
+        \begin{equation*}
+            w = \phi(s) = \phi(y+ax)
+        \end{equation*}
+        where $\phi(s)$ is any differentiable function of $s$, whatsoever.
+        \item If $a=0$, then we have the similar case $\pdv*{w}{x}=0$.
+        \item Note that in solving an ordinary differential equation, we often get constants of integration. In solving a partial differentiable equation, arbitrary functions (such as $\phi(s)$) are analogous to these constants of integration. Extending the analogy, they can sometimes be solved for with "initial conditions," as in the next problem.
+    \end{itemize}
+    \item Find an explicit formula for $w$ in the above problem if its values along the $x$-axis are given by $w=\sin x$ and if $a\neq 0$.
+    \begin{itemize}
+        \item The general solution is $w=f(x,y)=\phi(y+ax)$.
+        \item We are given $f(x,0)=\phi(0+ax)=\sin x$.
+        \item Thus, if we let $u=ax$, we have $\phi(u)=\sin\frac{u}{a}$, meaning that $w=\phi(y+ax)=\sin\frac{y+ax}{a}$.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{The Total Differential}
+\begin{itemize}
+    \item \textbf{Partial differential} (of $w=f(x,y,z)$ with respect to $x$): The infinitesimal value
+    \begin{equation*}
+        \pdv{w}{x}\dd{x}
+    \end{equation*}
+    \begin{itemize}
+        \item There also exist symmetric partial differentials with respect to $y$ and $z$.
+    \end{itemize}
+    \item \textbf{Total differential} (of $w=f(x,y,z)$): The infinitesimal value
+    \begin{equation*}
+        \dd{w} = \pdv{w}{x}\dd{x}+\pdv{w}{y}\dd{y}+\pdv{w}{z}\dd{z}
+    \end{equation*}
+    that is the sum of the partial differentials of $w$.
+    \item If $x,y,z$ are given as functions of a single variable $t$, we have
+    \begin{align*}
+        \dd{x} &= x'(t)\dd{t}&
+            \dd{y} &= y'(t)\dd{t}&
+                \dd{z} &= z'(t)\dd{t}
+    \end{align*}
+    \item If $x,y,z$ are given as functions of two variables $r,s$, their total differentials are
+    \begin{align*}
+        \dd{x} &= \pdv{x}{r}\dd{r}+\pdv{x}{s}\dd{s}&
+            \dd{y} &= \pdv{y}{r}\dd{r}+\pdv{y}{s}\dd{s}&
+                \dd{z} &= \pdv{z}{r}\dd{r}+\pdv{z}{s}\dd{s}
+    \end{align*}
+    \begin{itemize}
+        \item If we take the perspective that $w=f[x(r,s),y(r,s),z(r,s)]=\tilde{f}(r,s)$ is a function of two variables, then we should have
+        \begin{equation*}
+            \dd{w} = \pdv{w}{r}\dd{r}+\pdv{w}{s}\dd{s}
+        \end{equation*}
+        \item Now this $\dd{w}$ is the same as the one given earlier with respect to $x,y,z$, as a consequence of the chain rule. Indeed,
+        \begin{align*}
+            \dd{w} &= \pdv{w}{x}\left( \pdv{x}{r}\dd{r}+\pdv{x}{s}\dd{s} \right)+\pdv{w}{y}\left( \pdv{y}{r}\dd{r}+\pdv{y}{s}\dd{s} \right)+\pdv{w}{z}\left( \pdv{z}{r}\dd{r}+\pdv{z}{s}\dd{s} \right)\\
+            &= \left( \pdv{w}{x}\pdv{x}{r}+\pdv{w}{y}\pdv{y}{r}+\pdv{w}{z}\pdv{z}{r} \right)\dd{r}+\left( \pdv{w}{x}\pdv{x}{s}+\pdv{w}{y}\pdv{y}{s}+\pdv{w}{z}\pdv{z}{s} \right)\dd{s}\\
+            &= \pdv{w}{r}\dd{r}+\pdv{w}{s}\dd{s}
+        \end{align*}
+        \item Note that $r$ and $s$ are the independent variables here, so while we can approximate $\dd{r}$ and $\dd{s}$ with $\Delta r$ and $\Delta s$, respectively, we should not approximate $\dd{x},\dd{y},\dd{z}$ with $\Delta x,\Delta y,\Delta z$. Indeed, we should use the differentials $\dd{x},\dd{y},\dd{z}$ as defined in terms of $\dd{r},\dd{s}$ to approximate $\Delta x,\Delta y,\Delta z$.
+    \end{itemize}
+    \item These results can be generalized to higher dimensions.
+    \item The following example should make clear the power of these differential definitions: \dq{Consider the function $w=x^2+y^2+z^2$ with $x=r\cos s$, $y=r\sin s$, [and] $z=r$}{519}
+    \begin{itemize}
+        \item The total differential is $\dd{w}=2(x\dd{x}+y\dd{y}+z\dd{z})$.
+        \item The differentials in terms of $r$ and $s$ are $\dd{x}=\cos s\dd{r}-r\sin s\dd{s}$, $\dd{y}=\sin s\dd{r}+r\cos s\dd{s}$, and $\dd{z}=\dd{r}$.
+        \item Hence, the total differential can also be written as
+        \begin{align*}
+            \dd{w} &= 2(x\cos s+y\sin s+z)\dd{r}+2(-xr\sin s+yr\cos s)\dd{s}\\
+            &= 2(r\cos^2s+r\sin^2s+r)\dd{r}+2(-r^2\cos s\sin s+r^2\sin s\cos s)\dd{s}\\
+            &= 4r\dd{r}
+        \end{align*}
+        \item Integrating, the above yields $w=2r^2$.
+        \item Critically, we can also derive this formula for $w$ from the original function and parameterization since $w=r^2\cos^2s+r^2\sin^2s+r^2=2r^2$.
+    \end{itemize}
+    \item If $F(x,y)=0$, then for the plane curve generated, $\dv*{y}{x}=-F_x(x,y)/F_y(x,y)$ if $F_y(x,y)\neq 0$.
+    \begin{itemize}
+        \item We can also derive this result by implicitly differentiating $F(x,y)=0$, as we are allowed to by the \textbf{implicit function theorem}.
     \end{itemize}
 \end{itemize}
 

@@ -35,6 +35,8 @@
 \deffootnotemark{\textsuperscript{[\thefootnotemark]}}
 \deffootnote[2.1em]{0em}{0em}{\textsuperscript{\thefootnotemark}}
 
+\DeclareMathOperator{\gradd}{grad}
+
 \newtheorem{cly}{Corollary}[chapter]
 \theoremstyle{definition}
 \newtheorem{thm}{Theorem}[chapter]
@@ -53,5 +55,6 @@
 \newcommand{\e}[1][]{\text{e}^{#1}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\dvat}[2]{\left. #1 \right|_{#2}}
+\newcommand{\Dv}[2]{\frac{\Delta #1}{\Delta #2}}
 
 \usepackage{subfiles}

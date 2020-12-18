@@ -12,27 +12,27 @@
 \chapter{Vector Functions and Their Derivatives}
 \section{Introduction}
 \begin{itemize}
-    \item \marginnote{12/14:}\textbf{Vector function} (of $h$): A function $\textbf{F}(h)$ with $n$ components where each component is a function. Essentially, $\textbf{F}=(f_1,f_2,\dots,f_n)$.
-    \item \textbf{Limit} (of $\textbf{F}(h)$ as $h\to a$): If each component $f_1,\dots,f_n$ of $\textbf{F}$ has a limit $L_1,\dots,L_n$ as $h\to a$, then
+    \item \marginnote{12/14:}\textbf{Vector function} (of $h$): A function $\vb{F}(h)$ with $n$ components where each component is a function. Essentially, $\vb{F}=(f_1,f_2,\dots,f_n)$.
+    \item \textbf{Limit} (of $\vb{F}(h)$ as $h\to a$): If each component $f_1,\dots,f_n$ of $\vb{F}$ has a limit $L_1,\dots,L_n$ as $h\to a$, then
     \begin{equation*}
-        \lim_{h\to a}\textbf{F}(h) = (L_1,\dots,L_n)
+        \lim_{h\to a}\vb{F}(h) = (L_1,\dots,L_n)
     \end{equation*}
-    \item \textbf{Continuous} (vector function $\textbf{F}$ at $a$): A vector function $\textbf{F}$ where for every $\epsilon>0$, there corresponds a $\delta>0$ such that
+    \item \textbf{Continuous} (vector function $\vb{F}$ at $a$): A vector function $\vb{F}$ where for every $\epsilon>0$, there corresponds a $\delta>0$ such that
     \begin{equation*}
-        |\textbf{F}(h)-\textbf{F}(a)|<\epsilon\quad\text{when}\quad|h-a|<\delta
-    \end{equation*}
-    \begin{itemize}
-        \item \cite{bib:Thomas} shows that this is equivalent to the requirement that each component of $\textbf{F}$ is continuous at $a$.
-    \end{itemize}
-    \item \textbf{Derivative} (of a vector function at $c$): The derivative $\textbf{F}'(c)$ of a vector function $\textbf{F}$ at $c$ is given by the equation
-    \begin{equation*}
-        \textbf{F}'(c) = \lim_{h\to 0}\frac{\textbf{F}(c+h)-\textbf{F}(c)}{h}
+        |\vb{F}(h)-\vb{F}(a)|<\epsilon\quad\text{when}\quad|h-a|<\delta
     \end{equation*}
     \begin{itemize}
-        \item It can be proven that $\textbf{F}$ is differentiable at $c$ if and only if each of its components are differentiable at $c$, and that if this condition is met,
+        \item \cite{bib:Thomas} shows that this is equivalent to the requirement that each component of $\vb{F}$ is continuous at $a$.
+    \end{itemize}
+    \item \textbf{Derivative} (of a vector function at $c$): The derivative $\vb{F}'(c)$ of a vector function $\vb{F}$ at $c$ is given by the equation
+    \begin{equation*}
+        \vb{F}'(c) = \lim_{h\to 0}\frac{\vb{F}(c+h)-\vb{F}(c)}{h}
+    \end{equation*}
+    \begin{itemize}
+        \item It can be proven that $\vb{F}$ is differentiable at $c$ if and only if each of its components are differentiable at $c$, and that if this condition is met,
     \end{itemize}
     \begin{equation*}
-        \textbf{F}'(c) = (f_1'(c),\dots,f_n'(c))
+        \vb{F}'(c) = (f_1'(c),\dots,f_n'(c))
     \end{equation*}
 \end{itemize}
 
@@ -46,8 +46,8 @@
         \item To solve \textbf{statics} problems, we only need to know the \textbf{algebra} of vectors.
         \item To solve \textbf{dynamics} problems, we also need to know the \textbf{calculus} of vectors.
     \end{itemize}
-    \item \textbf{Position vector}: The vector from the origin to a point $P$ that moves along a parametrically defined curve. \emph{Denoted by} $\textbf{R}$.
-    \item \textbf{Velocity vector}: The vector tangent to a point $P$ that moves along a parametrically defined curve and with magnitude $|\text{d}s/\text{d}t|$. \emph{Denoted by} $\textbf{v}$.
+    \item \textbf{Position vector}: The vector from the origin to a point $P$ that moves along a parametrically defined curve. \emph{Denoted by} $\vb{R}$.
+    \item \textbf{Velocity vector}: The vector tangent to a point $P$ that moves along a parametrically defined curve and with magnitude $|\text{d}s/\text{d}t|$. \emph{Denoted by} $\vb{v}$.
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}[
@@ -65,10 +65,10 @@
                 to[out=0,in=140] (4.7,3.1)
             ;
 
-            \draw [yly,thick,-latex] (2.8,0.9) -- node[near end,below]{$\textbf{i}\Delta x$} (4.2,0.9);
-            \draw [yly,thick,-latex] (4.2,0.9) -- node[near end,right]{$\textbf{j}\Delta y$} (4.2,3.3);
-            \draw [ylx,thick,-latex] (0,0) -- node[pos=0.85,below]{$\textbf{R}$} (2.8,0.9) node[above left]{$P(x,y)$};
-            \draw [ylx,thick,-latex] (2.8,0.9) -- node[pos=0.4,right]{$\Delta\textbf{R}$} (4.2,3.3) node[above]{$Q$};
+            \draw [yly,thick,-latex] (2.8,0.9) -- node[near end,below]{$\vb{i}\Delta x$} (4.2,0.9);
+            \draw [yly,thick,-latex] (4.2,0.9) -- node[near end,right]{$\vb{j}\Delta y$} (4.2,3.3);
+            \draw [ylx,thick,-latex] (0,0) -- node[pos=0.85,below]{$\vb{R}$} (2.8,0.9) node[above left]{$P(x,y)$};
+            \draw [ylx,thick,-latex] (2.8,0.9) -- node[pos=0.4,right]{$\Delta\vb{R}$} (4.2,3.3) node[above]{$Q$};
 
             \draw (1,-0.7) node[above]{$(x_0,y_0)$} -- ++(0,-0.2) node[below]{$
                 \begin{aligned}
@@ -81,26 +81,26 @@
         \label{fig:velocityVector}
     \end{figure}
     \begin{itemize}
-        \item \cite{bib:Thomas} semi-rigorously proves from Figure \ref{fig:velocityVector} that if $\textbf{R}$ is the position vector, then $\dv*{\textbf{R}}{t}$ is the velocity vector.
+        \item \cite{bib:Thomas} semi-rigorously proves from Figure \ref{fig:velocityVector} that if $\vb{R}$ is the position vector, then $\dv*{\vb{R}}{t}$ is the velocity vector.
         \item Essentially, he proves that
         \begin{equation*}
-            \dv{\textbf{R}}{t} = \textbf{i}\dv{x}{t}+\textbf{j}\dv{y}{t}
+            \dv{\vb{R}}{t} = \vb{i}\dv{x}{t}+\vb{j}\dv{y}{t}
         \end{equation*}
         It follows from this that
         \begin{align*}
-            \text{slope of }\dv{\textbf{R}}{t} &= \frac{\textbf{j}\text{-component}}{\textbf{i}\text{-component}}
+            \text{slope of }\dv{\vb{R}}{t} &= \frac{\vb{j}\text{-component}}{\vb{i}\text{-component}}
             = \frac{\dv*{y}{t}}{\dv*{x}{t}}
             = \dv{y}{x}\\
-            \left| \dv{R}{t} \right| &= \left| \textbf{i}\dv{x}{t}+\textbf{j}\dv{y}{t} \right|
+            \left| \dv{R}{t} \right| &= \left| \vb{i}\dv{x}{t}+\vb{j}\dv{y}{t} \right|
             = \sqrt{\left( \dv{x}{t} \right)^2+\left( \dv{y}{t} \right)^2}
             = \left| \dv{s}{t} \right|
         \end{align*}
     \end{itemize}
-    \item \textbf{Acceleration vector}: The derivative of the velocity vector and second derivative of the position vector. \emph{Denoted by} $\textbf{a}$.
+    \item \textbf{Acceleration vector}: The derivative of the velocity vector and second derivative of the position vector. \emph{Denoted by} $\vb{a}$.
     \begin{equation*}
-        \textbf{a} = \dv{\textbf{v}}{t} = \textbf{i}\dv[2]{x}{t}+\textbf{j}\dv[2]{y}{t}
+        \vb{a} = \dv{\vb{v}}{t} = \vb{i}\dv[2]{x}{t}+\vb{j}\dv[2]{y}{t}
     \end{equation*}
-    \item Sometimes, we are given a force vector $\textbf{F}=m\textbf{a}$ and initial conditions.
+    \item Sometimes, we are given a force vector $\vb{F}=m\vb{a}$ and initial conditions.
     \begin{itemize}
         \item From these, we can solve for velocity and position vectors via fairly straightforward component integration.
         \item Note, however, that constants of integration are now vectors.
@@ -111,7 +111,7 @@
 
 \section{Tangential Vectors}
 \begin{itemize}
-    \item Let $P_0$ be a point on a curve. The distance $s$ from $P_0$ to some point $P$ along the curve is clearly related to the position of $P$. Thus, we may think of $\textbf{R}$ as a function of $s$, and investigate the properties of $\dv*{\textbf{R}}{s}$.
+    \item Let $P_0$ be a point on a curve. The distance $s$ from $P_0$ to some point $P$ along the curve is clearly related to the position of $P$. Thus, we may think of $\vb{R}$ as a function of $s$, and investigate the properties of $\dv*{\vb{R}}{s}$.
     \item \textbf{Tangent vector}: The unit vector tangent to a point $P$ along a curve.
     \begin{figure}[h!]
         \centering
@@ -125,10 +125,10 @@
                 \draw [->] (0,-0.7) -- (0,3) node[above]{$y$};
                 \node [anchor=north east] {$O$};
 
-                \draw [yly,thick,-latex] (2.4,0.52) -- node[near end,below]{$\textbf{i}\Delta x$} (3.3,0.52);
-                \draw [yly,thick,-latex] (3.3,0.52) -- node[near end,right]{$\textbf{j}\Delta y$} (3.3,2.36);
-                \draw [ylx,thick,-latex] (2.4,0.52) -- node[very near end,left]{$\Delta\textbf{R}$} (3.3,2.36) node[above left]{$Q$};
-                \draw [ylx,thick,-latex] (0,0) -- node[pos=0.7,above]{$\textbf{R}$} (2.4,0.52) node[above left]{$P$};
+                \draw [yly,thick,-latex] (2.4,0.52) -- node[near end,below]{$\vb{i}\Delta x$} (3.3,0.52);
+                \draw [yly,thick,-latex] (3.3,0.52) -- node[near end,right]{$\vb{j}\Delta y$} (3.3,2.36);
+                \draw [ylx,thick,-latex] (2.4,0.52) -- node[very near end,left]{$\Delta\vb{R}$} (3.3,2.36) node[above left]{$Q$};
+                \draw [ylx,thick,-latex] (0,0) -- node[pos=0.7,above]{$\vb{R}$} (2.4,0.52) node[above left]{$P$};
 
                 \draw [ylx,thick,decoration={markings,mark=at position 0.5 with {\node[below,xshift=-4mm,yshift=-6mm]{$s$};},mark=at position 0.65 with {\node[right]{$\Delta s$};}},postaction={decorate}] plot[domain=0.1:3.5,smooth] (\x,{0.17*\x^2.5-1});
 
@@ -147,10 +147,10 @@
                 \draw [->] (0,-0.7) -- (0,3) node[above]{$y$};
                 \node [anchor=north east] {$O$};
 
-                \draw [yly,thick,-latex] (2.4,0.52) -- node[near end,right]{$\textbf{j}\Delta y$} (2.4,-0.45);
-                \draw [yly,thick,-latex] (2.4,-0.45) -- node[pos=0.4,below]{$\textbf{i}\Delta x$} (1.6,-0.45);
-                \draw [ylx,thick,-latex] (2.4,0.52) -- node[near end,left=1mm]{$\Delta\textbf{R}$} (1.6,-0.45) node[below]{$Q$};
-                \draw [ylx,thick,-latex] (0,0) -- node[pos=0.7,above]{$\textbf{R}$} (2.4,0.52) node[above left]{$P$};
+                \draw [yly,thick,-latex] (2.4,0.52) -- node[near end,right]{$\vb{j}\Delta y$} (2.4,-0.45);
+                \draw [yly,thick,-latex] (2.4,-0.45) -- node[pos=0.4,below]{$\vb{i}\Delta x$} (1.6,-0.45);
+                \draw [ylx,thick,-latex] (2.4,0.52) -- node[near end,left=1mm]{$\Delta\vb{R}$} (1.6,-0.45) node[below]{$Q$};
+                \draw [ylx,thick,-latex] (0,0) -- node[pos=0.7,above]{$\vb{R}$} (2.4,0.52) node[above left]{$P$};
 
                 \draw [ylx,thick,decoration={markings,mark=at position 0.5 with {\node[right,xshift=-5mm,yshift=-6mm]{$\Delta s$};}},postaction={decorate}] plot[domain=0.1:3.5,smooth] (\x,{0.17*\x^2.5-1});
 
@@ -169,8 +169,8 @@
                 \draw [->] (0,-0.7) -- (0,3) node[above]{$y$};
                 \node [anchor=north east] {$O$};
 
-                \draw [ylx,thick,-latex] (2.4,0.52) -- node[right]{$\textbf{T}$} (3.3,1.95);
-                \draw [ylx,thick,-latex] (0,0) -- node[pos=0.7,above]{$\textbf{R}$} (2.4,0.52) node[above left]{$P$};
+                \draw [ylx,thick,-latex] (2.4,0.52) -- node[right]{$\vb{T}$} (3.3,1.95);
+                \draw [ylx,thick,-latex] (0,0) -- node[pos=0.7,above]{$\vb{R}$} (2.4,0.52) node[above left]{$P$};
 
                 \draw [ylx,thick,decoration={markings,mark=at position 0.5 with {\node[below,xshift=-4mm,yshift=-6mm]{$s$};}},postaction={decorate}] plot[domain=0.1:3.5,smooth] (\x,{0.17*\x^2.5-1});
 
@@ -183,15 +183,15 @@
         \label{fig:tangentVector}
     \end{figure}
     \begin{itemize}
-        \item Since $\Delta\textbf{R}$ and $\Delta s$ approach the same quantity as $\Delta s\to 0$, $\Delta\textbf{R}/\Delta s$ approaches unity, i.e., $|\text{d}\textbf{R}/\text{d}s|=1$.
-        \item Because of the sign change, whether $\Delta s$ is positive or negative, $\Delta\textbf{R}/\Delta s$ points in the same general direction for sufficiently small $\Delta s$. Indeed, it converges to pointing tangentially.
+        \item Since $\Delta\vb{R}$ and $\Delta s$ approach the same quantity as $\Delta s\to 0$, $\Delta\vb{R}/\Delta s$ approaches unity, i.e., $|\text{d}\vb{R}/\text{d}s|=1$.
+        \item Because of the sign change, whether $\Delta s$ is positive or negative, $\Delta\vb{R}/\Delta s$ points in the same general direction for sufficiently small $\Delta s$. Indeed, it converges to pointing tangentially.
         \item Thus,
         \begin{equation*}
-            \textbf{T} = \dv{\textbf{R}}{s} = \textbf{i}\dv{x}{s}+\textbf{j}\dv{y}{s}
+            \vb{T} = \dv{\vb{R}}{s} = \vb{i}\dv{x}{s}+\vb{j}\dv{y}{s}
         \end{equation*}
     \end{itemize}
-    \item There are two different ways to find $\textbf{T}$: Straight differentiation combined with manipulations of differentials, and the chain rule combined with the dot product. We will explore each, in turn, with an example.
-    \item \dq{Find the unit vector $\textbf{T}$ tangent to the circle $x=a\cos\theta$, $y=a\sin\theta$ at any point $P(x,y)$}{471}
+    \item There are two different ways to find $\vb{T}$: Straight differentiation combined with manipulations of differentials, and the chain rule combined with the dot product. We will explore each, in turn, with an example.
+    \item \dq{Find the unit vector $\vb{T}$ tangent to the circle $x=a\cos\theta$, $y=a\sin\theta$ at any point $P(x,y)$}{471}
     \begin{itemize}
         \item From the given equations, we have
         \begin{align*}
@@ -214,9 +214,9 @@
         \item \dq{If we measure arc length in the counterclockwise direction, with $s=0$ at $(a,0)$, $s$ will be an increasing function of $\theta$, so the $+$-sign should be taken: $\dd{s}=a\dd{\theta}$}{471}
         \item Therefore,
         \begin{align*}
-            \textbf{T} &= \textbf{i}\dv{x}{s}+\textbf{j}\dv{y}{s}\\
-            &= \textbf{i}\left( \frac{-a\sin\theta\dd{\theta}}{a\dd{\theta}} \right)+\textbf{j}\left( \frac{a\cos\theta\dd{\theta}}{a\dd{\theta}} \right)\\
-            &= -\textbf{i}\sin\theta+\textbf{j}\cos\theta
+            \vb{T} &= \vb{i}\dv{x}{s}+\vb{j}\dv{y}{s}\\
+            &= \vb{i}\left( \frac{-a\sin\theta\dd{\theta}}{a\dd{\theta}} \right)+\vb{j}\left( \frac{a\cos\theta\dd{\theta}}{a\dd{\theta}} \right)\\
+            &= -\vb{i}\sin\theta+\vb{j}\cos\theta
         \end{align*}
     \end{itemize}
     \item The equations
@@ -230,13 +230,13 @@
         \item Let $P_0=(a,0,0)$, since this is the point on the locus of the parametric equations where $t=0$. Additionally, let arc length be measured in the direction in which $P$ moves away from $P_0$ as $t$ increases from 0.
         \item Using the chain rule to differentiate, we have
         \begin{align*}
-            \textbf{T} &= \textbf{i}\dv{x}{s}+\textbf{j}\dv{y}{s}+\textbf{k}\dv{z}{s}\\
-            &= \textbf{i}\left( -a\omega\sin\omega t\, \dv{t}{s} \right)+\textbf{j}\left( a\omega\cos\omega t\, \dv{t}{s} \right)+\textbf{k}\left( b\, \dv{t}{s} \right)
+            \vb{T} &= \vb{i}\dv{x}{s}+\vb{j}\dv{y}{s}+\vb{k}\dv{z}{s}\\
+            &= \vb{i}\left( -a\omega\sin\omega t\, \dv{t}{s} \right)+\vb{j}\left( a\omega\cos\omega t\, \dv{t}{s} \right)+\vb{k}\left( b\, \dv{t}{s} \right)
         \end{align*}
-        \item Since $\textbf{T}$ is a unit vector, we have $1=|\textbf{T}|=|\textbf{T}|^2=\textbf{T}\cdot\textbf{T}$. Thus,
+        \item Since $\vb{T}$ is a unit vector, we have $1=|\vb{T}|=|\vb{T}|^2=\vb{T}\cdot\vb{T}$. Thus,
         \begin{align*}
-            1 &= \textbf{T}\cdot\textbf{T}\\
-            &= \textbf{i}\cdot\textbf{i}\left( -a\omega\sin\omega t\, \dv{t}{s} \right)^2+\textbf{j}\cdot\textbf{j}\left( a\omega\cos\omega t\, \dv{t}{s} \right)^2+\textbf{k}\cdot\textbf{k}\left( b\, \dv{t}{s} \right)^2\\
+            1 &= \vb{T}\cdot\vb{T}\\
+            &= \vb{i}\cdot\vb{i}\left( -a\omega\sin\omega t\, \dv{t}{s} \right)^2+\vb{j}\cdot\vb{j}\left( a\omega\cos\omega t\, \dv{t}{s} \right)^2+\vb{k}\cdot\vb{k}\left( b\, \dv{t}{s} \right)^2\\
             % &= 1\left( a^2\omega^2\sin^2\omega t\left( \dv{t}{s} \right)^2 \right)+1\left( a^2\omega^2\cos^2\omega t\left( \dv{t}{s} \right)^2 \right)+1\left( b^2\left( \dv{t}{s} \right)^2 \right)\\
             % &=\left( a^2\omega^2\sin^2\omega t+a^2\omega^2\cos^2\omega t+b^2 \right)\left( \dv{t}{s} \right)^2\\
             % &=\left( a^2\omega^2\left( \sin^2\omega t+\cos^2\omega t \right)+b^2 \right)\left( \dv{t}{s} \right)^2\\
@@ -246,7 +246,7 @@
         \item We choose the $+$-sign because $s$ should be a positive function of $t$.
         \item Putting this all together, we get
         \begin{equation*}
-            \textbf{T} = \frac{a\omega(-\textbf{i}\sin\omega t+\textbf{j}\cos\omega t)+\textbf{k}b}{\sqrt{a^2\omega^2+b^2}}
+            \vb{T} = \frac{a\omega(-\vb{i}\sin\omega t+\vb{j}\cos\omega t)+\vb{k}b}{\sqrt{a^2\omega^2+b^2}}
         \end{equation*}
     \end{itemize}
 \end{itemize}
@@ -255,7 +255,7 @@
 
 \section{Curvature and Normal Vectors}
 \begin{itemize}
-    \item \marginnote{12/15:}\textbf{Curvature}: The rate of change of the slope angle $\phi$ between $\textbf{T}$ and the $x$-axis with respect to the arc length $s$. \emph{Denoted by} $\kappa$.
+    \item \marginnote{12/15:}\textbf{Curvature}: The rate of change of the slope angle $\phi$ between $\vb{T}$ and the $x$-axis with respect to the arc length $s$. \emph{Denoted by} $\kappa$.
     \begin{figure}[h!]
         \centering
         \begin{tikzpicture}[
@@ -270,7 +270,7 @@
             \coordinate (A) at (3.5,0.99);
             \coordinate (B) at (3,1.67);
             \draw (P) -- (A);
-            \draw [yly,thick,-latex] (P) node[above left]{$P$} -- (B) node[right]{$\textbf{T}=\dv{\textbf{R}}{s}$};
+            \draw [yly,thick,-latex] (P) node[above left]{$P$} -- (B) node[right]{$\vb{T}=\dv{\vb{R}}{s}$};
             \draw [ylx,thick] plot[domain=0.1:3.8,smooth] (\x,{0.2*(\x-0.4)^2+0.6});
             \pic [draw,->,angle radius=8mm,angle eccentricity=1.2,pic text={$\phi$}] {angle=A--P--B};
             
@@ -344,40 +344,40 @@
     \end{equation*}
     \item \textbf{Normal vector}: The unit vector normal to a point $P$ along a curve.
     \begin{itemize}
-        \item Observe that $\textbf{T}$ can be expressed in terms of the slope angle $\phi$:
+        \item Observe that $\vb{T}$ can be expressed in terms of the slope angle $\phi$:
         \begin{equation*}
-            \textbf{T} = \textbf{i}\cos\phi+\textbf{j}\sin\phi
+            \vb{T} = \vb{i}\cos\phi+\vb{j}\sin\phi
         \end{equation*}
-        \item Since $\textbf{T}$ can be thought of as a function of $\phi$, we can investigate the properties of $\dv*{\textbf{T}}{\phi}$.
+        \item Since $\vb{T}$ can be thought of as a function of $\phi$, we can investigate the properties of $\dv*{\vb{T}}{\phi}$.
         \item Indeed, it is not difficult to show that
         \begin{align*}
-            \dv{\textbf{T}}{\phi} &= -\textbf{i}\sin\phi+\textbf{j}\cos\phi&
-                \left| \dv{\textbf{T}}{\phi} \right| &= \sqrt{\sin^2\phi+\cos^2\phi} = 1&
-                    \textbf{T}\cdot\dv{\textbf{T}}{\phi} &= 0
+            \dv{\vb{T}}{\phi} &= -\vb{i}\sin\phi+\vb{j}\cos\phi&
+                \left| \dv{\vb{T}}{\phi} \right| &= \sqrt{\sin^2\phi+\cos^2\phi} = 1&
+                    \vb{T}\cdot\dv{\vb{T}}{\phi} &= 0
         \end{align*}
         \item Thus,
         \begin{equation*}
-            \textbf{N} = \dv{\textbf{T}}{\phi} = -\textbf{i}\sin\phi+\textbf{j}\cos\phi
+            \vb{N} = \dv{\vb{T}}{\phi} = -\vb{i}\sin\phi+\vb{j}\cos\phi
         \end{equation*}
     \end{itemize}
     \item In 3D space, it is harder to define a single normal vector, so we define the\dots
     \item \textbf{Principal normal vector}: The vector
     \begin{equation*}
-        \textbf{N} = \frac{\dv*{\textbf{T}}{s}}{|\text{d}\textbf{T}/\text{d}s|}
+        \vb{N} = \frac{\dv*{\vb{T}}{s}}{|\text{d}\vb{T}/\text{d}s|}
     \end{equation*}
     \begin{itemize}
-        \item We will soon prove that $\textbf{T}\cdot\dv*{\textbf{T}}{s}=0$.
+        \item We will soon prove that $\vb{T}\cdot\dv*{\vb{T}}{s}=0$.
         \item If $\phi$ is an increasing function of $s$, then by the chain rule,
         \begin{equation*}
-            \dv{\textbf{T}}{s} = \dv{\textbf{T}}{\phi}\dv{\phi}{s} = \textbf{N}\kappa
+            \dv{\vb{T}}{s} = \dv{\vb{T}}{\phi}\dv{\phi}{s} = \vb{N}\kappa
         \end{equation*}
-        \item Since $\textbf{N}$ is a unit vector and $\kappa$ is a constant, $\kappa$ is equal to the magnitude of $\dv*{\textbf{T}}{s}$.
+        \item Since $\vb{N}$ is a unit vector and $\kappa$ is a constant, $\kappa$ is equal to the magnitude of $\dv*{\vb{T}}{s}$.
         \item Thus, we can define the principal normal as above.
     \end{itemize}
-    \item \cite{bib:Thomas} uses $\dv*{\textbf{T}}{s}$ to find both the curvature and principal normal vector of the general circular helix investigated earlier. He also checks limiting cases to rederive the curvature of a circle and of a straight line.
-    \item \textbf{Binormal vector}: The vector perpendicular to both $\textbf{T}$ and $\textbf{N}$, as defined by
+    \item \cite{bib:Thomas} uses $\dv*{\vb{T}}{s}$ to find both the curvature and principal normal vector of the general circular helix investigated earlier. He also checks limiting cases to rederive the curvature of a circle and of a straight line.
+    \item \textbf{Binormal vector}: The vector perpendicular to both $\vb{T}$ and $\vb{N}$, as defined by
     \begin{equation*}
-        \textbf{B} = \textbf{T}\times\textbf{N}
+        \vb{B} = \vb{T}\times\vb{N}
     \end{equation*}
 \end{itemize}
 
@@ -385,26 +385,26 @@
 
 \section{Differentiation of Products of Vectors}
 \begin{itemize}
-    \item Let $\textbf{U}$ and $\textbf{V}$ be vectors whose components are differentiable functions of $t$.
+    \item Let $\vb{U}$ and $\vb{V}$ be vectors whose components are differentiable functions of $t$.
     \item Then we can verify by components that
     \begin{align*}
-        \dv{t}(\textbf{U}\cdot\textbf{V}) &= \dv{\textbf{U}}{t}\cdot\textbf{V}+\textbf{U}\cdot\dv{\textbf{V}}{t}&
-            \dv{t}(\textbf{U}\times\textbf{V}) &= \dv{\textbf{U}}{t}\times\textbf{V}+\textbf{U}\times\dv{\textbf{V}}{t}
+        \dv{t}(\vb{U}\cdot\vb{V}) &= \dv{\vb{U}}{t}\cdot\vb{V}+\vb{U}\cdot\dv{\vb{V}}{t}&
+            \dv{t}(\vb{U}\times\vb{V}) &= \dv{\vb{U}}{t}\times\vb{V}+\vb{U}\times\dv{\vb{V}}{t}
     \end{align*}
     \begin{itemize}
         \item Note that we can \emph{derive} the above, too, through the $\Delta$-process.
-        \item Let $\textbf{W}=\textbf{U}\times\textbf{V}$. Then
+        \item Let $\vb{W}=\vb{U}\times\vb{V}$. Then
         \begin{align*}
-            \textbf{W}+\Delta\textbf{W} &= (\textbf{U}+\Delta\textbf{U})\times(\textbf{V}+\Delta\textbf{V})\\
-            &= \textbf{U}\times\textbf{V}+\textbf{U}\times\Delta\textbf{V}+\Delta\textbf{U}\times\textbf{V}+\Delta\textbf{U}\times\Delta\textbf{V}\\
-            \Delta\textbf{W} &= \textbf{U}\times\Delta\textbf{V}+\Delta\textbf{U}\times\textbf{V}+\Delta\textbf{U}\times\Delta\textbf{V}\\
-            \frac{\Delta\textbf{W}}{\Delta t} &= \textbf{U}\times\frac{\Delta\textbf{V}}{\Delta t}+\frac{\Delta\textbf{U}}{\Delta t}\times\textbf{V}+\frac{\Delta\textbf{U}}{\Delta t}\times\Delta\textbf{V}\\
-            \dv{\textbf{W}}{t} &= \textbf{U}\times\dv{\textbf{V}}{t}+\dv{\textbf{U}}{t}\times\textbf{V}
+            \vb{W}+\Delta\vb{W} &= (\vb{U}+\Delta\vb{U})\times(\vb{V}+\Delta\vb{V})\\
+            &= \vb{U}\times\vb{V}+\vb{U}\times\Delta\vb{V}+\Delta\vb{U}\times\vb{V}+\Delta\vb{U}\times\Delta\vb{V}\\
+            \Delta\vb{W} &= \vb{U}\times\Delta\vb{V}+\Delta\vb{U}\times\vb{V}+\Delta\vb{U}\times\Delta\vb{V}\\
+            \Dv{\vb{W}}{t} &= \vb{U}\times\Dv{\vb{V}}{t}+\Dv{\vb{U}}{t}\times\vb{V}+\Dv{\vb{U}}{t}\times\Delta\vb{V}\\
+            \dv{\vb{W}}{t} &= \vb{U}\times\dv{\vb{V}}{t}+\dv{\vb{U}}{t}\times\vb{V}
         \end{align*}
     \end{itemize}
     \item Differentiating the triple scalar product:
     \begin{equation*}
-        \dv{t}(\textbf{U}\cdot\textbf{V}\times\textbf{W}) = \dv{\textbf{U}}{t}\cdot\textbf{V}\times\textbf{W}+\textbf{U}\cdot\dv{\textbf{V}}{t}\times\textbf{W}+\textbf{U}\cdot\textbf{V}\times\dv{\textbf{W}}{t}
+        \dv{t}(\vb{U}\cdot\vb{V}\times\vb{W}) = \dv{\vb{U}}{t}\cdot\vb{V}\times\vb{W}+\vb{U}\cdot\dv{\vb{V}}{t}\times\vb{W}+\vb{U}\cdot\vb{V}\times\dv{\vb{W}}{t}
     \end{equation*}
     \begin{itemize}
         \item Equivalently,
@@ -435,39 +435,39 @@
             \dv{w_1}{t} & \dv{w_2}{t} & \dv{w_3}{t}\\
         \end{vmatrix}
     \end{equation*}
-    \item Differentiating $\textbf{V}\cdot\textbf{V}=|\textbf{V}|^2$ gives
+    \item Differentiating $\vb{V}\cdot\vb{V}=|\vb{V}|^2$ gives
     \begin{align*}
-        \textbf{V}\cdot\dv{\textbf{V}}{t}+\dv{\textbf{V}}{t}\cdot\textbf{V} &= 0\\
-        2\textbf{V}\cdot\dv{\textbf{V}}{t} &= 0
+        \vb{V}\cdot\dv{\vb{V}}{t}+\dv{\vb{V}}{t}\cdot\vb{V} &= 0\\
+        2\vb{V}\cdot\dv{\vb{V}}{t} &= 0
     \end{align*}
     \begin{itemize}
-        \item Thus, for any vector function $\textbf{V}$, there are three cases: (1) $\textbf{V}=\textbf{0}$, (2) $\dv*{\textbf{V}}{t}=\textbf{0}$, so $\textbf{V}$ is constant in both direction and magnitude, and (3) $\textbf{V}$ and $\dv*{\textbf{V}}{t}$ are perpendicular.
-        \item Note that this fact allows to verify that $\textbf{T}\cdot\dv*{\textbf{T}}{s}=0$.
+        \item Thus, for any vector function $\vb{V}$, there are three cases: (1) $\vb{V}=\vb{0}$, (2) $\dv*{\vb{V}}{t}=\vb{0}$, so $\vb{V}$ is constant in both direction and magnitude, and (3) $\vb{V}$ and $\dv*{\vb{V}}{t}$ are perpendicular.
+        \item Note that this fact allows to verify that $\vb{T}\cdot\dv*{\vb{T}}{s}=0$.
     \end{itemize}
     \item We can use the calculus of tangential and normal vectors to break velocity and acceleration vectors into tangential and normal components.
     \begin{align*}
-        \textbf{v} &= \dv{\textbf{R}}{t}&
-            \textbf{a} &= \dv{\textbf{v}}{t}&
-                \textbf{a} &= \textbf{T}\dv[2]{s}{t}+\dv{s}{t}\dv{\textbf{T}}{s}\dv{s}{t}\\
-        &= \dv{\textbf{R}}{s}\dv{s}{t}&
-            &= \textbf{T}\dv[2]{s}{t}+\dv{s}{t}\dv{\textbf{T}}{t}&
-                &= \textbf{T}\dv[2]{s}{t}+\textbf{N}\kappa\left( \dv{s}{t} \right)^2\\
-        &= \textbf{T}\dv{s}{t}&
+        \vb{v} &= \dv{\vb{R}}{t}&
+            \vb{a} &= \dv{\vb{v}}{t}&
+                \vb{a} &= \vb{T}\dv[2]{s}{t}+\dv{s}{t}\dv{\vb{T}}{s}\dv{s}{t}\\
+        &= \dv{\vb{R}}{s}\dv{s}{t}&
+            &= \vb{T}\dv[2]{s}{t}+\dv{s}{t}\dv{\vb{T}}{t}&
+                &= \vb{T}\dv[2]{s}{t}+\vb{N}\kappa\left( \dv{s}{t} \right)^2\\
+        &= \vb{T}\dv{s}{t}&
             &&
-                &= \textbf{T}\dv[2]{s}{t}+\textbf{N}\left( \frac{\textbf{v}^2}{\rho} \right)
+                &= \vb{T}\dv[2]{s}{t}+\vb{N}\left( \frac{\vb{v}^2}{\rho} \right)
     \end{align*}
     \begin{itemize}
-        \item $\textbf{v}^2/\rho$ is very similar to $v^2/r$ (think about the circle and radius of curvature)!
+        \item $\vb{v}^2/\rho$ is very similar to $v^2/r$ (think about the circle and radius of curvature)!
         \item Another important related equation:
         \begin{equation*}
-            |\textbf{a}| = a_T^2+a_N^2
+            |\vb{a}| = a_T^2+a_N^2
         \end{equation*}
         \item Lastly, we can derive a formula for the curvature in terms of velocity and acceleration.
         \begin{align*}
-            \textbf{v}\times\textbf{a} &= \textbf{T}\dv{s}{t}\times\left[ \textbf{T}\dv[2]{s}{t}+\textbf{N}\kappa\left( \dv{s}{t} \right)^2 \right]\\
-            &= \textbf{T}\times\textbf{N}\kappa\left( \dv{s}{t} \right)^3\\
-            |\textbf{v}\times\textbf{a}| &= \left| \textbf{B}\kappa|\textbf{v}|^3 \right|\\
-            \kappa &= \frac{|\textbf{v}\times\textbf{a}|}{|\textbf{v}|^3}
+            \vb{v}\times\vb{a} &= \vb{T}\dv{s}{t}\times\left[ \vb{T}\dv[2]{s}{t}+\vb{N}\kappa\left( \dv{s}{t} \right)^2 \right]\\
+            &= \vb{T}\times\vb{N}\kappa\left( \dv{s}{t} \right)^3\\
+            |\vb{v}\times\vb{a}| &= \left| \vb{B}\kappa|\vb{v}|^3 \right|\\
+            \kappa &= \frac{|\vb{v}\times\vb{a}|}{|\vb{v}|^3}
         \end{align*}
     \end{itemize}
 \end{itemize}
@@ -485,9 +485,9 @@
         \draw [->] (0,-0.6) -- (0,3) node[above]{$y$};
         \node [anchor=north east] {$O$};
 
-        \draw [ylx,thick,-latex] (0,0) coordinate (O) -- node[above]{$r$} node[pos=0.82,above]{$\textbf{R}$} (2.7,1) coordinate (P);
-        \draw [yly,thick,-latex] (P) -- node[near end,below]{$\textbf{u}_r$} ($(O)!1.4!(P)$) coordinate (ur);
-        \draw [yly,thick,-latex] (P) -- node[near end,left]{$\textbf{u}_\theta$} ($(P)!1!90:(ur)$);
+        \draw [ylx,thick,-latex] (0,0) coordinate (O) -- node[above]{$r$} node[pos=0.82,above]{$\vb{R}$} (2.7,1) coordinate (P);
+        \draw [yly,thick,-latex] (P) -- node[near end,below]{$\vb{u}_r$} ($(O)!1.4!(P)$) coordinate (ur);
+        \draw [yly,thick,-latex] (P) -- node[near end,left]{$\vb{u}_\theta$} ($(P)!1!90:(ur)$);
         \draw [ylx,thick] (1.3,-0.5) to[out=30,in=-110,in looseness=0.6] (P) node[below right]{$P$} to[out=70,in=-80,out looseness=0.4,in looseness=1.3] (2.8,2.9);
         \pic [draw,->,angle radius=1cm,pic text={$\theta$},angle eccentricity=1.2] {angle=X--O--P};
     \end{tikzpicture}
@@ -497,17 +497,17 @@
 \begin{itemize}
     \item To analyze polar coordinates, we introduce the unit vectors
     \begin{align*}
-        \textbf{u}_r &= \textbf{i}\cos\theta+\textbf{j}\sin\theta&
-            \textbf{u}_\theta &= -\textbf{i}\sin\theta+\textbf{j}\cos\theta
+        \vb{u}_r &= \vb{i}\cos\theta+\vb{j}\sin\theta&
+            \vb{u}_\theta &= -\vb{i}\sin\theta+\vb{j}\cos\theta
     \end{align*}
     \item Clearly, we have
     \begin{align*}
-        \dv{\textbf{u}_r}{\theta} &= \textbf{u}_\theta&
-            \dv{\textbf{u}_\theta}{\theta} &= -\textbf{u}_r
+        \dv{\vb{u}_r}{\theta} &= \vb{u}_\theta&
+            \dv{\vb{u}_\theta}{\theta} &= -\vb{u}_r
     \end{align*}
     \item Additionally, we can see that
     \begin{equation*}
-        \textbf{R} = r\textbf{u}_r
+        \vb{R} = r\vb{u}_r
     \end{equation*}
     \item The velocity vector can easily be expressed in terms of these quantities (and visualized as such geometrically, as in Figure \ref{fig:polarVelocityVector}).
     \begin{figure}[h!]
@@ -520,10 +520,10 @@
             \draw [->] (0,-0.6) -- (0,3) node[above]{$y$};
             \node [anchor=north east] {$O$};
     
-            \draw [ylx,thick,-latex] (0,0) coordinate (O) -- node[above]{$r$} node[pos=0.82,above]{$\textbf{R}$} (2.7,1) coordinate (P);
-            \draw [yly,thick,-latex] (P) -- node[pos=0.8,below]{$\textbf{u}_r\dv{r}{t}$} (3.81,1.41);
-            \draw [yly,thick,-latex] (3.81,1.41) -- node[pos=0.8,right]{$r\dv{\theta}{t}\textbf{u}_\theta$} (3.3,2.8);
-            \draw [ylx,thick,-latex] (P) -- node[pos=0.35,right]{$\textbf{T}\dv{s}{t}$} (3.3,2.8);
+            \draw [ylx,thick,-latex] (0,0) coordinate (O) -- node[above]{$r$} node[pos=0.82,above]{$\vb{R}$} (2.7,1) coordinate (P);
+            \draw [yly,thick,-latex] (P) -- node[pos=0.8,below]{$\vb{u}_r\dv{r}{t}$} (3.81,1.41);
+            \draw [yly,thick,-latex] (3.81,1.41) -- node[pos=0.8,right]{$r\dv{\theta}{t}\vb{u}_\theta$} (3.3,2.8);
+            \draw [ylx,thick,-latex] (P) -- node[pos=0.35,right]{$\vb{T}\dv{s}{t}$} (3.3,2.8);
             \draw [ylx,thick] (1.3,-0.5) to[out=30,in=-110,in looseness=0.6] (P) node[below right]{$P$} to[out=70,in=-80,out looseness=0.4,in looseness=1.3] (2.8,2.9);
             \pic [draw,->,angle radius=1cm,pic text={$\theta$},angle eccentricity=1.2] {angle=X--O--P};
         \end{tikzpicture}
@@ -531,19 +531,19 @@
         \label{fig:polarVelocityVector}
     \end{figure}
     \begin{align*}
-        \textbf{v} &= \dv{\textbf{R}}{t}\\
-        &= \textbf{u}_r\dv{r}{t}+r\dv{\textbf{u}_r}{t}\\
-        &= \textbf{u}_r\dv{r}{t}+r\textbf{u}_\theta\dv{\theta}{t}
+        \vb{v} &= \dv{\vb{R}}{t}\\
+        &= \vb{u}_r\dv{r}{t}+r\dv{\vb{u}_r}{t}\\
+        &= \vb{u}_r\dv{r}{t}+r\vb{u}_\theta\dv{\theta}{t}
     \end{align*}
     \item The acceleration vector can also be expressed in terms of these quantities (the following can be derived by differentiating the above with respect to $t$ and substituting).
     \begin{equation*}
-        \textbf{a} = \textbf{u}_r\left[ \dv[2]{r}{t}-r\left( \dv{\theta}{t} \right)^2 \right]+\textbf{u}_\theta\left[ r\dv[2]{\theta}{t}+2\dv{r}{t}\dv{\theta}{t} \right]
+        \vb{a} = \vb{u}_r\left[ \dv[2]{r}{t}-r\left( \dv{\theta}{t} \right)^2 \right]+\vb{u}_\theta\left[ r\dv[2]{\theta}{t}+2\dv{r}{t}\dv{\theta}{t} \right]
     \end{equation*}
     \item In three dimensions (esp. for cylindrical coordinates), we have
     \begin{align*}
-        \textbf{R} &= r\textbf{u}_r+\textbf{k}z\\
-        \textbf{v} &= \textbf{u}_r\dv{r}{t}+r\textbf{u}_\theta\dv{\theta}{t}+\textbf{k}\dv{z}{t}\\
-        \textbf{a} &= \textbf{u}_r\left[ \dv[2]{r}{t}-r\left( \dv{\theta}{t} \right)^2 \right]+\textbf{u}_\theta\left[ r\dv[2]{\theta}{t}+2\dv{r}{t}\dv{\theta}{t} \right]+\textbf{k}\dv[2]{z}{t}
+        \vb{R} &= r\vb{u}_r+\vb{k}z\\
+        \vb{v} &= \vb{u}_r\dv{r}{t}+r\vb{u}_\theta\dv{\theta}{t}+\vb{k}\dv{z}{t}\\
+        \vb{a} &= \vb{u}_r\left[ \dv[2]{r}{t}-r\left( \dv{\theta}{t} \right)^2 \right]+\vb{u}_\theta\left[ r\dv[2]{\theta}{t}+2\dv{r}{t}\dv{\theta}{t} \right]+\vb{k}\dv[2]{z}{t}
     \end{align*}
     \item \cite{bib:Thomas} goes into an lengthy application of the above definitions to deriving Kepler's Laws.
 \end{itemize}
