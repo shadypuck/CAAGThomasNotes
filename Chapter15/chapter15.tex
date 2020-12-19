@@ -454,5 +454,179 @@
 
 
 
+\section{Maxima and Minima of Functions of Two Independent Variables}
+\begin{itemize}
+    \item \marginnote{12/18:}\textbf{Relative minimum} (of $f(x,y)$): A point $(a,b)$, in a region $R$ where $f$ is defined, continuous, and has continuous partial derivatives with respect to $x$ and $y$, such that $f(x,y)\geq f(a,b)$ for all points $(x,y)$ sufficiently close to $(a,b)$. \emph{Also known as} \textbf{local minimum}.
+    \item \textbf{Relative maximum} (of $f(x,y)$): A point $(a,b)$, in a region $R$ where $f$ is defined, continuous, and has continuous partial derivatives with respect to $x$ and $y$, such that $f(x,y)\leq f(a,b)$ for all points $(x,y)$ sufficiently close to $(a,b)$. \emph{Also known as} \textbf{local maximum}.
+    \item \textbf{Absolute minimum} (of $f(x,y)$): A relative minimum $(a,b)$ of $f(x,y)$ such that $f(x,y)\geq f(a,b)$ for all $(x,y)\in R$.
+    \item \textbf{Absolute maximum} (of $f(x,y)$): A relative maximum $(a,b)$ of $f(x,y)$ such that $f(x,y)\leq f(a,b)$ for all $(x,y)\in R$.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.4\linewidth]{ExtFiles/relativeMaximum.jpg}
+        \caption{Relative maximum of $f(x,y)$.}
+        \label{fig:relativeMaximum}
+    \end{figure}
+    \item If $(a,b)$ is a relative maximum\footnote{Or minimum. We choose arbitrarily to work with maxima from here on out, but every statement is symmetric for minima.}, then $f_x(a,b)=0$ and $f_y(a,b)=0$.
+    \begin{itemize}
+        \item We can see from Figure \ref{fig:relativeMaximum} that the curve lying in the plane $y=b$ given by $z=f(x,b)$ has a high turning point at $x=a$.
+        \item We can similarly see that $z=f(a,y)$ has a high turning point at $y=b$.
+        \item Thus,
+        \begin{align*}
+            \left( \pdv{z}{x} \right)_{(a,b)} &= 0&
+                \left( \pdv{z}{y} \right)_{(a,b)} &= 0
+        \end{align*}
+        \item This implies the desired result.
+    \end{itemize}
+    \item As to the second derivative test, \cite{bib:Thomas} does not go into it deeply, but mentions that the key is that $D=f(x,y)-f(a,b)$ is nonnegative (positive or zero) for a minimum and nonpositive (negative or zero) for a maximum fo rall $(x,y)$ sufficiently close to $(a,b)$.
+    \begin{itemize}
+        \item He recommends checking $x=a+h$ and $y=b+k$ for small values of $h$ and $k$ to confirm.
+        \item This may seem to not be rigorous, but it can actually work quite well, as we will see in the following problem.
+    \end{itemize}
+    \item Find the minima and maxima on the surface
+    \begin{equation*}
+        z = f(x,y) = x^2-xy+y^2+2x+2y-4
+    \end{equation*}
+    \begin{itemize}
+        \item Since the domain of this functions is not restricted, there are no boundary points to check. Thus, we need only apply the necessary conditions.
+        \begin{align*}
+            0 &= \pdv{z}{x}&
+                0 &= \pdv{z}{y}\\
+            &= 2x-y+2&
+                &= 2y-x+2
+        \end{align*}
+        \item If we solve the above as a two-variable system of equations, we find that $(-2,-2)$ is the solution.
+        \item Thus, the critical point is $(-2,-2,f(-2,-2))=(-2,-2,-8)$.
+        \item Applying the pseudo-second-derivative test, we have
+        \begin{align*}
+            D &= f(-2+h,-2+k)-f(-2,-2)\\
+            &= h^2-hk+k^2\\
+            &= \left( h-\frac{k}{2} \right)^2+\frac{3k^2}{4}
+        \end{align*}
+        which is clearly positive unless $h=k=0$.
+        \item Therefore, $(-2,-2,-8)$ is an absolute minimum, and there are no other high or low points.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{The Method of Least Squares}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.4\linewidth}
+        \centering
+        \begin{tikzpicture}[
+            every node/.style={black}
+        ]
+            \footnotesize
+            \draw [->] (-0.6,0) -- (5,0) node[right]{$x$};
+            \draw [->] (0,-0.6) -- (0,3.5) node[above]{$y$};
+            \node [anchor=north east] {$O$};
+
+            \draw [ylx,thick] (0.1,1) -- node[pos=0.7,right,yshift=-1mm]{$y=mx+b$} (4.5,3);
+            \node (P1) [circle,fill,inner sep=1.5pt,ylx,label={[xshift=3mm]above:$P_1(x_1,y_1)$}] at (0.5,1.8) {}
+                (P1.center) edge [ylx,semithick] (0.5,1.18);
+            ;
+            \node (P2) [circle,fill,inner sep=1.5pt,ylx,label={right:$P_2(x_2,y_2)$}] at (1.5,1.15) {}
+                (P2.center) edge [ylx,semithick] (1.5,1.64);
+            ;
+            \node (P) [circle,fill,inner sep=1.5pt,ylx] at (2.5,1.75) {}
+                (P.center) edge [ylx,semithick] (2.5,2.09);
+            ;
+            \node (Pn) [circle,fill,inner sep=1.5pt,ylx,label={above:$P_n(x_n,y_n)$}] at (3.5,2.8) {}
+                (Pn.center) edge [ylx,semithick] (3.5,2.55);
+            ;
+        \end{tikzpicture}
+        \caption{Best fit line.}
+        \label{fig:leastSquaresa}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\linewidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{ExtFiles/leastSquaresb.jpg}
+        \caption{Minimization.}
+        \label{fig:leastSquaresb}
+    \end{subfigure}
+    \caption{Method of least squares.}
+    \label{fig:leastSquares}
+\end{figure}
+\begin{itemize}
+    \item \textbf{Method of least squares}: A technique for fitting a straight line $y=mx+b$ to a set of experimentally observed points $(x_1,y_1),(x_2,y_2),\dots,(x_n,y_n)$.
+    \item \textbf{Deviation}: The difference between the observed $y$-value and the $y$-value predicted by the straight line. \emph{Also known as} \textbf{dev}, $\bm{d_n}$.
+    \begin{equation*}
+        \text{dev} = y_\text{obs}-(mx_\text{obs}+b)
+    \end{equation*}
+    \item \dq{For a straight line which comes close to fitting all of the observed points, some of the deviations will probably be positive and some will probably be negative. But their squares will all be positive, and the expression $$f(m,b)=(y_1-mx_1-b)^2+(y_2-mx_2-b)^2+\cdots+(y_n-mx_n-b)^2$$ counts a positive deviation $+d$ and a negative deviation $-d$ equally. This sum of squares of the deviations depends on the choice of $m$ and $b$. It is never negative, and it can be zero only if $m$ and $b$ have values that produce a straight line that is a perfect fit}{524-25}
+    \begin{itemize}
+        \item Essentially, the method of least squares says \dq{Take as the line $y=mx+b$ of best fit that one for which the sum of squares of the deviations $$f(m,b)=d_1^2+d_2^2+\cdots+d_n^2$$ is a minimum}{525}
+    \end{itemize}
+    \item Note that we can use the pseudo-second-derivative test to show that the point on $f(m,b)$ found by the method of least squares is a minimum. However, it is customary to omit this step since it can be show that for the general case of fitting a straight line, the answer is always a minimum.
+\end{itemize}
+
+
+
+\section{Maxima and Minima of Functions of Several Independent Variables}
+\begin{itemize}
+    \item This is necessary in certain statistical applications.
+    \item As we would expect, minima and maxima of functions of the form $w=f(x_1,\dots,x_n)$ can lie at boundary points, or at points where $0=\pdv*{f}{x_1},\dots,\pdv*{f}{x_n}$.
+    \item Sometimes a function $w=f(x_1,\dots,x_n)$ is given with certain constraints of the form $g(x_1,\dots,x_n)=0$. In these cases, use the constraints to express some of the variables in terms of the remaining ones (so that the remaining ones are independent) before taking partial derivatives.
+    \item The minimization process may lead to an answer that lies outside the region where $f$ is defined. In these cases, it can help to choose a different set of independent variables. Let's look at one example of this phenomenon.
+    \item \dq{Find the minimum distance from the origin to the surface $x^2-z^2=1$}{528}
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.4\linewidth]{ExtFiles/minimizeHyperbolicCylinder.jpg}
+        \caption{Minimizing the distance from the origin across a hyperbolic cylinder.}
+        \label{fig:minimizeHyperbolicCylinder}
+    \end{figure}
+    \begin{itemize}
+        \item We want to minimize $\sqrt{(x-0)^2+(y-0)^2+(z-0)^2}$, the formula for the distance between a point $(x,y,z)$ and the origin, over all points $(x,y,z)$ on the surface defined by $x^2-z^2=1$.
+        \item Thus, we choose to minimize $w=x^2+y^2+z^2$ (it's easier to work without the radical, and the latter formula minimizes at the same points as the former). To limit the set of points in the domain of $w$, we arbitrarily choose $x$ and $y$ to be our independent variables and use the constraint to substitute out $z$, yielding $w=2x^2+y^2-1$.
+        \item However, $0=\pdv*{w}{x}=4x$ and $0=\pdv*{w}{y}=2y$ lead to $(0,0,i)$ as our answer. The problem here is that $x\in(-1,1)$ is not in the domain of $x^2-z^2=1$, yet it is in the domain of $w=2x^2+y^2-1$.
+        \item Thus, we need a different substitution. If we eliminate $x$ instead, then we have $w=1+y^2+2z^2$ in terms of variables that have meaning for all values in the set $(-\infty,\infty)$ (importantly, no new elements are added to the domain). Indeed, minimizing this, we get $(\pm 1,0,0)$ as our answers, and we can see from Figure \ref{fig:minimizeHyperbolicCylinder} that these are correct.
+    \end{itemize}
+    \item \textbf{Method of Lagrange multipliers}: \dq{To minimize (or maximize) a function $f(x,y,z)$, subject to the constraint $g(x,y,z)=0$, construct the auxiliary function $$H(x,y,z,\lambda)=f(x,y,z)-\lambda g(x,y,z)$$ and find values of $x,y,z,\lambda$ for which the partial derivatives of $H$ are all 0: $H_x=0$, $H_y=0$, $H_z=0$, [and] $H_\lambda=0$}{528}
+    \item \dq{Find the point on the plane $$2x-3y+5z=19$$ that is nearest the origin, using the method of Lagrange multipliers}{528}
+    \begin{itemize}
+        \item Find $H$.
+        \begin{equation*}
+            H(x,y,z,\lambda) = x^2+y^2+z^2-\lambda(2x-3y+5z-19)
+        \end{equation*}
+        \item Take partial derivatives.
+        \begin{align*}
+            0 &= H_x = 2x-2\lambda&
+                0 &= H_y = 2y+3\lambda&
+                    0 &= H_z = 2z-5\lambda&
+                        0 &= H_\lambda = -g(x,y,z)
+        \end{align*}
+        \item Solve $H_x,H_y,H_z$ for $x,y,z$.
+        \begin{align*}
+            x &= \lambda&
+                y &= -\frac{3}{2}\lambda&
+                    z &= \frac{5}{2}\lambda
+        \end{align*}
+        \item Plug into $H_\lambda$ and solve for $\lambda$.
+        \begin{align*}
+            2\lambda+\frac{9}{2}\lambda+\frac{25}{2}\lambda &= 19\\
+            \lambda &= 1
+        \end{align*}
+        \item Return the substitutions.
+        \begin{equation*}
+            (x,y,z) = \left( 1,-\frac{3}{2},\frac{5}{2} \right)
+        \end{equation*}
+    \end{itemize}
+    \item \cite{bib:Thomas} derives the method of Lagrange multiplies, finding in the process the important equation $\nabla f=\lambda\nabla g$ where $\lambda=f_z/g_z$.
+    \begin{itemize}
+        \item There is some important but rather indecipherable geometric meaning of this equation.
+    \end{itemize}
+    \item If there exist two constraints $g(x,y,z)$ and $h(x,y,z)$, then we work with
+    \begin{equation*}
+        H(x,y,z,\lambda,\mu) = f(x,y,z)-\lambda g(x,y,z)-\mu h(x,y,z)
+    \end{equation*}
+    and set $H_x,H_y,H_z,H_\lambda,H_\mu=0$ in the process.
+    \begin{itemize}
+        \item We also have in this case $\nabla f=\lambda\nabla g+\mu\nabla h$.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
