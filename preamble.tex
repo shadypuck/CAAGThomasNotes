@@ -5,6 +5,8 @@
 \usepackage{marginnote}
 \usepackage{scrextend}
 \usepackage[bottom]{footmisc}
+\usepackage{xr}
+\usepackage{tocloft}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{xparse,physics,mathtools,bm}
 \usepackage{subcaption,float}
@@ -35,6 +37,8 @@
 \deffootnotemark{\textsuperscript{[\thefootnotemark]}}
 \deffootnote[2.1em]{0em}{0em}{\textsuperscript{\thefootnotemark}}
 
+\externaldocument{main}
+
 \DeclareMathOperator{\gradd}{grad}
 
 \newtheorem{cly}{Corollary}[chapter]
@@ -48,6 +52,8 @@
 \colorlet{grx}{ylx!87!green!72!black}
 \colorlet{gax}{gray}
 \colorlet{gay}{gray!50}
+
+\setlength\cftsecnumwidth{3em}
 
 \renewcommand{\labelitemiii}{\scriptsize$\blacksquare$}
 

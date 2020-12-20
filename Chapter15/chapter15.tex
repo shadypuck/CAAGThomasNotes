@@ -9,7 +9,7 @@
 
 
 
-\chapter{Partial Differentiation}
+\chapter{Partial Differentiation}\label{cht:15}
 \section{Functions of Two or More Variables}
 \begin{itemize}
     \item \marginnote{12/16:}\textbf{Function} (from $D$ to $E^1$): A mapping that assigns a unique number $w$ to each point $(x_1,\dots,x_n)\in D\subset E^n$.
@@ -477,7 +477,7 @@
         \end{align*}
         \item This implies the desired result.
     \end{itemize}
-    \item As to the second derivative test, \cite{bib:Thomas} does not go into it deeply, but mentions that the key is that $D=f(x,y)-f(a,b)$ is nonnegative (positive or zero) for a minimum and nonpositive (negative or zero) for a maximum fo rall $(x,y)$ sufficiently close to $(a,b)$.
+    \item As to the second derivative test, \cite{bib:Thomas} does not go into it deeply, but mentions that the key is that $D=f(x,y)-f(a,b)$ is nonnegative (positive or zero) for a minimum and nonpositive (negative or zero) for a maximum for all $(x,y)$ sufficiently close to $(a,b)$.
     \begin{itemize}
         \item He recommends checking $x=a+h$ and $y=b+k$ for small values of $h$ and $k$ to confirm.
         \item This may seem to not be rigorous, but it can actually work quite well, as we will see in the following problem.
@@ -487,7 +487,7 @@
         z = f(x,y) = x^2-xy+y^2+2x+2y-4
     \end{equation*}
     \begin{itemize}
-        \item Since the domain of this functions is not restricted, there are no boundary points to check. Thus, we need only apply the necessary conditions.
+        \item Since the domain of this functions is not restricted, there are no boundary points to check. Thus, we need only apply the necessary conditions
         \begin{align*}
             0 &= \pdv{z}{x}&
                 0 &= \pdv{z}{y}\\
@@ -558,7 +558,7 @@
     \begin{itemize}
         \item Essentially, the method of least squares says \dq{Take as the line $y=mx+b$ of best fit that one for which the sum of squares of the deviations $$f(m,b)=d_1^2+d_2^2+\cdots+d_n^2$$ is a minimum}{525}
     \end{itemize}
-    \item Note that we can use the pseudo-second-derivative test to show that the point on $f(m,b)$ found by the method of least squares is a minimum. However, it is customary to omit this step since it can be show that for the general case of fitting a straight line, the answer is always a minimum.
+    \item Note that we can use the pseudo-second-derivative test to show that the point on $f(m,b)$ found by the method of least squares is a minimum. However, it is customary to omit this step since it can be shown that for the general case of fitting a straight line, the answer is always a minimum.
 \end{itemize}
 
 
@@ -612,10 +612,7 @@
             (x,y,z) = \left( 1,-\frac{3}{2},\frac{5}{2} \right)
         \end{equation*}
     \end{itemize}
-    \item \cite{bib:Thomas} derives the method of Lagrange multiplies, finding in the process the important equation $\nabla f=\lambda\nabla g$ where $\lambda=f_z/g_z$.
-    \begin{itemize}
-        \item There is some important but rather indecipherable geometric meaning of this equation.
-    \end{itemize}
+    \item \cite{bib:Thomas} derives the method of Lagrange multiplies, finding in the process the important equation $\nabla f=\lambda\nabla g$ where $\lambda=f_z/g_z$\footnote{There is some important but rather indecipherable geometric meaning of this equation. Additionally, the proof overall would be good to understand. This is something to come back to at a later date, though.}.
     \item If there exist two constraints $g(x,y,z)$ and $h(x,y,z)$, then we work with
     \begin{equation*}
         H(x,y,z,\lambda,\mu) = f(x,y,z)-\lambda g(x,y,z)-\mu h(x,y,z)
@@ -624,6 +621,302 @@
     \begin{itemize}
         \item We also have in this case $\nabla f=\lambda\nabla g+\mu\nabla h$.
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Higher-Order Derivatives}
+\begin{itemize}
+    \item \marginnote{12/19:}To denote higher-order partial derivatives, use symbols such as
+    \begin{equation*}
+        \pdv[2]{f}{x},\ \pdv[2]{f}{y},\ \pdv{f}{x}{y},\ \pdv{f}{y}{x}
+    \end{equation*}
+    or, respectively,
+    \begin{equation*}
+        f_{xx},\ f_{yy},\ f_{yx},\ f_{xy}
+    \end{equation*}
+    \item The order of differentiation is "conserved" left to right, in a sense. For example,
+    \begin{equation*}
+        \pdv{f}{x}{y} = \pdv{x}\left( \pdv{f}{y} \right)
+    \end{equation*}
+    \item However, in general, $\pdv*{f}{x}{y}=\pdv*{f}{y}{x}$:
+    \begin{thm}\label{thm:pdvOrdering}
+        Let the function $w=f(x,y)$, together with the partial derivatives $f_x$, $f_y$, $f_{xy}$, and $f_{yx}$ be continuous in some neighborhood of a point $P(a,b)$. Then, at that point,
+        \begin{equation*}
+            \pdv{x}\left( \pdv{f}{y} \right) = \pdv{y}\left( \pdv{f}{x} \right)
+        \end{equation*}
+        \begin{figure}[h!]
+            \centering
+            \begin{tikzpicture}[
+                every node/.append style={black}
+            ]
+                \footnotesize
+                \draw [->] (-0.6,0) -- (5,0) node[right]{$x$};
+                \draw [->] (0,-0.6) -- (0,3.5) node[above]{$y$};
+                \node [anchor=north east] {$O$};
+
+                \fill [yly!60] (0.8,0.6) rectangle (4.2,2.8) node[below right]{$R$};
+                \fill [yly] (1.6,1.3) node[circle,fill,inner sep=1.5pt,label={[xshift=-2mm]below:$(a,b)$}]{} -- node[below]{$h$} (3.6,1.3) -- node[pos=0.6,right]{$R'$} (3.6,2.4) -- (1.6,2.4) -- node[left]{$k$} cycle;
+            \end{tikzpicture}
+            \caption{Equivalence of higher-order partial derivative ordering.}
+            \label{fig:pdvOrdering}
+        \end{figure}
+        \begin{proof}
+            Let $h$ and $k$ be numbers such that $(a+h,b+k)$ lies in the rectangle $R$, and let $F(x)$ be defined by $F(x)=f(x,b+k)-f(x,b)$. Consider the difference
+            \begin{equation*}
+                \Delta = F(a+h)-F(a)
+            \end{equation*}
+            If we apply the Mean Value Theorem to $F$, we get
+            \begin{equation*}
+                \Delta = hF'(c_1)
+            \end{equation*}
+            for some $c_1\in[a,a+h]$. Substituting, we have
+            \begin{equation*}
+                \Delta = h[f_x(c_1,b+k)-f_x(c_1,b)]
+            \end{equation*}
+            If we apply the Mean Value Theorem to the difference $f_x(c_1,b+k)-f_x(c_1,b)$, we get $f_x(c_1,b+k)-f_x(c_1,b)=kf_{xy}(c_1,d_1)$ where $d_1\in[b,b+k]$. Therefore,
+            \begin{equation*}
+                \Delta = hkf_{xy}(c_1,d_1)
+            \end{equation*}
+            where $(c_1,d_1)\in R'$ in Figure \ref{fig:pdvOrdering}. Now, if we let $G(y)=f(a+h,y)-f(a,y)$, we can arrive at the similar result
+            \begin{equation*}
+                \Delta = hkf_{yx}(c_2,d_2)
+            \end{equation*}
+            where $(c_2,d_2)\in R'$ in Figure \ref{fig:pdvOrdering}. Thus, by transitivity, we have
+            \begin{equation*}
+                f_{xy}(c_1,d_1) = f_{yx}(c_2,d_2)
+            \end{equation*}
+            That is not what we wanted to prove. However, since $h$ and $k$ can be made arbitrarily small, and since the continuity of $f_{xy}$ and $f_{yx}$ implies that
+            \begin{align*}
+                f_{xy}(c_1,d_1) &= f_{xy}(a,b)+\epsilon_1&
+                    f_{yx}(c_2,d_2) &= f_{yx}(a,b)+\epsilon_2
+            \end{align*}
+            where $\epsilon_1,\epsilon_2\to 0$ as $h,k\to 0$, we let $h,k\to 0$ and get
+            \begin{equation*}
+                f_{xy}(a,b) = f_{yx}(a,b)
+            \end{equation*}
+            as desired.
+        \end{proof}
+    \end{thm}
+    \item Note that the quantity $\Delta$ in the above proof of Theorem \ref{thm:pdvOrdering} is known as the \textbf{second difference}.
+    \begin{itemize}
+        \item Although it is an advanced skill to know introduce such a tool in a proof, it makes sense to use the \emph{second} difference in a proof about \emph{second} derivatives.
+        \item Note that for sufficiently small $h,k$, $\Delta\approx hkf_{xy}(a,b)$.
+    \end{itemize}
+    \item From Theorem \ref{thm:pdvOrdering}, we can prove higher-order partial derivative equalities such as
+    \begin{equation*}
+        \frac{\partial^3f}{\partial x^2\partial y} = \pdv{x}\left( \pdv{f}{x}{y} \right)
+        = \pdv{x}\left( \pdv{f}{y}{x} \right)
+        = \pdv{y}\left( \pdv{f}{x}{x} \right)
+        = \frac{\partial^3f}{\partial y\partial x^2}
+    \end{equation*}
+    \item \dq{In fact, if all the partial derivatives that appear are continuous, the notation $$\frac{\partial^{m+n}f}{\partial x^m\partial y^n}$$ may be used to denote the result of differentiating the function $f(x,y)$ $m$ times with respect to $x$ and $n$ times with respect to $y$, the order in which these differentiations are performed being entirely arbitrary}{535}
+\end{itemize}
+
+
+
+\section{Exact Differentials}
+\begin{itemize}
+    \item \textbf{Exact differential}: The expression $\dd{f(x,y)}=M(x,y)\dd{x}+N(x,y)\dd{y}$ corresponding to a function $w=f(x,y)$.
+    \begin{figure}[h!]
+        \centering
+        \begin{subfigure}[b]{0.4\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \fill [yly] plot[smooth cycle] coordinates{(0,0) (0.3,0.1) (0.5,0.4) (0.9,0.7) (1,1) (0.9,1.3) (0.5,1.5) (-0.4,1.6) (-1,1.7) (-1.4,1.5) (-1.5,1.2) (-1.1,0.8) (-0.6,0.3)};
+            \end{tikzpicture}
+            \caption{A simply connected region.}
+            \label{fig:regionsa}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.4\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \fill [yly] (0,0)
+                    to[out=0,in=-90] (1,1)
+                    to[out=90,in=0] (0.3,1.7)
+                    to[out=180,in=0] (-0.5,1.5)
+                    to[out=180,in=90,in looseness=0.7] (-1.8,0.8)
+                    to[out=-90,in=180,out looseness=0.7] cycle
+                ;
+                \fill [white] (0.3,0.9)
+                    to[out=0,in=-90,out looseness=1.2] (0.5,1.1)
+                    to[out=90,in=0] (0.2,1.3)
+                    to[out=180,in=90] (0,1.1)
+                    to[out=-90,in=180] cycle
+                ;
+                \fill [white] (-0.6,0.7)
+                    to[out=0,in=-90,out looseness=0.7,in looseness=0.8] (-0.2,1.1)
+                    to[out=90,in=0] (-0.4,1.3)
+                    to[out=180,in=90,out looseness=0.8,in looseness=0.7] (-0.8,0.9)
+                    to[out=-90,in=180] cycle
+                ;
+                \fill [white] (0,0.2)
+                    to[out=0,in=-90] (0.2,0.4)
+                    to[out=90,in=0,in looseness=0.6] (0,0.6)
+                    to[out=180,in=45,out looseness=0.6] (-0.2,0.5)
+                    to[out=-135,in=90] (-0.4,0.3)
+                    to[out=-90,in=180,out looseness=0.6] cycle
+                ;
+            \end{tikzpicture}
+            \caption{A (not simply) connected region.}
+            \label{fig:regionsb}
+        \end{subfigure}\\
+        \vspace{1em}
+        \begin{subfigure}[b]{0.4\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \fill [yly] (0,0)
+                    -- (1,0.2)
+                    to[out=100,in=0] (-0.3,1.3)
+                    to[out=180,in=90] (-2,-0.2)
+                    to[out=-90,in=180] (-1.5,-1)
+                    to[out=0,in=180] (-0.8,-0.9)
+                    to[out=0,in=180] (0,-1)
+                    to[out=0,in=-60,in looseness=1.2] (0.4,-0.1)
+                    -- (-0.2,-0.15)
+                    to [out=-100,in=0] (-0.7,-0.4)
+                    to[out=180,in=-90] (-1.1,-0.1)
+                    to[out=90,in=180] (-0.6,0.4)
+                    to[out=0,in=110] cycle
+                ;
+            \end{tikzpicture}
+            \caption{A simply connected region.}
+            \label{fig:regionsc}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.4\linewidth}
+            \centering
+            \begin{tikzpicture}
+                \footnotesize
+                \fill [yly] (0,1.5)
+                    to[out=-90,in=180] (0.7,0.8)
+                    to[out=0,in=-90,in looseness=0.7] (2,1.7)
+                    to[out=90,in=0,out looseness=0.8,in looseness=1.2] (1.2,2.2)
+                    to[out=180,in=90,in looseness=0.9] cycle
+                ;
+                \fill [yly] (2,0)
+                    to[out=0,in=-90] (3.3,1)
+                    to[out=90,in=0] (2.7,1.5)
+                    to[out=180,in=90,out looseness=0.7,in looseness=0.8] (1.5,0.5)
+                    to[out=-90,in=180] cycle
+                ;
+                \fill (0.6,1.6) circle (1.5pt) node[right]{$A$};
+                \fill (2.1,0.7) circle (1.5pt) node[right]{$B$};
+            \end{tikzpicture}
+            \caption{A disconnected region (no path $AB$ lies entirely within the set, for example).}
+            \label{fig:regionsd}
+        \end{subfigure}
+        \caption{Types of regions in the plane.}
+        \label{fig:regions}
+    \end{figure}
+    \item \textbf{Simply connected region} (of the plane): A set of points that is \textbf{open}, \textbf{connected}, and satisfies the property that \dq{if $C$ is any simple closed curve, all of whose points are in the set, then all points in the interior of $C$ are also in the set}{537}
+    \item \textbf{Open} (set in the plane): A set such that \dq{each point of the set is an \textbf{interior} point of the set}{537}
+    \item \textbf{Connected} (set): A set such that \dq{any two points of the set can be joined by a polygonal path, all of whose points are in the set}{537}
+    \item \textbf{Interior} (point of a set in the plane): A point that \dq{can be the center of a small circle whose entire interior is in the set}{537}
+    \item We now prove a theorem that answers two questions with respect to exact differentials: (1) "How can we tell whether a given expression is or is not an exact differential?" and (2) \dq{If the expression is exact, how do we find the function $f(x,y)$ of which it is the differential?}{536}
+    \begin{thm}\label{thm:exactDifferential}
+        Let the functions $M(x,y)$ and $N(x,y)$ be continuous, and let them possess continuous partial derivatives $M_x,M_y,N_x,N_y$ for all real values of $x$ and $y$ in some simply connected region $G$. Then a necessary and sufficient condition for $M(x,y)\dd{x}+N(x,y)\dd{y}$ to be an exact differential in $G$ is that
+        \begin{equation*}
+            \pdv{M}{y} = \pdv{N}{x}
+        \end{equation*}
+        \begin{proof}
+            We first demonstrate that $\pdv*{M}{y}=\pdv*{N}{x}$ is a necessary condition. Suppose that there exists a function $f(x,y)$ with an exact differential at all points in $G$. We also know that $\dd{f}=\pdv*{f}{x}\dd{x}+\pdv*{f}{y}\dd{y}$ by the definition of the total differential. Thus,
+            \begin{equation*}
+                M(x,y)\dd{x}+N(x,y)\dd{y} = \pdv{f}{x}\dd{x}+\pdv{f}{y}\dd{y}
+            \end{equation*}
+            But since $\dd{x}$ and $\dd{y}$ are independent variables in the above equation, we can set either to 0 and the equality must be maintained. Consequently, we must have
+            \begin{align*}
+                \pdv{f}{x} &= M(x,y)&
+                    \pdv{f}{y} &= N(x,y)
+            \end{align*}
+            Now by Theorem \ref{thm:pdvOrdering}, we have
+            \begin{equation*}
+                \pdv{y}\left( \pdv{f}{x} \right) = \pdv{x}\left( \pdv{f}{y} \right)
+            \end{equation*}
+            and it follows from this that
+            \begin{equation*}
+                \pdv{M}{y} = \pdv{N}{x}
+            \end{equation*}
+            as desired.\par
+            To demonstrate that $\pdv*{M}{y}=\pdv*{N}{x}$ is a sufficient condition, we will show how to find the function $f(x,y)$ from the exact differential. To begin, let $\pdv*{f}{x}=M(x,y)$. From this definition, the condition that $\pdv*{M}{y}=\pdv*{N}{x}$, and Theorem \ref{thm:pdvOrdering}, we can immediately learn another interesting fact about $f$:
+            \begin{align*}
+                \pdv{y}\left( \pdv{f}{x} \right) &= \pdv{M}{y}\\
+                \pdv{x}\left( \pdv{f}{y} \right) &= \pdv{N}{x}\\
+                \pdv{f}{y} &= N(x,y)
+            \end{align*}
+            With this established, we can now solve for $f(x,y)$. Start with
+            \begin{align*}
+                \pdv{f}{x} &= M(x,y)
+                \intertext{From here, we integrate both sides with respect to $x$, holding $y$ constant. Notice that we introduce $g(y)$, a function of just $y$, as a kind of constant of integration\footnotemark.}
+                f(x,y) &= \int_x M(x,y)\dd{x}+g(y)
+                \intertext{We now take the partial derivative with respect to $y$.}
+                \pdv{f}{y} &= \pdv{y}\int_x M(x,y)\dd{x}+\pdv{g}{y}
+                \intertext{Since $g$ is purely a function of $y$, the partial derivative of $g$ with respect to $y$ is simply the derivative of $g$ with respect to $y$.}
+                &= \pdv{y}\int_x M(x,y)\dd{x}+\dv{g}{y}
+                \intertext{We now make use of the fact that we proved in the beginning, and substitute out $\pdv{f}{y}$ for $N(x,y)$. We then rearrange the terms to create a differential equation for $g$.}
+                N(x,y) &= \pdv{y}\int_x M(x,y)\dd{x}+\dv{g}{y}\\
+                \dv{g}{y} &= N(x,y)-\pdv{y}\int_x M(x,y)\dd{x}
+            \end{align*}
+            \footnotetext{In the sense that if we took the partial derivative of both sides of the following with respect to $x$, we would get the above.}
+            This differential equation can be solved for $g$ by integrating the right-hand side with respect to $y$. After that has been accomplished, we can substitute the definition of $g$ back into $f(x,y)=\int_x M(x,y)\dd{x}+g(y)$ to generate the final formula for $f(x,y)$:
+            \begin{equation*}
+                f(x,y) = \int_x M(x,y)\dd{x}+\int_y\left( N(x,y)-\pdv{y}\int_x M(x,y)\dd{x} \right)\dd{y}
+            \end{equation*}
+        \end{proof}
+    \end{thm}
+    \item We now use an example to tangibly demonstrate both how to determine that a differential is a exact, and how to solve for $f(x,y)$.
+    \item Consider the differential $(x^2+y^2)\dd{x}+2xy\dd{y}$. Use the condition of Theorem \ref{thm:exactDifferential} to show that it is exact, and then solve for the function $w=f(x,y)$ for which $\dd{w}=(x^2+y^2)\dd{x}+2xy\dd{y}$.
+    \begin{itemize}
+        \item Let $M(x,y)=x^2+y^2$ and let $N(x,y)=2xy$. Then
+        \begin{equation*}
+            \pdv{M}{y} = 2y = \pdv{N}{x}
+        \end{equation*}
+        so the given differential is exact.
+        \item Now let $\pdv*{f}{x}=x^2+y^2$, and recall that we can prove from this that $\pdv*{f}{y}=2xy$. It follows that
+        \begin{align*}
+            f(x,y) &= \int_x(x^2+y^2)\dd{x}+g(y)\\
+            &= \frac{x^3}{3}+xy^2+g(y)
+            \intertext{The above equation is important, and we'll end up substituting $g(y)$ into it once we find it as follows.}
+            \pdv{f}{y} &= \pdv{y}\left( \frac{x^3}{3}+xy^2 \right)+\pdv{g}{y}\\
+            2xy &= 0+2xy+\dv{g}{y}\\
+            \dv{g}{y} &= 0\\
+            g(y) &= C\qquad C\in\R
+        \end{align*}
+        \item Therefore,
+        \begin{equation*}
+            f(x,y) = \frac{x^3}{3}+xy^2+C
+        \end{equation*}
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Derivatives of Integrals}
+\begin{itemize}
+    \item From the Fundamental Theorem of Integral Calculus, we know that if $f$ is a continuous function of $a\leq t\leq b$, then
+    \begin{align*}
+        \dv{x}\int_a^xf(t)\dd{t} &= f(x)&
+            \dv{x}\int_x^bf(t)\dd{t} &= -f(x)
+    \end{align*}
+    \item These results allow us to prove the following.
+    \begin{thm}
+        Let $f$ be continuous on $a\leq t\leq b$. Let $u$ and $v$ be differentiable functions of $x$ such that $u(x)$ and $v(x)$ lie between $a$ and $b$. Then
+        \begin{equation*}
+            \dv{x}\int_{u(x)}^{v(x)}f(t)\dd{t} = f[v(x)]\dv{v}{x}-f[u(x)]\dv{u}{x}
+        \end{equation*}
+        \begin{proof}
+            Let $F[u(x),v(x)]=\int_{u(x)}^{v(x)}f(t)\dd{t}$. Then by the above results from the Fundamental Theorem of Calculus, we respectively have
+            \begin{align*}
+                \pdv{F}{v} &= f[v(x)]&
+                    \pdv{F}{u} &= -f[u(x)]
+            \end{align*}
+            Since $\dv*{F}{x}=\pdv*{F}{u}\dv*{u}{x}+\pdv*{F}{v}\dv*{v}{x}$ (the chain rule for partial derivatives), we therefore have
+            \begin{align*}
+                \dv{F}{x} &= -f[u(x)]\dv{u}{x}+f[v(x)]\dv{v}{x}\\
+                \dv{x}\int_{u(x)}^{v(x)}f(t)\dd{t} &= f[v(x)]\dv{v}{x}-f[u(x)]\dv{u}{x}
+            \end{align*}
+            as desired.
+        \end{proof}
+    \end{thm}
 \end{itemize}
 
 
