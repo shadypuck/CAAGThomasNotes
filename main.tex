@@ -26,19 +26,25 @@
 
 \pagenumbering{arabic}
 \pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter:\ #1}{}}
 \subfile{Chapter01/chapter01.tex}
 
+\setcounter{chapter}{3}
 \subfile{Chapter04/chapter04.tex}
 
+\setcounter{chapter}{7}
 \subfile{Chapter08/chapter08.tex}
 
 \subfile{Chapter09/chapter09.tex}
 
+\setcounter{chapter}{13}
 \subfile{Chapter14/chapter14.tex}
 
 \subfile{Chapter15/chapter15.tex}
 
 \subfile{Chapter16/chapter16.tex}
+
+\subfile{Chapter17/chapter17.tex}
 
 \printbibliography[heading=bibintoc]
 

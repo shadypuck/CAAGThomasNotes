@@ -126,7 +126,7 @@
 \begin{itemize}
     \item When integrating a radical that resembles the derivative of an inverse trig function, we may factor out the issue so as to make the integral resemble one of the known formulas.
     \begin{itemize}
-        \item For example, when confronted with $\int\frac{\dd u}{a^2+u^2}$, divide the $a^2$ term out of the denominator and integrate with respect to $\frac{u}{a}$\footnote{\cite{bib:Thomas} uses differentials with more complex functions than a single variable quite often. It's not something I've seen before, but it's something I should get used to (and it does make sense if you think about it --- it's just an extension of the underlying concept of separation of variables integration).}.
+        \item For example, when confronted with $\int\frac{\dd u}{a^2+u^2}$, divide the $a^2$ term out of the denominator and integrate with respect to $\frac{u}{a}$\footnote{\textcite{bib:Thomas} uses differentials with more complex functions than a single variable quite often. It's not something I've seen before, but it's something I should get used to (and it does make sense if you think about it --- it's just an extension of the underlying concept of separation of variables integration).}.
         \begin{align*}
             \int\frac{\dd u}{a^2+u^2} &= \frac{1}{a^2}\int\frac{\dd u}{1+\left( \frac{u}{a} \right)^2}\\
             &= \frac{1}{a^2}\int\frac{a\dd{\left( \frac{u}{a} \right)}}{1+\left( \frac{u}{a} \right)^2}\\
@@ -392,7 +392,7 @@
         \frac{B_1x+C_1}{x^2+px+q}+\frac{B_2x+C_2}{\left( x^2+px+q \right)^2}+\cdots+\frac{B_nx+C_n}{\left( x^2+px+q \right)^n}
     \end{equation*}
     \begin{itemize}
-        \item Continue, as necessary, to higher degree factors of $g(x)$ (although this caveat is not addressed by \cite{bib:Thomas}).
+        \item Continue, as necessary, to higher degree factors of $g(x)$ (although this caveat is not addressed by \textcite{bib:Thomas}).
     \item Notice how the degree of the polynomial in the numerator of the partial fractions will be at most one less than the degree of the denominator.
     \end{itemize}
     \item Any rational function integrated via the method of partial fractions can be reduced to the problem of evaluating the following two types of integrals.
@@ -723,7 +723,7 @@
         \end{itemize}
         \item Note that the number of subdivisions must be an even integer.
     \end{itemize}
-    \item To find the error in a Simpson's rule approximation, use the fact\footnote{A proof of this fact is a topic best left until Analysis. The framework for such a proof may be found on \cite[146]{bib:Olmsted}.} that \dq{if $f$ is continuous on $[a,b]$ and four times differentiable on $(a,b)$, then there is a number $c$ between $a$ and $b$ such that [the following holds]}{310}
+    \item To find the error in a Simpson's rule approximation, use the fact\footnote{A proof of this fact is a topic best left until Analysis. The framework for such a proof may be found on \textcite[146]{bib:Olmsted}.} that \dq{if $f$ is continuous on $[a,b]$ and four times differentiable on $(a,b)$, then there is a number $c$ between $a$ and $b$ such that [the following holds]}{310}
     \begin{equation*}
         \int_a^b f(x)\dd{x} = A_S-\frac{b-a}{180}f^{(4)}(c)\cdot h^4
     \end{equation*}
