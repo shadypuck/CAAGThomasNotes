@@ -20,5 +20,35 @@
 
 
 
+\section{Surface Integrals}
+\begin{itemize}
+    \item \marginnote{12/30:}Just like we have $\dd{s}=\sqrt{1+f_x^2}\dd{x}$, we have
+    \begin{equation*}
+        \dd{\sigma} = g(x,y)\dd{A}
+    \end{equation*}
+    where $\dd{\sigma}$ is "an element of surface area in the tangent plane that approximates the corresponding portion $\Delta\sigma$ of the surface itself" \parencite[581]{bib:Thomas} and $g(x,y)=\sqrt{1+f_x^2+f_y^2}$.
+    \item Thus, we can think of surface area as either the lefthand or righthand side of the below equation.
+    \begin{equation*}
+        \iint\limits_\Sigma\dd{\sigma} = \iint\limits_Rg(x,y)\dd{A}
+    \end{equation*}
+    \begin{itemize}
+        \item The lefthand interpretation sums infinitely many, infinitely small pieces $\dd{\sigma}$ of the surface $\Sigma$.
+        \item The righthand interpretation sums infinitely many, infinitely small pieces $\dd{A}$ of the shadow $R$ of the surface $\Sigma$ on the $xy$-plane, adjusted by the factor $g(x,y)$.
+    \end{itemize}
+    \item These formulations are important because sometimes we want to conceive and evaluate an integral of the form $\iint_\Sigma h(x,y,z)\dd{\sigma}$.
+    \item \textbf{Surface integral} (of $h(x,y,z)$ over the surface $\Sigma$): The limit as $\Delta\sigma\to 0$ of the sum of every $\Delta\sigma_k$ (composing $\Sigma$) times $h(x,y,z)$ for some $(x,y,z)\in\Delta\sigma_k$. Mathematically,
+    \begin{equation*}
+        \iint\limits_{\Sigma} h(x,y,z)\dd{\sigma} = \lim_{\Delta\sigma\to 0}\sum_{k=1}^nh(x_k,y_k,z_k)\, \Delta\sigma_k
+    \end{equation*}
+    \begin{itemize}
+        \item Consider a surface $\Sigma$ consisting of all points $P(x,y,z)$ satisfying $z=f(x,y)$ for $(x,y)\in R$, where $R$ is a closed, bounded region of the $xy$-plane and $f,f_x,f_y$ are continuous throughout $R$ and its boundary.
+        \item Approximate $R$ by dividing it into $n$ rectangles using lines parallel to the $y$-axis spaced $\Delta x$ apart and lines parallel to the $x$-axis spaced $\Delta y$ apart.
+        \item Let the part of $\Sigma$ above each rectangle be denoted by $\Delta\sigma_k$ for some $1\leq k\leq n$.
+        \item Now if $P_k(x_k,y_k,z_k)$ is a point in $\Delta\sigma_k$, we can consider the above sum and take its limit.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
