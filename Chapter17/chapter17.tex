@@ -46,6 +46,70 @@
         \item Let the part of $\Sigma$ above each rectangle be denoted by $\Delta\sigma_k$ for some $1\leq k\leq n$.
         \item Now if $P_k(x_k,y_k,z_k)$ is a point in $\Delta\sigma_k$, we can consider the above sum and take its limit.
     \end{itemize}
+    \item \marginnote{12/31:}To evaluate the surface integral, we substitute $\Delta\sigma_k=g(x_k,y_k)\, \Delta x\, \Delta y$ and $z_k=f(x_k,y_k)$ in the sum, and take iterated integrals over $R$ (the shadow of $\Sigma$ on the $xy$-plane) instead of $\Sigma$.
+    \begin{equation*}
+        \iint\limits_\Sigma h(x,y,z)\dd{\sigma} = \iint\limits_R h[x,y,f(x,y)]g(x,y)\dd{x}\dd{y}
+    \end{equation*}
+    \item We now explore a useful surface integration technique through a problem.
+    \item Evaluate $\iint(x^2+y^2)\dd{\sigma}$ over the hemisphere $\Sigma$ described by $z=\sqrt{a^2-x^2-y^2}$.
+    \begin{itemize}
+        \item Because of a \emph{sphere} $2\Sigma$ of radius $a$'s high degree of symmetry,
+        \begin{equation*}
+            \iint\limits_{2\Sigma}x^2\dd{\sigma} = \iint\limits_{2\Sigma}y^2\dd{\sigma}
+            = \iint\limits_{2\Sigma}z^2\dd{\sigma}
+            = \frac{1}{3}\iint\limits_{2\Sigma}(x^2+y^2+z^2)\dd{\sigma}
+            = \frac{1}{3}\iint\limits_{2\Sigma}a^2\dd{\sigma}
+        \end{equation*}
+        Thus, for the \emph{hemisphere} $\Sigma$,
+        \begin{align*}
+            \iint\limits_\Sigma(x^2+y^2)\dd{\sigma} &= \frac{1}{2}\iint\limits_{2\Sigma}(x^2+y^2)\dd{\sigma}\\
+            &= \frac{1}{2}\left( \iint\limits_{2\Sigma}x^2\dd{\sigma}+\iint\limits_{2\Sigma}y^2\dd{\sigma} \right)\\
+            &= \frac{1}{2}\left( \frac{1}{3}\iint\limits_{2\Sigma}a^2\dd{\sigma}+\frac{1}{3}\iint\limits_{2\Sigma}a^2\dd{\sigma} \right)\\
+            &= \frac{a^2}{3}\iint\limits_{2\Sigma}\dd{\sigma}\\
+            &= \frac{a^2}{3}\cdot 4\pi a^2\\
+            &= \frac{4}{3}\pi a^4
+        \end{align*}
+    \end{itemize}
+    \item Alternate formulations of $\dd{\sigma}$.
+    \begin{itemize}
+        \item Let the surface $\Sigma$ be defined by the equation $F(x,y,z)=0$.
+        \item For the same reasons discussed in Chapter \ref{cht:17},
+        \begin{equation*}
+            \dd{\sigma} = \frac{\dd{A}}{\cos\phi}
+        \end{equation*}
+        where $\phi$ is the angle between $\vb{N}=\nabla F$ and the unit vector normal to the plane onto which $\Sigma$ is projected, which we will take to be the $xy$-plane at first (this means that this normal vector is $\vb{k}$).
+        \item Since
+        \begin{equation*}
+            \cos\phi = \frac{\vb{N}\cdot\vb{k}}{|\vb{N}|\, |\vb{k}|} = \frac{|F_z|}{\sqrt{F_x^2+F_y^2+F_z^2}}
+        \end{equation*}
+        we thus have that
+        \begin{equation*}
+            \dd{\sigma} = \frac{\sqrt{F_x^2+F_y^2+F_z^2}}{|F_z|}\dd{x}\dd{y}
+        \end{equation*}
+        \item Note that if we project $\Sigma$ onto a different plane, an analog to the above can easily be derived.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Line Integrals}
+\begin{itemize}
+    \item \textbf{Line integral} (of $w(x,y,z)$ along the curve $C$ from $A$ to $B$): The limit as $\Delta s\to 0$ of the sum of every $\Delta s_k$ (composing the section of $C$ between points $A$ and $B$ along $C$) times $w(x,y,z)$ for some $(x,y,z)\in\Delta s_k$. Mathematically,
+    \begin{equation*}
+        \int_Cw\dd{s} = \lim_{\Delta s\to 0}\sum_{k=1}^n w(x_k,y_k,z_k)\, \Delta s_k
+    \end{equation*}
+    \begin{itemize}
+        \item Suppose that $C$ is a directed curve in three-space from $A$ to $B$. Let $w(x,y,z)$ be a scalar function of position that is continuous in a region $D$ containing $C$.
+        \item Divide $C$ into $n$ segments, and let $P_k(x_k,y_k,z_k)$ be an arbitrary point on the $k$th subarc.
+        \item If the above sum has a limit as $n\to\infty$ and the largest $\Delta s_k\to 0$, and if this limit is the same for all ways of subdividing $C$ and all choices of the points $P_k$, then we call this limit the line integral.
+    \end{itemize}
+    \item If $C$ is parameterized by the functions $x=f(t)$, $y=g(t)$, and $z=h(t)$ for $t_A\leq t\leq t_B$, where $f,g,h$ are continuous and have bounded and piecewise-continuous first derivatives on $[t_A,t_B]$, then we may evaluate the line integral of $w(x,y,z)$ along $C$ from $A$ to $B$ with the following formula.
+    \begin{equation*}
+        \int_Cw\dd{s} = \int_{t_A}^{t_B}w[f(t),g(t),h(t)]\sqrt{\left( \dv{f}{t} \right)^2+\left( \dv{g}{t} \right)^2+\left( \dv{h}{t} \right)^2}\dd{t}
+    \end{equation*}
+    \begin{itemize}
+        \item Note that the line integral is the same for any appropriate parameterization of $C$, or no parameterization.
+    \end{itemize}
 \end{itemize}
 
 
