@@ -110,6 +110,339 @@
     \begin{itemize}
         \item Note that the line integral is the same for any appropriate parameterization of $C$, or no parameterization.
     \end{itemize}
+    \item \marginnote{9/2:} The line integral can be geometrically interpreted as the area of the region $R$ that lies above the curve $C$, offset by distance $w$.
+    \item If $C$ is a straight line, we can take the line integral over it directly wrt. $s$ by expressing $f$ in terms of $s$ and rewriting the limits:
+    \item For example, \dq{let $C$ be the line segment from $A(0,0)$ to $B(1,1)$ and let $w=x+y^2$. Evaluate $\int_Cw\dd{s}$}{585}
+    \begin{itemize}
+        \item Let $x=t$ and $y=t$ for $0\leq t\leq 1$. Then
+        \begin{align*}
+            \int_Cw\dd{s} &= \int_0^1(t+t^2)\sqrt{1+1}\dd{t}\\
+            &= \sqrt{2}\left[ \frac{t^2}{2}+\frac{t^3}{3} \right]_0^1\\
+            &= \frac{5\sqrt{2}}{6}
+        \end{align*}
+        \item By the Pythagorean theorem, $s=\sqrt{x^2+y^2}=\sqrt{2x^2}=x\sqrt{2}$. Thus, $w=s/\sqrt{2}+s^2/2$. Additionally, as $0\leq x\leq 1$, $0\leq s\leq\sqrt{2}$. Therefore,
+        \begin{align*}
+            \int_Cw\dd{s} &= \int_0^{\sqrt{2}}\left( \frac{s}{\sqrt{2}}+\frac{s^2}{2} \right)\dd{s}\\
+            &= \left[ \frac{s^2}{2\sqrt{2}}+\frac{s^3}{6} \right]_0^{\sqrt{2}}\\
+            &= \frac{5\sqrt{2}}{6}
+        \end{align*}
+    \end{itemize}
+    \item To generalize the above notion, we can always think of $w$ as a function $\phi(s)$, where $s$ is arc length.
+    \item \dq{If the point of application of a force $\mathbf{F}=\mathbf{i}M(x,y,z)+\mathbf{j}N(x,y,z)+\mathbf{k}P(x,y,z)$ moves along a curve $C$ from a point $A(a_1,a_2,a_3)$ to a point $B(b_1,b_2,b_3)$, then the work done by the force is
+    \begin{equation*}
+        W = \int_C\mathbf{F}\cdot\dd{\mathbf{R}}
+    \end{equation*}
+    where $\mathbf{R}$ [is the position vector]}{586}
+    \begin{itemize}
+        \item Since $\dd{\mathbf{R}}=\dv{\mathbf{R}}{s}\dd{s}$ and $\dv*{\mathbf{R}}{s}=\mathbf{T}$, the work can also be thought of as \dq{the value of the line integral along $C$ of the tangential component of the force field $\mathbf{F}$}{587}
+    \end{itemize}
+    \item The line integral between two points $A$ and $B$ is independent of the path $C$ joining them if and only if the force field $\mathbf{F}$ is a \textbf{gradient field}, that is, if
+    \begin{equation*}
+        \mathbf{F}(x,y,z) = \nabla f
+    \end{equation*}
+    for some differentiable function $f$.
+    \begin{itemize}
+        \item \textcite{bib:Thomas} proves this.
+        \item If $\mathbf{F}$ is a gradient field, then
+        \begin{align*}
+            \int_A^B\mathbf{F}\cdot\dd{\mathbf{R}} = \int_A^B\nabla f\cdot\dd{\mathbf{R}} = f(B)-f(A)
+        \end{align*}
+        \item Furthermore, from $\mathbf{F}$, we define $f$ by
+        \begin{equation*}
+            f(x',y',z') = \int_A^{(x',y',z')}\mathbf{F}\cdot\dd{\mathbf{R}}
+        \end{equation*}
+    \end{itemize}
+    \item \dq{Find a function $f$ such that if $\mathbf{F}=2x\mathbf{i}+2y\mathbf{j}+2z\mathbf{k}$, then $\mathbf{F}=\nabla f$}{589}
+    \begin{itemize}
+        \item Choose $A=(0,0,0)$ to simplify calculations.
+        \item Assume that $\mathbf{F}$ is a gradient field, i.e., that evaluating $\int_A^{(x',y',z')}\mathbf{F}\cdot\dd{\mathbf{R}}$ along any path will yield the same result.
+        \item Thus, choose to evaluate the line integral along the line segment from $A$ to $(x',y',z')$, which we may define by the parameterization $x=x't$, $y=y't$, $z=z't$ for $0\leq t\leq 1$.
+        \item Therefore,
+        \begingroup
+        \allowdisplaybreaks
+        \begin{align*}
+            f(x',y',z') &= \int_{(0,0,0)}^{(x',y',z')}\mathbf{F}\cdot\dd{\mathbf{R}}\\
+            &= \int_{(0,0,0)}^{(x',y',z')}(2x\mathbf{i}+2y\mathbf{j}+2z\mathbf{k})\cdot(\mathbf{i}\dd{x}+\mathbf{j}\dd{y}+\mathbf{k}\dd{z})\\
+            &= \int_0^1(2x't\mathbf{i}+2y't\mathbf{j}+2z't\mathbf{k})\cdot(\mathbf{i}x'\dd{t}+\mathbf{j}y'\dd{t}+\mathbf{k}z'\dd{t})\\
+            &= \int_0^1(2x'^2t\dd{t}+2y'^2t\dd{t}+2z'^2t\dd{t})\\
+            &= (x'^2+y'^2+z'^2)\int_0^12t\dd{t}\\
+            &= x'^2+y'^2+z'^2
+        \end{align*}
+        \endgroup
+    \end{itemize}
+    \item \textbf{Conservative} (force field): A force field $\mathbf{F}$ such that the work integral from $A$ to $B$ is the same for all paths joining them.
+    \item Another criterion besides $\mathbf{F}=\nabla f$ for some differentiable $f$ is that $\dd{f}=\mathbf{F}\cdot\dd{\mathbf{R}}=M\dd{x}+N\dd{y}+P\dd{z}$ is an exact differential.
+    \begin{itemize}
+        \item By an extension of Theorem \ref{thm:exactDifferential}, we know that $M\dd{x}+N\dd{y}+P\dd{z}$ is an exact differential if and only if
+        \begin{align*}
+            \pdv{M}{y} &= \pdv{N}{x}&
+            \pdv{M}{z} &= \pdv{P}{x}&
+            \pdv{N}{z} &= \pdv{P}{y}
+        \end{align*}
+    \end{itemize}
+    \item \dq{Suppose $\mathbf{F}=\mathbf{i}(\e[x]\cos y+yz)+\mathbf{j}(xz-\e[x]\sin y)+\mathbf{k}(xy+z)$. Is $\mathbf{F}$ conservative? If so, find $f$ such that $\mathbf{F}=\nabla f$}{591}
+    \begin{itemize}
+        \item Apply the exact differential test:
+        \begin{align*}
+            \pdv{M}{y} &= -\e[x]\sin y+z = \pdv{N}{x}&
+            \pdv{M}{z} &= y = \pdv{P}{x}&
+            \pdv{N}{z} &= x = \pdv{P}{y}
+        \end{align*}
+        \begin{itemize}
+            \item Therefore, $\mathbf{F}$ is conservative.
+        \end{itemize}
+        \item To calculate $f$, we integrate the system of equations
+        \begin{align*}
+            \pdv{f}{x} &= \e[x]\cos y+yz&
+            \pdv{f}{y} &= xz-\e[x]\sin y&
+            \pdv{f}{z} &= xy+z
+        \end{align*}
+        \begin{itemize}
+            \item Starting with the first one, we obtain
+            \begin{equation*}
+                f = \e[x]\cos y+xyz+g(y,z)
+            \end{equation*}
+            where $g(y,z)$ is a function of integration.
+            \item Differentiating wrt. $y$, we get
+            \begin{align*}
+                xz-\e[x]\sin y &= \pdv{f}{y} = -e[x]\sin y+xz+\pdv{g}{y}\\
+                \pdv{g}{y} &= 0\\
+                g(y,z) &= h(z)
+            \end{align*}
+            \item Differentiating wrt. $z$, we get
+            \begin{align*}
+                xy+z &= \pdv{f}{z} = xy+\pdv{h}{z}\\
+                \pdv{h}{z} &= z\\
+                h(z) &= \frac{1}{2}z^2+C
+            \end{align*}
+            \item Therefore,
+            \begin{equation*}
+                f(x,y,z) = \e[x]\cos y+xyz+\frac{1}{2}z^2+C
+            \end{equation*}
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Potential function}: A function $f(x,y,z)$ which has the property that its gradient gives the force vector $\mathbf{F}$.
+\end{itemize}
+
+
+
+\section{Two-Dimensional Fields: Line Integrals in the Plane and Their Relation to Surface Integrals on Cylinders}
+\begin{itemize}
+    \item Features of a two-dimensional field $\mathbf{F}$:
+    \begin{enumerate}
+        \item The vectors in $\mathbf{F}$ are all parallel to one plane, which we have taken to be the $xy$-plane.
+        \begin{itemize}
+            \item Mathematically, the vectors have no $\mathbf{k}$ component.
+        \end{itemize}
+        \item In every plane parallel to the $xy$-plane, the field is the same as it is in that plane.
+        \begin{itemize}
+            \item Mathematically, the vectors do not depend on $z$.
+        \end{itemize}
+    \end{enumerate}
+    \item Imagine fluid of planar mass density $\delta$ flowing out from the origin with velocity defined by a vector velocity function $\mathbf{v}$.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[
+            scale=2,
+            every node/.append style={black}
+        ]
+            \footnotesize
+            \draw [-stealth] (-0.3,0) -- (2,0) node[right]{$x$};
+            \draw [-stealth] (0,-0.2) -- (0,2) node[above]{$y$};
+            \node [below left] {$O$};
+            \draw (1,0) node[below]{$A(1,0)$} -- ++(0,0.1);
+            \draw (0,1) node[left]{$B(0,1)$} -- ++(0.1,0);
+    
+            \fill [yly] (0.2,0.8) -- node[below left=-1mm]{$\Delta s$} ++(0.2,-0.2) -- ++(0.3,0.6) -- ++(-0.2,0.2) -- cycle;
+    
+            \draw [ylx,thick] (0,1) -- (1,0);
+            \draw [ylx,thick,-latex] (0.45,0.55) -- ++(0.7,0.7) node[above]{$\mathbf{n}$};
+            \draw [ylx,thick,-latex] (0.3,0.7) -- ++(0.3,0.6) node[above right=-1mm]{$\mathbf{v}\Delta t$};
+    
+            \draw [very thin] (0.7,1.2) ++(0.05,-0.05) -- ++(0.4,-0.4);
+            \draw [<->,shorten <=1pt,shorten >=1pt] (0.6,0.4) -- node[below right]{$h=(\mathbf{v}\Delta t)\cdot\mathbf{n}$} ++(0.45,0.45);
+        \end{tikzpicture}
+        \caption{Fluid flowing over a line segment.}
+        \label{fig:fluidLineSegment}
+    \end{figure}
+    \begin{itemize}
+        \item Then the flow rate $\dv*{M}{t}$ over a curve $C$ in the plane is given by
+        \begin{equation*}
+            \dv{M}{t} = \int_C\delta(\mathbf{v}\cdot\mathbf{n})\dd{s}
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Flux} (of $\mathbf{F}=\delta\mathbf{v}$ across $C$): The quantity
+    \begin{equation*}
+        \int_C\mathbf{F}\cdot\mathbf{n}\dd{s}
+    \end{equation*}
+    \item If $C$ is a closed curve, we canonically choose $\mathbf{n}$ to point outwards and the orientation to be in the counterclockwise direction.
+    \begin{itemize}
+        \item We also choose $\mathbf{n}=\mathbf{T}\times\mathbf{k}$.
+    \end{itemize}
+    \item With these conventions, if we let $\mathbf{F}(x,y)=\mathbf{i}M(x,y)+\mathbf{j}N(x,y)$, then
+    \begin{align*}
+        \text{flux} &= \int_C\mathbf{F}\cdot\mathbf{n}\dd{s}\\
+        &= \int_C\mathbf{F}\cdot(\mathbf{T}\times\mathbf{k})\dd{s}\\
+        &= \int_C\mathbf{F}\cdot\left( \left( \dv{x}{s}\mathbf{i}+\dv{y}{s}\mathbf{j} \right)\times\mathbf{k} \right)\dd{s}\\
+        &= \int_C\mathbf{F}\cdot\left( \dv{y}{s}\mathbf{i}-\dv{x}{s}\mathbf{j} \right)\dd{s}\\
+        &= \int_C\left( M\dv{y}{s}-N\dv{x}{s} \right)\dd{s}\\
+        &= \int_C(M\dd{y}-N\dd{x})
+    \end{align*}
+    \item Any flux integral can be reinterpreted as a work integral on a related field and vice versa: If $\mathbf{F}(x,y)=\mathbf{i}M+\mathbf{j}N$ and $\mathbf{G}(x,y)=-\mathbf{i}N+\mathbf{j}M$, then
+    \begin{equation*}
+        \int_C\mathbf{F}\cdot\mathbf{n}\dd{s} = \int_C\mathbf{G}\cdot\mathbf{T}\dd{s}
+    \end{equation*}
+\end{itemize}
+
+
+
+\section{Green's Theorem}
+\begin{itemize}
+    \item The following is a formal statement of \textbf{Green's theorem}.
+    \begin{thm}[Green's theorem]\label{trm:GreensTheorem}
+        Let $C$ be a simple closed curve in the $xy$-plane such that a line parallel to either axis cuts $C$ in at most two points. Let $M$, $N$, $\pdv*{N}{x}$, and $\pdv*{M}{y}$ be continuous functions of $(x,y)$ inside and on $C$. Let $R$ be the region inside $C$. Then
+        \begin{equation*}
+            \oint_CM\dd{x}+N\dd{y} = \iint_R\left( \pdv{N}{x}-\pdv{M}{y} \right)\dd{x}\dd{y}\footnotemark
+        \end{equation*}
+        \footnotetext{The symbol $\oint$ denotes a line integral over a closed curve $C$.}
+        \begin{proof}
+            We will prove that $\iint_R(-\pdv*{M}{y})\dd{x}\dd{y}=\oint_CM\dd{x}$. It will follow by a symmetric argument that $\iint_R(\pdv*{N}{x})\dd{x}\dd{y}=\oint_CN\dd{y}$. The sum of these two qualities will yield Green's theorem. Let's begin.
+            \begin{figure}[h!]
+                \centering
+                \begin{tikzpicture}[
+                    scale=1.3,
+                    every node/.append style={black,text height=1.5ex,text depth=0.25ex}
+                ]
+                    \footnotesize
+                    \draw [-stealth] (-0.5,0) -- (4,0) node[right]{$x$};
+                    \draw [-stealth] (0,-0.4) -- (0,3.5) node[above]{$y$};
+                    \node [below left] {$O$};
+            
+                    \filldraw [draw=ylx,thick,fill=gay,rotate around={20:(2,1.8)},postaction={decorate},decoration={
+                        markings,
+                        mark=at position 0.1 with {\node[above right=-1mm]{$C_2:y_2=f_2(x)$};},
+                        mark=at position 0.4 with \arrow{latex},
+                        mark=at position 0.9 with \arrow{latex}
+                    }] (2,1.8) ellipse (1.5cm and 1cm) node{$R$};
+            
+                    \draw [ylx] (0.545,0) node[below]{$a$} -- node[pos=0.4,right]{$C_1:y_1=f_1(x)$} ++(0,1.5);
+                    \draw [ylx] (2.3,0) node[below]{$x$} -- node[pos=0.25,right]{$P_1(x,y_1)$} ++(0,2.87) node[above left]{$P_2(x,y_2)$};
+                    \draw [ylx] (3.452,0) node[below]{$b$} -- ++(0,2.1);
+                \end{tikzpicture}
+                \caption{Proving Green's theorem.}
+                \label{fig:GreensTheorem}
+            \end{figure}\par
+            Consider the curve $C$ enclosing a region $R$. We divide $C$ into a lower boundary curve $C_1$ and an upper boundary curve $C_2$, both of which are functions of $x$ (the constraint that a line parallel to either axis cuts $C$ in at most two points allows us to do this).\par
+            Since $\pdv*{M}{y}$ is continuous, it is integrable, meaning that at any $x\in[a,b]$, we can determine that
+            \begin{align*}
+                \int_{y_1}^{y_2}\pdv{M}{y}\dd{y} &= \left[ M(x,y) \right]_{y=f_1(x)}^{y=f_2(x)}\\
+                &= M(x,f_2(x))-M(x,f_1(x))
+            \end{align*}
+            It follows since $M$ is continuous, and therefore integrable, that
+            \begin{align*}
+                \iint_R-\pdv{M}{y}\dd{x}\dd{y} &= \int_a^b-\int_{f_1(x)}^{f_2(x)}\pdv{M}{y}\dd{y}\dd{x}\\
+                &= \int_a^b[M(x,f_1(x))-M(x,f_2(x))]\dd{x}\\
+                &= \int_a^b[M(x,f_1(x))\dd{x}+\int_b^aM(x,f_2(x))]\dd{x}\\
+                &= \int_{C_1}M\dd{x}+\int_{C_2}M\dd{x}\\
+                &= \oint_CM\dd{x}
+            \end{align*}
+            as desired.\par
+            It follows by a symmetric argument that
+            \begin{equation*}
+                \iint_R\pdv{N}{x}\dd{x}\dd{y} = \oint_CN\dd{y}
+            \end{equation*}\par
+            Therefore, we have by addition that
+            \begin{equation*}
+                \oint_CM\dd{x}+N\dd{y} = \iint_R\left( \pdv{N}{x}-\pdv{M}{y} \right)\dd{x}\dd{y}\footnotemark
+            \end{equation*}
+            as desired.
+        \end{proof}
+    \end{thm}
+    \item Green's theorem provides an easy to calculate the area enclosed by a curve.
+    \begin{cly}
+        If $C$ is a simple closed curve such that a line parallel to either axis cuts it in at most two points, them the area enclosed by $C$ is equal to
+        \begin{equation*}
+            \frac{1}{2}\oint_C(x\dd{y}-y\dd{x})
+        \end{equation*}
+        \begin{proof}
+            From Section 16.2, we have that
+            \begin{align*}
+                A &= \iint_R1\dd{x}\dd{y}\\
+                &= \iint_R\left( \frac{1}{2}-\left( -\frac{1}{2} \right) \right)\dd{x}\dd{y}\\
+                &= \iint_R\left( \pdv{x}\left( \frac{x}{2} \right)-\pdv{y}\left( -\frac{y}{2} \right) \right)\dd{x}\dd{y}\\
+                &= \oint_C\left( -\frac{1}{2}y\dd{x}+\frac{1}{2}x\dd{y} \right)\tag*{Theorem \ref{trm:GreensTheorem}}\\
+                &= \frac{1}{2}\oint_C(x\dd{y}-y\dd{x})
+            \end{align*}
+            as desired.
+        \end{proof}
+    \end{cly}
+    \item Note that Green's theorem also applies to a number of shapes that don't fit the theorem statement's direct criteria.
+    \begin{itemize}
+        \item For instance, we can prove that it holds for a rectangle in the $xy$-plane with sides parallel to the $x$- or $y$-axes.
+        \item Additionally, we can add together regions that satisfy Green's theorem individually to form bigger regions that satisfy it (the line integrals in the overlapping part of Figure \ref{fig:GreensTheoremComposite} cancel).
+        \begin{figure}[h!]
+            \centering
+            \begin{tikzpicture}[
+                every node/.style={black,text height=1.5ex,text depth=0.25ex}
+            ]
+                \footnotesize
+                \draw [-stealth] (-3,0) -- (3,0) node[right]{$x$};
+                \draw [-stealth] (0,-0.4) -- (0,3) node[above]{$y$};
+                \node [below left] {$O$};
+        
+                \filldraw [draw=ylx,thick,fill=gay,postaction={decorate},decoration={
+                    markings,
+                    mark=at position 0.25 with {\arrow{latex} \node[above right]{$C_1$};},
+                    mark=at position 0.75 with {\arrow{latex} \node[below left]{$C_1$};},
+                    mark=at position 0.94 with {\arrow{latex} \node[below=1mm,xshift=-1mm]{$C_1$};}
+                }] (2,0) node[below]{$b$} arc[start angle=0,end angle=90,radius=2cm] node[above right=-2pt]{$b$} -- (0,1) node[below right=-2pt]{$a$} arc[start angle=90,end angle=0,radius=1cm] node[below]{$a$} -- cycle;
+                \draw [ylx,thick,-latex] (0.2,1.8) -- node[right]{$C_1$} (0.2,1.2);
+                \node at (45:1.5) {$R_1$};
+                \filldraw [draw=ylx,thick,fill=gay,postaction={decorate},decoration={
+                    markings,
+                    mark=at position 0.12 with {\arrow{latex} \node[below right,xshift=-2pt,yshift=-2pt]{$C_2$};},
+                    mark=at position 0.63 with {\arrow{latex} \node[above left]{$C_2$};},
+                    mark=at position 0.94 with {\arrow{latex} \node[below=1mm,xshift=-1mm]{$C_2$};}
+                }] (-1,0) node[below]{$-a$} arc[start angle=180,end angle=90,radius=1cm] -- (0,2) arc[start angle=90,end angle=180,radius=2cm] node[below]{$-b$} -- cycle;
+                \draw [ylx,thick,-latex] (-0.2,1.2) -- node[left]{$C_2$} (-0.2,1.8);
+                \node at (135:1.5) {$R_2$};
+            \end{tikzpicture}
+            \caption{Creating composite regions that satisfy Green's theorem.}
+            \label{fig:GreensTheoremComposite}
+        \end{figure}
+        \item In fact, we can add together any finite number of subregions that satisfy Green's theorem.
+    \end{itemize}
+    \item \textbf{Curl} (of a vector $\mathbf{F}=M\mathbf{i}+N\mathbf{j}+P\mathbf{k}$): The cross product of the del operator and $\mathbf{F}$. \emph{Given by}
+    \begin{align*}
+        \text{curl}\,\mathbf{F} &= \nabla\times\mathbf{F}\\
+        &=
+        \begin{vmatrix}
+            \mathbf{i} & \mathbf{j} & \mathbf{k}\\
+            \pdv{x} & \pdv{y} & \pdv{z}\\
+            M & N & P\\
+        \end{vmatrix}\\
+        &= \mathbf{i}\left( \pdv{P}{y}-\pdv{N}{z} \right)+\mathbf{j}\left( \pdv{M}{z}-\pdv{P}{x} \right)+\mathbf{k}\left( \pdv{N}{x}-\pdv{M}{y} \right)
+    \end{align*}
+    \item It follows that Green's theorem in vector form is
+    \begin{equation*}
+        \int_C\mathbf{F}\cdot\dd{\mathbf{R}} = \iint_R(\nabla\times\mathbf{F})\cdot\dd{\mathbf{A}}
+    \end{equation*}
+    where $\mathbf{F}=M\mathbf{i}+N\mathbf{j}+P\mathbf{k}$, $\dd{\mathbf{R}}=\mathbf{i}\dd{x}+\mathbf{j}\dd{y}$, and $\dd{\mathbf{A}}=\mathbf{k}\dd{x}\dd{y}$.
+    \begin{itemize}
+        \item \dq{In words, Green's theorem states that the integral around $C$ of the tangential component of $\mathbf{F}$ is equal to the integral, over the region $R$ bounded by $C$, of the component of $\text{curl}\,\mathbf{F}$ that is normal to $R$; this integral, specifically, is the flux through $R$ of $\text{curl}\,\mathbf{F}$}{604}
+    \end{itemize}
+    \item \textbf{Divergence} (of a vector $\mathbf{F}=M\mathbf{i}+N\mathbf{j}+P\mathbf{k}$): The dot product of the del operator and $\mathbf{F}$. \emph{Given by}
+    \begin{align*}
+        \text{div}\,\mathbf{G} &= \nabla\cdot\mathbf{G}\\
+        &= \pdv{M}{x}+\pdv{N}{x}+\pdv{P}{x}
+    \end{align*}
+    \item If $\mathbf{F}=\mathbf{i}M(x,y)+\mathbf{j}N(x,y)$ is a field and $\mathbf{G}=\mathbf{i}N(x,y)-\mathbf{j}M(x,y)$ is the orthogonal field, then an alternate vector formulation of Green's theorem is
+    \begin{equation*}
+        \int_C\mathbf{G}\cdot\mathbf{n}\dd{s} = \iint_R\nabla\cdot\mathbf{G}\dd{x}\dd{y}
+    \end{equation*}
+    \begin{itemize}
+        \item \dq{In words, [this] says that the line integral of the normal compoment of any vector field $\mathbf{G}$ around the boundary of a region $R$ in which $\mathbf{G}$ is continuous and has continuous partial derivatives is equal to the double integral of the divergence of $\mathbf{G}$ over $R$}{604}
+    \end{itemize}
 \end{itemize}
 
 
