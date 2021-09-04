@@ -447,5 +447,160 @@
 
 
 
+\section{Divergence Theorem}
+\begin{itemize}
+    \item \marginnote{9/4:}\textbf{Divergence theorem}: Let $\mathbf{F}=\mathbf{i}M+\mathbf{j}N+\mathbf{k}P$, where $M,N,P$ are continuous functions of $(x,y,z)$ that have continuous first-order partial derivatives $\text{div}\,\mathbf{F}=\pdv*{M}{x}+\pdv*{N}{y}+\pdv*{P}{z}$. Let $\dd{\bm{\sigma}}=\mathbf{n}\dd{\sigma}$ be a vector element of surface area directed along the unit outer normal vector $\mathbf{n}$. Let $\Sigma$ be the surface enclosing the region $D$, where $D$ is some convex region with no holes, $\Sigma$ is a piecewise smooth surface, the projection of $D$ into the $xy$-plane is a simply connected region $R_{xy}$, and any line perpendicular to the $xy$-plane at an interior point of $R_{xy}$ intersects the surface $\Sigma$ in at most two points, producing surfaces $\Sigma_1:z_1=f_1(x,y)$ and $\Sigma_2:z_2=f_2(x,y)$, $(x,y)\in R_{xy}$, $z_1\leq z_2$. Then
+    \begin{equation*}
+        \iiint_D\text{div}\,\mathbf{F}\dd{V} = \iint_\Sigma\mathbf{F}\cdot\dd{\bm{\sigma}}
+    \end{equation*}
+    Alternatively, if we let $\mathbf{n}=\mathbf{i}\cos\alpha+\mathbf{j}\cos\beta+\mathbf{k}\cos\gamma$, then we can rewrite the divergence theorem as
+    \begin{equation*}
+        \iiint_D\left( \pdv{M}{x}+\pdv{N}{y}+\pdv{P}{z} \right)\dd{x}\dd{y}\dd{z} = \iint_\Sigma(M\cos\alpha+N\cos\beta+P\cos\gamma)\dd{\sigma}
+    \end{equation*}
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.4\linewidth]{ExtFiles/divergenceTheorem.jpg}
+        \caption{Divergence theorem.}
+        \label{fig:divergenceTheorem}
+    \end{figure}
+    \begin{itemize}
+        \item We will not rigorously prove the divergence theorem, but we will justify $\iiint_D\pdv*{P}{z}\dd{x}\dd{y}\dd{z}=\iint_\Sigma P\cos\gamma\dd{\sigma}$.
+        \item From Figure \ref{fig:divergenceTheorem}, we can see that the outer normal on $\Sigma_2$ has a positive $\mathbf{k}$-component, and so $\cos\gamma_2\dd{\sigma_2}=\dd{x}\dd{y}$.
+        \item On the other hand, the outer normal on $\Sigma_1$ has a negative $\mathbf{k}$-component, so $\cos\gamma_1\dd{\sigma_1}=-\dd{x}\dd{y}$.
+        \item Therefore,
+        \begin{align*}
+            \iint_\Sigma P\cos\gamma\dd{\sigma} &= \iint_{\Sigma_2}P_2\cos\gamma_2\dd{\sigma_2}+\iint_{\Sigma_1}P_1\cos\gamma_1\dd{\sigma_1}\\
+            &= \iint_{R_{xy}}P(x,y,z_2)\dd{x}\dd{y}-\iint_{R_{xy}}P(x,y,z_1)\dd{x}\dd{y}\\
+            &= \iint_{R_{xy}}[P(x,y,z_2)-P(x,y,z_1)]\dd{x}\dd{y}\\
+            &= \iint_{R_{xy}}\int_{z_1}^{z_2}\left[ \pdv{P}{z}\dd{z} \right]\dd{x}\dd{y}\\
+            &= \iiint_D\pdv{P}{z}\dd{x}\dd{y}\dd{z}
+        \end{align*}
+    \end{itemize}
+    \item \dq{Verify [the divergence theorem] for the sphere $x^2+y^2+z^2=a^2$ if $\mathbf{F}=\mathbf{i}x+\mathbf{j}y+\mathbf{k}z$}{607}
+    \begin{itemize}
+        \item We will take this one piece at a time and then assemble all the pieces. We do this for both integrals in the divergence theorem.
+        \item Left integral:
+        \begin{itemize}
+            \item First off,
+            \begin{equation*}
+                \text{div}\,\mathbf{F} = \pdv{x}{x}+\pdv{y}{y}+\pdv{z}{z} = 3
+            \end{equation*}
+            \item Therefore,
+            \begin{equation*}
+                \iiint_D\text{div}\,\mathbf{F}\dd{V} = \iiint_D3\dd{V} = 3\iiint_D\dd{V} = 3\left( \frac{4}{3}\pi a^3 \right) = 4\pi a^3
+            \end{equation*}
+        \end{itemize}
+        \item Right integral:
+        \begin{itemize}
+            \item To define $\mathbf{n}$, we use the fact that $\mathbf{n}=\pm\nabla f/|\nabla f|$ where $f(x,y,z)=x^2+y^2+z^2-a^2$, meaning that the outer unit normal is
+            \begin{equation*}
+                \mathbf{n} = \frac{2x\mathbf{i}+2y\mathbf{j}+2z\mathbf{k}}{\sqrt{(2x)^2+(2y)^2+(2z)^2}} = \frac{x\mathbf{i}+y\mathbf{j}+z\mathbf{k}}{a}
+            \end{equation*}
+            \item It follows that
+            \begin{equation*}
+                \mathbf{F}\cdot\dd{\bm{\sigma}} = \frac{x^2+y^2+z^2}{a}\dd{\sigma} = \frac{a^2}{a}\dd{\sigma} = a\dd{\sigma}
+            \end{equation*}
+            \item Therefore,
+            \begin{equation*}
+                \iint_\Sigma\mathbf{F}\cdot\dd{\bm{\sigma}} = \iint_\Sigma a\dd{\sigma} = a(4\pi a^2) = 4\pi a^3
+            \end{equation*}
+        \end{itemize}
+        \item Clearly, the two integrals are equal, as desired.
+    \end{itemize}
+    \item As with Green's theorem, the divergence theorem can be extended to more complex regions, as long as those regions can be split up into a finite number of simple regions of the type originally discussed.
+    \item \textcite{bib:Thomas} proves that the divergence of the velocity of an incompressible fluid is zero in a region where there are no sources or sinks.
+\end{itemize}
+
+
+
+\section{Stokes's Theorem}
+\begin{itemize}
+    \item The following is a formal statement of \textbf{Stokes's theorem}.
+    \begin{thm}[Stokes's theorem]
+        Let $\Sigma$ be a smooth, simply connected, orientable surface bounded by a simple closed curve $C$. Let $\mathbf{F}=\mathbf{i}M+\mathbf{j}N+\mathbf{k}P$, where $M,N,P$ are continuous functions of $(x,y,z)$, together with their first-order partial derivatives throughout a region $D$ containing $\Sigma$ and $C$ in its interior. Let $\mathbf{n}$ be a positive unit vector normal to $\Sigma$, and let the positive direction around $C$ be the one induced by the positive orientation of $\Sigma$. Then
+        \begin{equation*}
+            \oint_C\mathbf{F}\cdot\dd{\mathbf{R}} = \iint_\Sigma\text{curl}\,\mathbf{F}\cdot\dd{\bm{\sigma}}
+        \end{equation*}
+        where $\dd{\mathbf{R}}=\mathbf{i}\dd{x}+\mathbf{j}\dd{y}+\mathbf{k}\dd{z}=\mathbf{T}\dd{s}$ and $\dd{\bm{\sigma}}=\mathbf{n}\dd{\sigma}=(\mathbf{i}\cos\alpha+\mathbf{j}\cos\beta+\mathbf{k}\cos\gamma)\dd{\sigma}$.
+    \end{thm}
+    \begin{itemize}
+        \item \textcite{bib:Thomas} proves Stokes's theorem from Green's theorem for a polyhedral surface consisting of a finite number of plane regions, much the same way he built up larger surfaces from Green's theorem earlier on.
+        \item A rigorous proof of Stokes's theorem for more general surfaces is beyond the level of an intro calculus course. More intuitively, we can think about taking the limit of a finite construction for more and more subdivision of a general surface.
+    \end{itemize}
+    \item \textbf{Orientable} (surface): A surface $\Sigma$ such that it is possible to consistently assign a unique direction, called positive, at each point of $\Sigma$. As we move the normal over $\Sigma$ without touching its boundary, the direction cosines of the unit vector $\mathbf{n}$ should vary continuously. Also, when we return to the starting position, $\mathbf{n}$ should return to its original direction.
+    \begin{itemize}
+        \item Recall that M\"{o}bius strips are non-orientable surfaces.
+    \end{itemize}
+    \item Defining the positive direction around $C$ consistently with the positive direction on $\Sigma$.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.3\linewidth]{ExtFiles/orientingSurface-Boundary.jpg}
+        \caption{Orienting a surface and its boundary consistently.}
+        \label{fig:orientingSurface-Boundary}
+    \end{figure}
+    \begin{itemize}
+        \item \dq{Imagine a simple closed curve $\Gamma$ on $\Sigma$, near the boundary $C$, and let $\mathbf{n}$ be normal to $\sigma$ at some point inside $\Gamma$. We then assign to $\Gamma$ a positive direction, the counterclockwise direction as viewed by an observer who is at the end of $\mathbf{n}$ and looking down. (Note that such a direction keeps the interior of $\Gamma$ on the observer's left as he progresses around $\Gamma$. We could equally well have specified $\mathbf{n}$'s direction by this condition.) Now we move $\Gamma$ about $\Sigma$ until it touches and is tangent to $C$. The direction of the positive tangent to $\Gamma$ at this point of common tangency we shall take to be the positive direction along $C$}{612}
+        \item Note that it is a consequence of the orientability of $\Sigma$ that a consistent assignment of positive direction along $C$ is induced by this process (it would not hold for a M\"{o}bius strip, for example).
+    \end{itemize}
+    \item \dq{Let $S$ be the portion of the paraboloid $z=4-x^2-y^2$ that lies above the plane $z=0$. Let $C$ be their curve of intersection, and let $\mathbf{F}=\mathbf{i}(z-y)+\mathbf{j}(z+x)-\mathbf{k}(x+y)$. Compute $\oint_C\mathbf{F}\cdot\dd{\mathbf{R}}$ and $\iint_S\text{curl}\,\mathbf{F}\cdot\dd{\bm{\sigma}}$ and compare}{614}
+    \begin{itemize}
+        \item Naturally, $C$ is defined by $z=0=4-x^2+y^2$, or $x^2+y^2=4$.
+        \item With the substitutions $x=2\cos\theta$, $y=2\sin\theta$, and $z=0$, we get the following.
+        \begin{align*}
+            \oint_C\mathbf{F}\cdot\dd{\mathbf{R}} &= \oint_C(z-y)\dd{x}+(z+x)\dd{y}-(x+y)\dd{z}\\
+            &= \int_0^{2\pi}(0-2\sin\theta)(-2\sin\theta\dd{\theta})+(0+2\cos\theta)(2\cos\theta\dd{\theta})+(2\cos\theta+2\sin\theta)(0)\\
+            &= \int_0^{2\pi}4(\sin^2\theta+\cos^2\theta)\dd{\theta}\\
+            &= 4\int_0^{2\pi}\dd{\theta}\\
+            &= 8\pi
+        \end{align*}
+        \begin{itemize}
+            \item Note that we can also evaluate $\oint_C\mathbf{F}\cdot\dd{\mathbf{R}}$ more directly with
+            \begin{equation*}
+                \begin{split}
+                    \oint_C\mathbf{F}\cdot\dd{\mathbf{R}} &= \left[ \int_2^{-2}\left( 0-\sqrt{4-x^2} \right)\dd{x}+\int_{-2}^2\left( 0-\left( -\sqrt{4-x^2} \right) \right)\dd{x} \right]\\
+                    &\qquad+\left[ \int_2^{-2}\left( 0-\sqrt{4-y^2} \right)\dd{y}+\int_{-2}^2\left( 0-\left( -\sqrt{4-y^2} \right) \right)\dd{y} \right]
+                \end{split}
+            \end{equation*}
+        \end{itemize}
+        \item As to the other integral, we'll do some setup first.
+        \item First off, we have
+        \begin{align*}
+            \text{curl}\,\mathbf{F} &=
+            \begin{vmatrix}
+                \mathbf{i} & \mathbf{j} & \mathbf{k}\\
+                \pdv{x} & \pdv{y} & \pdv{z}\\
+                z-y & z+x & -x-y\\
+            \end{vmatrix}\\
+            &= -2\mathbf{i}+2\mathbf{j}+2\mathbf{k}
+        \end{align*}
+        \item Next up, if $f(x,y,z)=z-4+x^2+y^2$, we have
+        \begin{align*}
+            \mathbf{n} &= \frac{\nabla f}{|\nabla f|}\\
+            &= \frac{2x\mathbf{i}+2y\mathbf{j}+\mathbf{k}}{\sqrt{4x^2+4y^2+1}}
+        \end{align*}
+        \item To evaluate this surface integral, we'll project it onto the $xy$-plane. Its shadow is $x^2+y^2\leq 4$.
+        \item And to account for this change of domain, we must use
+        \begin{align*}
+            \dd{\sigma} &= \sqrt{\left( \pdv{z}{x} \right)^2+\left( \pdv{z}{y} \right)^2+1}\dd{x}\dd{y}\\
+            &= \sqrt{4x^2+4y^2+1}\dd{x}\dd{y}
+        \end{align*}
+        \item Putting everything together, we have
+        \begin{align*}
+            \iint_S\text{curl}\,\mathbf{F}\cdot\mathbf{n}\dd{\sigma} &= \iint_{x^2+y^2\leq 4}(-2\mathbf{i}+2\mathbf{j}+2\mathbf{k})\cdot\frac{2x\mathbf{i}+2y\mathbf{j}+\mathbf{k}}{\sqrt{4x^2+4y^2+1}}\sqrt{4x^2+4y^2+1}\dd{x}\dd{y}\\
+            &= \iint_{x^2+y^2\leq 4}(-4x+4y+2)\dd{x}\dd{y}\\
+            &= \iint_{x^2+y^2\leq 4}2\dd{x}\dd{y}\\
+            &= 2(\pi\cdot 2^2)\\
+            &= 8\pi
+        \end{align*}
+        \begin{itemize}
+            \item Note that we can remove $-4x+4y$ from the integrand because odd powers of $x$ or $y$ integrate to 0 over the interior of the circle.
+        \end{itemize}
+    \end{itemize}
+    \item Stokes's theorem can also be extended to a surface with finitely many holes in a manner analogously to how we did so with Green's theorem.
+    \item Note that Stokes's theorem interprets curl as equating the circulation of fluid around the closed curve $C$ with the flus of the curl though the surface spanning $C$.
+\end{itemize}
+
+
+
 
 \end{document}
