@@ -40,6 +40,7 @@
 \externaldocument{main}
 
 \DeclareMathOperator{\gradd}{grad}
+\DeclareMathOperator{\cis}{cis}
 
 \newtheorem{cly}{Corollary}[chapter]
 \theoremstyle{definition}
@@ -53,13 +54,18 @@
 \colorlet{gax}{gray}
 \colorlet{gay}{gray!50}
 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
 \setlength\cftsecnumwidth{3em}
 
 \renewcommand{\labelitemiii}{\scriptsize$\blacksquare$}
 
 \newcommand{\dq}[2]{``#1" \parencite[#2]{bib:Thomas}.}
 \newcommand{\e}[1][]{\text{e}^{#1}}
-\newcommand{\R}{\mathbb{R}}
 \newcommand{\dvat}[2]{\left. #1 \right|_{#2}}
 \newcommand{\Dv}[2]{\frac{\Delta #1}{\Delta #2}}
 

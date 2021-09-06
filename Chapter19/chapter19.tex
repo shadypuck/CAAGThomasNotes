@@ -1,0 +1,315 @@
+\documentclass[../main.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter:\ #1}{}}
+\setcounter{chapter}{18}
+
+\begin{document}
+
+
+
+
+\chapter{Complex Numbers and Functions}\label{cht:19}
+\section{Inverted Number Systems}
+\begin{itemize}
+    \item \marginnote{9/5:}Reviews the construction of the real numbers (from sequences of rational numbers).
+    \item \textbf{Rational operations}: The operations of addition, subtraction, multiplication, and division, as they pertain to the rational numbers.
+    \item The systems of numbers $\N,\Z,\Q,\R$ form a hierarchy, both in terms of set inclusion and in terms of an increase in the number of operations that can be performed without going outside the system.
+    \begin{itemize}
+        \item Mathematically\dots
+        \begin{itemize}
+            \item In $\Z$, we can solve all equations of the form $x+a=0$, provided $a\in\Z$.
+            \item In $\Q$, we can solve all equations of the form $ax+b=0$, provided $a,b\in\Q$ and $a\neq 0$.
+            \item In $\R$, we can solve all equations of the form $ax^2+bx+c=0$, provided $a,b,c\in\R$, $a\neq 0$, and $b^2-4ac\geq 0$.
+        \end{itemize}
+    \end{itemize}
+    \item However, even in $\R$, we cannot solve equations such as $x^2+1=0$. Thus, we need $\C$.
+    \item \textbf{Complex number system}: The set of all ordered pairs $(a,b)$ of real numbers subject to the laws of equality, addition, and multiplication.
+    \begin{description}
+        \item[Equality]\hfill\\Two complex numbers $(a,b)$ and $(c,d)$ are equal if and only if $a=c$ and $b=d$:
+        \begin{center}
+            $a+ib=c+id$ iff $a=c$ and $b=d$
+        \end{center}
+        \item[Addition]\hfill\\The sum of two complex numbers $(a,b)$ and $(c,d)$ is the complex number $(a+c,b+d)$:
+        \begin{equation*}
+            (a+ib)+(c+id) = (a+c)+i(b+d)
+        \end{equation*}
+        \item[Multiplication]\hfill\\The product of two complex numbers $(a,b)$ and $(c,d)$ is the complex number $(ac-bd,ad+bc)$:
+        \begin{equation*}
+            (a+ib)(c+id) = (ac-bd)+i(ad+bc)
+        \end{equation*}
+        The product of a real number $c$ and the complex number $(a,b)$ is the complex number $(ad,bc)$:
+        \begin{equation*}
+            c(a+ib) = ac+i(bc)
+        \end{equation*}
+    \end{description}
+    \begin{itemize}
+        \item Note that the set of all complex numbers $(a,0)$ has all the properties of the set of ordinary real numbers $a$.
+        \begin{itemize}
+            \item In particular, $(0,0)$ is the zero element of $\C$ and $(1,0)$ is the identity element of $\C$.
+        \end{itemize}
+    \end{itemize}
+    \item Now that we are equipped with the complex numbers, we can see that $(0,1)^2+(1,0)=0$, i.e., $(0,1)$ solves $x^2+1=0$.
+\end{itemize}
+
+
+
+\section{The Argand Diagram}
+\begin{itemize}
+    \item Reviews division in $\C$ and complex conjugates.
+    \item \textbf{Argand diagram}: A 2D Cartesian coordinate system where the $x$-axis is the axis of reals and the $y$-axis is the imaginary axis. \emph{Also known as} \textbf{$\bm{z}$-plane}.
+    \begin{itemize}
+        \item In an Argand diagram, we can visualize complex numbers either as points in a 2D plane or as vectors from the origin to the point.
+    \end{itemize}
+    \item In polar coordinates, the complex number $z=x+iy$ becomes $r(\cos\theta+i\sin\theta)$.
+    \item \textbf{Absolute value} (of $(x+iy)\in\C$): The length $r$ of the vector $\overrightarrow{OP}$ from the origin to $P(x,y)$. \emph{Given by}
+    \begin{equation*}
+        |x+iy| = \sqrt{x^2+y^2}
+    \end{equation*}
+    \item \textbf{Argument} (of $z\in\C$): The polar angle $\theta$. \emph{Denoted by} $\bm{\arg z}$.
+    \item \textbf{Principal value} (of $\arg z$): The value of $\arg z$ that satisfies $-\pi<\arg z\leq\pi$.
+    \item Note that
+    \begin{equation*}
+        z\cdot\bar{z} = |z|^2
+    \end{equation*}
+    \item $\textbf{cis}\,\bm{\theta}$: The function given by
+    \begin{equation*}
+        \cis\theta = \cos\theta+i\sin\theta
+    \end{equation*}
+    \begin{itemize}
+        \item We can prove from basic trigonometric identities that the following properties hold for the $\cis$ function.
+        \begin{align*}
+            \cis\theta_1\cdot\cis\theta_2 &= \cis(\theta_1+\theta_2)&
+            (\cis\theta)^{-1} &= \cis(-\theta)&
+            \frac{\cis\theta_1}{\cis\theta_2} &= \cis(\theta_1-\theta_2)
+        \end{align*}
+        \item It follows that if $z_1=r_1\cis\theta_1$ and $z_2=r_2\cis\theta_2$, then
+        \begin{align*}
+            z_1z_2 &= r_1r_2\cis(\theta_1+\theta_2)&
+            |z_1z_2| &= |z_1|\cdot|z_2|&
+            \arg(z_1z_2) &= \arg z_1+\arg z_2\\
+            \frac{z_1}{z_2} &= \frac{r_1}{r_2}\cis(\theta_1-\theta_2)&
+            \left| \frac{z_1}{z_2} \right| &= \frac{|z_1|}{|z_2|}&
+            \arg\left( \frac{z_1}{z_2} \right) &= \arg z_1-\arg z_2\\
+            z_1^n &= r_1^n\cis n\theta_1&
+            |z_1^n| &= |z_1|^n&
+            \arg(z_1^n) &= n\arg z_1
+        \end{align*}
+    \end{itemize}
+    \item \textbf{De Moivre's theorem}: The statement that
+    \begin{equation*}
+        (\cos\theta+i\sin\theta)^n = \cos n\theta+i\sin n\theta
+    \end{equation*}
+    \begin{itemize}
+        \item De Moivre's theorem allows us to obtain formulas for $\cos n\theta$ and $\sin n\theta$ by expanding the lefthand side of the above equation via the binomial theorem and matching up real and imaginary components (the real component of the expansion will be equal to $\cos n\theta$, and vice versa for the imaginary part).
+    \end{itemize}
+    \item With respect to roots of complex numbers, we have that every complex number has $n$, $n^\text{th}$ roots. These are given by
+    \begin{equation*}
+        \sqrt[n]{z} = \sqrt[n]{r}\cis\left( \frac{\theta}{n}+k\frac{2\pi}{n} \right)
+    \end{equation*}
+    for $k\in\Z$.
+    \begin{itemize}
+        \item For convenience, we need only consider $k=0,\dots,n-1$.
+        \item Note that \dq{all the $n^\text{th}$ roots of $r\cis\theta$ lie on a circle centered at the origin $O$ and having radius equal to the real, positive $n^\text{th}$ root of $r$. One of them has argument $\alpha=\theta/n$. The others are uniformly spaced around the circumference of the circle, each being separated from its neighbors by an angel equal to $2\pi/n$}{674}
+    \end{itemize}
+    \item We need not invent further number systems for $\sqrt[4]{-1},\sqrt[6]{-1},\dots$ since these quantities are expressible in terms of the complex numbers.
+    \item \textbf{Fundamental Theorem of Algebra}: Every polynomial equation of the form $a_0z^n+z_1z^{n-1}+\cdots+a_{n-1}z+a_n=0$ in which the coefficients $a_0,\dots,a_n$ are any complex numbers, whose degree $n$ is greater than or equal to one, and whose leading coefficient $a_0\neq 0$ possesses precisely $n$ roots in the complex number system, provided that each multiple root of multiplicity $m$ is counted as $m$ roots.
+\end{itemize}
+
+
+
+\section{The Complex Variable}
+\begin{itemize}
+    \item A complex, time-dependent variable $z=x+iy$ approaches the \textbf{limit} $\alpha=a+ib$ if the \textbf{distance} between $z$ and $\alpha$ approaches zero as $t$ approaches some value.
+    \begin{itemize}
+        \item Mathematically, $z\to\alpha$ iff $|z-\alpha|\to 0$.
+        \item If $z\to\alpha$ as $t\to 1$, for example, we write $\lim_{t\to 1}z=\alpha$.
+        \item Additionally, since $|z-\alpha|\leq|x-a|+|y-b|$, $|x-a|\leq|z-\alpha|$, and $|y-b|\leq|z-\alpha|$, we have that $z\to\alpha$ iff $x\to a$ and $y\to b$.
+    \end{itemize}
+    \item \textbf{Complex single-valued function}: A function $w:S\to\C$ where $S\subset\C$.
+    \item One way of representing a complex single-valued function graphically is with \textbf{mapping}.
+    \item The following example maps the function $w=z^2$.
+    \begin{figure}[h!]
+        \centering
+        \begin{subfigure}[b]{0.49\linewidth}
+            \centering
+            \begin{tikzpicture}[
+                scale=2,
+                every node/.append style={black}
+            ]
+                \footnotesize
+                \draw [-stealth,name path=x] (-1,0) -- (1.5,0) node[right]{$x$};
+                \draw [-stealth,name path=y] (0,-1.6) -- (0,1.8) node[above]{$y$};
+                \node [below left]{$O$};
+    
+                \draw [ylx,thick,name path=a,postaction={decorate},decoration={
+                    markings,
+                    mark=at position 0.9 with \arrow{latex}
+                }] (0.4,-1.6) -- node[pos=0.8,right]{$x=a$} ++(0,3.4);
+                \draw [ylx,thick,name path=b,postaction={decorate},decoration={
+                    markings,
+                    mark=at position 0.9 with \arrow{latex}
+                }] (-1,0.3) -- node[pos=0.85,above]{$y=b$} ++(2.5,0);
+    
+                \path [name intersections={of=x and a}] (intersection-1) node[below right]{$(a,0)$};
+                \path [name intersections={of=y and b}] (intersection-1) node[above left]{$(0,b)$};
+                \path [name intersections={of=a and b}] (intersection-1) node[above right]{$(a,b)$};
+            \end{tikzpicture}
+            \caption{Lines to be mapped.}
+            \label{fig:complexFunctionMappinga}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.49\linewidth}
+            \centering
+            \begin{tikzpicture}[
+                scale=2,
+                every node/.append style={black}
+            ]
+                \footnotesize
+                \draw [-stealth,name path=u] (-1,0) -- (1.5,0) node[right]{$u$};
+                \draw [-stealth,name path=v] (0,-1.6) -- (0,1.8) node[above]{$v$};
+                \node [below left]{$O$};
+                
+                \draw [ylx,thick,name path=a,postaction={decorate},decoration={
+                    markings,
+                    mark=at position 0.3 with \arrow{latex},
+                    mark=at position 0.4 with {\coordinate (a1);},
+                    mark=at position 0.6 with {\coordinate (a2);},
+                    mark=at position 0.7 with \arrow{latex}
+                }] plot[domain=-1:1,variable=\y] ({0.8^2-\y*\y},{2*0.8*\y});
+                \draw [ylx,thick,name path=b,postaction={decorate},decoration={
+                    markings,
+                    mark=at position 0.2 with \arrow{latex},
+                    mark=at position 0.37 with {\coordinate (b1);},
+                    mark=at position 0.63 with {\coordinate (b2);},
+                    mark=at position 0.84 with \arrow{latex}
+                }] plot[domain=-1:1,variable=\x] ({\x*\x-0.6^2},{2*0.6*\x});
+    
+                \path [name intersections={of=u and a}] (intersection-1) node[below right]{$(a^2,0)$};
+                \path [name intersections={of=u and b}] (intersection-1) node[below left]{$(-b^2,0)$};
+                \path [name intersections={of=v and a}]
+                    (intersection-1) node[below right]{$(0,-2a^2)$}
+                    (intersection-2) node[above right]{$(0,2a^2)$}
+                ;
+                \path [name intersections={of=v and b}]
+                    (intersection-1) node[below left]{$(0,-2b^2)$}
+                    (intersection-2) node[above left]{$(0,2b^2)$}
+                ;
+                \path [name intersections={of=a and b}]
+                    (intersection-1) node[right=2pt,yshift=2pt]{$(a^2-b^2,-2|ab|)$}
+                    (intersection-2) node[right=2pt,yshift=-2pt]{$(a^2-b^2,2|ab|)$}
+                ;
+    
+                \draw [<-,shorten <=1pt] (a1) -- ++(0.2,-0.05) node[right]{map of $x=a$};
+                \draw [<-,shorten <=1pt] (a2) -- ++(0.2,0.05) node[right]{$v^2=4a^2(a^2-u)$};
+                \draw [<-,shorten <=1pt] (b1) -- ++(-0.2,-0.05) node[left]{map of $y=b$};
+                \draw [<-,shorten <=1pt] (b2) -- ++(-0.2,0.05) node[left]{$v^2=4b^2(b^2+u)$};
+            \end{tikzpicture}
+            \caption{Mapping.}
+            \label{fig:complexFunctionMappingb}
+        \end{subfigure}
+        \caption{Mapping a complex single-valued function.}
+        \label{fig:complexFunctionMapping}
+    \end{figure}
+    \begin{itemize}
+        \item Since $w=z^2$, we know that $u+iv=(x^2-y^2)+i(2xy)$.
+        \item Consider the line $x=a$ in the Argand plane (see Figure \ref{fig:complexFunctionMappinga}). As $y$ varies from $-\infty$ to $\infty$ along this line, it follows from the above equation that $u$ varies as a function of $y$:
+        \begin{equation*}
+            u(y) = a^2-y^2
+        \end{equation*}
+        Similarly, $v$ varies as a function of $y$:
+        \begin{equation*}
+            v(y) = 2ay
+        \end{equation*}
+        \item These functions $u(y)$ and $v(y)$ are a parameterization of a curve in the $w$-plane in terms of the parameter $y$. Eliminating $y$ yields the parabola
+        \begin{equation*}
+            v^2 = 4a^2(a^2-u)
+        \end{equation*}
+        which we can see graphed in Figure \ref{fig:complexFunctionMappingb}.
+        \item We may do the same with the line $y=b$, yielding the parameterization
+        \begin{equation*}
+            \left.
+                \begin{aligned}
+                    u &= x^2-b^2\\
+                    v &= 2bx
+                \end{aligned}
+            \right\} -\infty<x<+\infty
+        \end{equation*}
+        and the parabola
+        \begin{equation*}
+            v^2 = 4b^2(b^2+u)
+        \end{equation*}
+        \item Note that it is easily seen that the line $x=-a$ maps onto the same parabola as $x=a$, and similarly for $y=-b$. These phenomena are to be expected since $w(-z)=(-z)^2=z^2=w(z)$.
+    \end{itemize}
+    \item \textbf{Continuous} (complex single-valued function at $z=\alpha$): A function $w=f(z)$ defined throughout some neighborhood of $z=\alpha$ such that $|f(z)-f(\alpha)|\to 0$ as $|z-\alpha|\to 0$.
+\end{itemize}
+
+
+
+\section{Derivatives}
+\begin{itemize}
+    \item \textbf{Derivative} (at $z=\alpha$): The number
+    \begin{equation*}
+        f'(\alpha) = \lim_{z\to\alpha}\frac{f(z)-f(\alpha)}{z-\alpha}
+    \end{equation*}
+    provided that the limit exists.
+    \begin{itemize}
+        \item \dq{Since $z$ may approach $\alpha$ from any direction\dots the existence of such a limit imposes a rather strong restriction on the function $w=f(z)$}{678}
+    \end{itemize}
+    \item For example, the function $f(z)=\bar{z}$ has no derivative at any point, as can be shown by considering $z$ approaching an arbitrary $\alpha$ along the lines $x=a$ and $y=b$:
+    \begin{align*}
+        \lim_{\substack{x\to a\\y=b}}\frac{\bar{z}-\bar{\alpha}}{z-\alpha} &= \lim_{\substack{x\to a\\y=b}}\frac{(x-a)-i(y-b)}{(x-a)+i(y-b)}\\
+        &= \lim_{x\to a}\frac{(x-a)-i(b-b)}{(x-a)+i(b-b)}\\
+        &= \lim_{x\to a}1\\
+        &= 1\\
+        &\neq -1\\
+        &= \lim_{y\to b}-1\\
+        &= \lim_{y\to b}\frac{(a-a)-i(y-b)}{(a-a)+i(y-b)}\\
+        &= \lim_{\substack{x=a\\y\to b}}\frac{(x-a)-i(y-b)}{(x-a)+i(y-b)}\\
+        &= \lim_{\substack{x=a\\y\to b}}\frac{\bar{z}-\bar{\alpha}}{z-\alpha}
+    \end{align*}
+    \item The constant, sum, product, quotient, chain, and power rules for complex functions are exactly analogous to those for real functions.
+    \item For example, $\dv*{z^3}{z}=3z^2$, as we can prove via
+    \begin{align*}
+        w+\Delta w &= z^3+3z^2\Delta z+3z(\Delta z)^2+(\Delta z)^3\\
+        \frac{\Delta w}{\Delta z} &= 3z^2+3z(\Delta z)+(\Delta z)^2
+    \end{align*}
+    and
+    \begin{equation*}
+        \left| \frac{\Delta w}{\Delta z}-3z^2 \right| = |3z+\Delta z|\cdot|\Delta z| \to 0
+    \end{equation*}
+    as $\Delta z\to 0$.
+    \begin{itemize}
+        \item Notice that in this case, it does not matter how $\Delta z\to 0$, only that it does.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Cauchy-Riemann Differential Equations}
+\begin{itemize}
+    \item Let $w=u+iv$ be differentiable at $\alpha=a+ib$. Then by making $z\to\alpha$ along the line $x=a$ and along the line $y=b$, we obtain
+    \begin{align*}
+        f'(\alpha) &= \lim_{\substack{\Delta x\to 0\\\Delta y=0}}\frac{\Delta u+i\Delta v}{\Delta x+i\Delta y}&
+            f'(\alpha) &= \lim_{\substack{\Delta x=0\\\Delta y\to 0}}\frac{\Delta u+i\Delta v}{\Delta x+i\Delta y}\\
+        &= \lim_{\Delta x\to 0}\left( \frac{\Delta u}{\Delta x}+i\frac{\Delta v}{\Delta x} \right)&
+            &= \lim_{\Delta y\to 0}\left( \frac{1}{i}\frac{\Delta u}{\Delta y}+\frac{\Delta v}{\Delta y} \right)\\
+        &= \left( \pdv{u}{x}+i\pdv{v}{x} \right)_{z=\alpha}&
+            &= \left( -i\pdv{u}{y}+\pdv{v}{y} \right)_{z=\alpha}
+    \end{align*}
+    \begin{itemize}
+        \item By equating the real and imaginary parts of the above two equations, we obtain the \textbf{Cauchy-Riemann differential equations}:
+        \begin{align*}
+            \pdv{u}{x} &= \pdv{v}{y}&
+            \pdv{v}{x} &= -\pdv{u}{y}
+        \end{align*}
+    \end{itemize}
+    \item \dq{If we take functions which do satisfy the Cauchy-Riemann equations and which, in addition, have continuous partial derivatives $u_x,u_y,v_x,v_y$, then it is true\dots that the resulting function $w=u+iv$ is differentiable with respect to $z$}{680}
+    \item \textbf{Analytic} (function in $G\subset\C$): A function $w=f(z)$ that has a derivative at every point of some region $G$ in the $z$-plane.
+    \item \textbf{Analytic} (function in $G\subset\C$) \textbf{except} (at $\alpha$): A function $w=f(z)$ that has a derivative at every point of some region $G$ in the $z$-plane save $\alpha\in G$.
+    \item \textbf{Singular point} (of an analytic function in $G$ except at $\alpha$): The point $\alpha$.
+\end{itemize}
+
+
+
+
+\end{document}
