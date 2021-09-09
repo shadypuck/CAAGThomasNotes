@@ -1,0 +1,196 @@
+\documentclass[../main.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter:\ #1}{}}
+\setcounter{chapter}{19}
+
+\begin{document}
+
+
+
+
+\chapter{Differential Equations}\label{cht:20}
+\section{Introduction}
+\begin{itemize}
+    \item \marginnote{9/9:}\textbf{Differential equation}: An equation that involves one or more derivatives, or differentials.
+    \item \textbf{Type} (of a differential equation): A differential equation is either an \textbf{ordinary differential equation} or a \textbf{partial differential equation}.
+    \item \textbf{Order} (of a differential equation): The order of the highest-order derivative that occurs in the equation.
+    \item \textbf{Degree} (of a differential equation): The exponent of the highest power of the highest-order derivative, after the equation has been cleared of fractions and radicals in the dependent variable and its derivatives.
+    \item \textbf{Ordinary differential equation}: A differential equation where the only derivatives that appear are those of a dependent variable $y$ varying as a function of a single independent variable $x$.
+    \item \textbf{Partial differential equation}: A differential equation where partial derivatives appear.
+    \item \dq{For example,
+    \begin{equation*}
+        \left( \dv[3]{y}{x} \right)^2+\left( \dv[2]{y}{x} \right)^5+\frac{y}{x^2+1} = \e[x]
+    \end{equation*}
+    is an ordinary differential equation, of order three and degree two}{691}
+    \item \textcite{bib:Thomas} does not include a systematic treatment of partial differential equations, so he recommends Chapter 10 of \textcite{bib:Kaplan}.
+    \item If $A,B,C$ are radioactive substances such that $A$ decomposes into $B$ at a rate proportional to the amount of $A$ present (proportionality constant $k_1$), $B$ decomposes into $C$ at a rate proportional to the amount of $A$ present (proportionality constant $k_2$), and $C$ decomposes into $A$ at a rate proportional to the amount of $C$ present (proportionality constant $k_3$), we can write the following system of differential equations.
+    \begin{align*}
+        \dv{x}{t} &= -k_1x+k_3z&
+        \dv{y}{t} &= k_1x-k_2y&
+        \dv{z}{t} &= k_2y-k_3z
+    \end{align*}
+    \begin{itemize}
+        \item Since $\dv*{x}{t}+\dv*{y}{t}+\dv*{z}{t}=0$ in this case, our solution is that $x+y+z=C$, i.e., the statement that if the amounts of substances change in this manner, the total amount of substance present remains constant.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Solutions}
+\begin{itemize}
+    \item \textbf{Solution} (of a differential equation): A function $y=f(x)$ such that the differential equation is identically satisfied when $y$ and its derivatives are replaced throughout by $f(x)$ and its corresponding derivatives.
+    \item Differential equations often have solutions in which certain arbitrary constants occur.
+    \begin{itemize}
+        \item However, these constants can often be resolved into specific values with the help of initial conditions.
+        \item In fact, \dq{a differential equation of order $n$ will in general possess a solution involving $n$ arbitrary constants}{693}
+        \begin{itemize}
+            \item There is a more precise theorem that implies this result, but \textcite{bib:Thomas} neither states nor proves it.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{General solution}: A solution that still contains all arbitrary constants arising from the solving process.
+    \item Since finding general solutions requires calculus and finding specific solutions from general solutions and initial conditions only requires algebra, we will focus on finding general solutions.
+    \item Note that this is only an introduction; for a more exhaustive treatment of differential equations, refer to \textcite{bib:MartinReissner}.
+\end{itemize}
+
+
+
+\section{First-Order Equations with Variables Separable}
+\begin{itemize}
+    \item If it is possible to collect all $y$-terms with $\dd{y}$ and all $x$-terms with $\dd{x}$, i.e., if it is possible to write the equation in the form
+    \begin{equation*}
+        f(y)\dd{y}+g(x)\dd{x} = 0
+    \end{equation*}
+    then the general solution is
+    \begin{equation*}
+        \int f(y)\dd{y}+\int g(x)\dd{x} = C
+    \end{equation*}
+    where $C$ is an arbitrary constant.
+\end{itemize}
+
+
+
+\section{First-Order Homogeneous Equations}
+\begin{itemize}
+    \item \textbf{Homogeneous} (differential equation): A differential equation that can be put into the form
+    \begin{equation*}
+        \dv{y}{x} = F(y/x)
+    \end{equation*}
+    where $F(y/x)$ is some function of $y/x$.
+    \item Solving a first-order homogeneous differential equation.
+    \begin{itemize}
+        \item We use $u$-substitution.
+        \item If we let $u=y/x$, then $\dv*{y}{x}=u+x\dv*{u}{x}$ by the product rule.
+        \item Thus, the differential equation can be rewritten in the form $u+x\dv*{u}{x}=F(u)$, which can be solved in terms of $u$ and $x$ via separation of variables as follows.
+        \begin{equation*}
+            \frac{\dd{x}}{x}+\frac{\dd{u}}{u-F(u)} = 0
+        \end{equation*}
+        \item Once the above is solved, we can return the substitution to obtain our final solution.
+    \end{itemize}
+    \item \dq{Show that the equation $(x^2+y^2)\dd{x}+2xy\dd{y}=0$ is homogeneous, and solve it}{694}
+    \begin{itemize}
+        \item Via basic algebra, we can rewrite the above in the form
+        \begin{align*}
+            \dv{y}{x} &= -\frac{x^2+y^2}{2xy}\\
+            &= -\frac{1+(y/x)^2}{2(y/x)}
+        \end{align*}
+        implying that it is homogeneous with $F(u)=-(1+u^2)/(2u)$.
+        \item Therefore, the only remaining task is to solve
+        \begin{equation*}
+            \frac{\dd{x}}{x}+\frac{\dd{u}}{u-[-(1+u^2)/(2u)]} = 0
+        \end{equation*}
+        via separation of variables integration.
+        \item After doing so, we obtain
+        \begin{align*}
+            \ln|x|+\frac{1}{3}\ln(1+3u^2) &= \frac{1}{3}\ln C\\
+            x^3(1+3u^2) &= \pm C
+        \end{align*}
+        \item Therefore, returning our substitution, we have that
+        \begin{equation*}
+            x(x^2+3y^2) = C
+        \end{equation*}
+        is our solution.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{First-Order Linear Equations}
+\begin{itemize}
+    \item \textbf{Degree} (of a term in a differential equation): The sum of the exponents of the dependent variable and any of its derivatives in a given term.
+    \begin{itemize}
+        \item For example, $(\dv*[2]{y}{x})$ is of degree one but $y(\dv*{y}{x})$ is of degree two.
+    \end{itemize}
+    \item \textbf{Linear differential equation}: A differential equation such that every term is of degree zero or degree one.
+    \begin{equation*}
+        \dv{y}{x}+Py = Q
+    \end{equation*}
+    \begin{itemize}
+        \item A linear differential equation of first order can always be put into the above form, where $P,Q$ are functions of $x$.
+    \end{itemize}
+    \item \textbf{Integrating factor}: A function $\rho$ of the independent variable $x$ such that if the differential equation at hand is multiplied by $\rho$, it will compress into a form that is easier to integrate.
+    \begin{itemize}
+        \item For first-order linear differential equations, the function $\rho$ that we seek makes the left-hand side becomes the derivative of the product $\rho y$.
+    \end{itemize}
+    \item Deriving $\rho$ in terms of the values given in a general first-order linear differential equation.
+    \begin{itemize}
+        \item Multiplying by $\rho$, we have
+        \begin{equation*}
+            \rho\dv{y}{x}+\rho Py = \rho Q
+        \end{equation*}
+        \item Thus, since we want
+        \begin{equation*}
+            \rho\dv{y}{x}+\rho Py = \dv{x}(\rho y) = \rho\dv{y}{x}+\dv{\rho}{x}y
+        \end{equation*}
+        we must have by comparing terms that
+        \begin{equation*}
+            \dv{\rho}{x} = \rho P
+        \end{equation*}
+        \item It follows by separation of variables integration that
+        \begin{align*}
+            \frac{\dd{\rho}}{\rho} &= P\dd{x}\\
+            \ln|\rho| &= \int P\dd{x}+\ln C\\
+            \rho &= \pm C\e[\int P\dd{x}]\\
+            \rho &= \e[\int P\dd{x}]
+        \end{align*}
+        \begin{itemize}
+            \item Note that we can choose $\pm C=1$ since in the equation $\rho\dv*{y}{x}+\rho Py=\rho Q$, any $C$ term can be divided out of both sides anyways.
+        \end{itemize}
+    \end{itemize}
+    \item With the help of the integrating factor, we can now derive the general solution to a first-order linear differential equation as follows.
+    \begin{align*}
+        \dv{y}{x}+Py &= Q\\
+        \rho\dv{y}{x}+\rho Py &= \rho Q\\
+        \dv{x}(\rho y) &= \rho Q\\
+        \rho y &= \int\rho Q\dd{x}+C\\
+        y &= \frac{1}{\e[\int P\dd{x}]}\left( \int\e[\int P\dd{x}]Q\dd{x}+C \right)
+    \end{align*}
+    \item Note that a first-order linear differential equation may also be separable, or homogeneous. In such cases, we have a choice of solution methods.
+\end{itemize}
+
+
+
+\section{First-Order Equations With Exact Differentials}
+\begin{itemize}
+    \item Refer to Section 15.13 for the method of solving exact differentials.
+    \item Every first-order differential equation $P(x,y)\dd{x}+Q(x,y)\dd{y}=0$ can be made exact by multiplication by an integrating factor $\rho(x,y)$ having the property that
+    \begin{equation*}
+        \pdv{y}[\rho(x,y)P(x,y)] = \pdv{x}[\rho(x,y)Q(x,y)]
+    \end{equation*}
+    \begin{itemize}
+        \item \dq{It is not easy to determine $\rho$ from this equation. However, one can often recognize certain combinations of differentials that can be made exact by 'ingenious devices'}{696}
+    \end{itemize}
+    \item For example, consider $x\dd{y}-y\dd{x}=xy^2\dd{x}$.
+    \begin{itemize}
+        \item We may solve this differential equation by recognizing that it can be rewritten as
+        \begin{equation*}
+            -x\dd{x} = \frac{y\dd{x}-x\dd{y}}{y^2} = \dd{(x/y)}
+        \end{equation*}
+        \item Alternatively, we can multiply by the integrating factor $1/y^2$.
+    \end{itemize}
+\end{itemize}
+
+
+
+
+\end{document}
