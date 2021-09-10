@@ -192,5 +192,249 @@
 
 
 
+\section{Special Types of Second-Order Equations}
+\begin{itemize}
+    \item \marginnote{9/10:}\dq{Certain types of second-order differential equations, of which the general form is
+    \begin{equation*}
+        F\left( x,y,\dv{y}{x},\dv[2]{y}{x} \right) = 0
+    \end{equation*}
+    can be reduced to first-order equations by a suitable change of variables}{697}
+    \item Equations with the dependent variable missing:
+    \begin{equation*}
+        F\left( x,\dv{y}{x},\dv[2]{y}{x} \right) = 0
+    \end{equation*}
+    \begin{itemize}
+        \item Equations of the above form can be reduced to a first-order equation by substituting $p=\dv*{y}{x}$ and $\dv*{p}{x}=\dv*[2]{y}{x}$.
+        \item Then if we can solve for $p(x,C_1)$, we can integrate again to solve for $y$.
+    \end{itemize}
+    \item Equations with the independent variable missing:
+    \begin{equation*}
+        F\left( y,\dv{y}{x},\dv[2]{y}{x} \right) = 0
+    \end{equation*}
+    \begin{itemize}
+        \item Equations of the above form can be reduced to a first-order equation by substituting $p=\dv*{y}{x}$ and $\dv*[2]{y}{x}=p\dv*{p}{x}$.
+        \item Then if we solve for $p(y,C_1)$, we can further solve for $y$.
+    \end{itemize}
+    \item For example, consider
+    \begin{equation*}
+        \dv[2]{y}{x}+y = 0
+    \end{equation*}
+    \begin{itemize}
+        \item By the second method above, we get
+        \begin{align*}
+            0 &= p\dv{p}{y}+y\\
+            &= p\dd{p}+y\dd{y}\\
+            \frac{C_1^2}{2} &= \frac{p^2}{2}+\frac{y^2}{2}
+        \end{align*}
+        \item Returning the substitutions, we have
+        \begin{align*}
+            \dv{y}{x} &= \pm\sqrt{C_1^2-y^2}\\
+            \frac{\dd{y}}{\sqrt{C_1^2-y^2}} &= \pm\dd{x}\\
+            \sin^{-1}\left( \frac{y}{C_1} \right) &= \pm(x+C_2)\\
+            y &= \pm C_1\sin(x+C_2)
+        \end{align*}
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Linear Equations With Constant Coefficients}
+\begin{itemize}
+    \item \textbf{Linear differential equation of order $\bm{n}$}: An equation of the form
+    \begin{equation*}
+        \dv[n]{y}{x}+a_1\dv[n-1]{y}{x}+a_2\dv[n-2]{y}{x}+\cdots+a_{n-1}\dv{y}{x}+a_ny = F(x)
+    \end{equation*}
+    which is linear in $y$ and its derivatives, where $a_1,\dots,a_n$ are functions of $x$.
+    \item \textbf{Homogeneous} (linear differential equation of order $n$): A linear differential equation of order $n$ such that $F(x)=0$.
+    \item \textbf{Nonhomogeneous} (linear differential equation of order $n$): A linear differential equation of order $n$ that is not homogeneous, i.e., such that $F(x)\neq 0$.
+    \item Let $Df(x)=(\dv*{x})f(x)$. We similarly denote higher order derivatives with $D^nf(x)=(\dv*[n]{x})f(x)$.
+    \item \textbf{Linear differential operator}: A polynomial in $D$, meant to be interpreted as an operator which, when applied to $f(x)$, produces a linear combination of $f$ and its successive derivatives. \emph{Denoted by} $\bm{L}$.
+    \begin{itemize}
+        \item For example, $(D^2+D-2)f(x)=\dv*[2]{f(x)}{x}+\dv*{f(x)}{x}-2f(x)$.
+    \end{itemize}
+    \item Linear differential operators are additive and multiplicative:
+    \begin{align*}
+        (L_1+L_2)f(x) &= L_1f(x)+L_2f(x)&
+        L_1L_2f(x) &= L_1(L_2f(x))
+    \end{align*}
+    \begin{itemize}
+        \item Thus, they satisfy basic algebraic laws, so we may express $D^2-D-2$ as $(D+2)(D-2)$ for example, making the differential equation easier to solve.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Homogeneous Linear Second-Order Differential Equations With Constant Coefficients}
+\begin{itemize}
+    \item \textbf{Characteristic equation} (of a homogeneous linear differential equation with constant coefficients): The polynomial obtained by substituting $r^n$ for each $\dv*[n]{y}{x}$ term. Note that we substitute $1=r^0=\dv*[0]{y}{x}=y$ for $y$, as well.
+    \item Suppose we wish to solve an equation of the form
+    \begin{equation*}
+        \dv[2]{y}{x}+2a\dv{y}{x}+by = 0
+    \end{equation*}
+    \begin{itemize}
+        \item Then in the notation of the last section, $(D^2+2aD+b)y=(D-r_1)(D-r_2)y=0$, where $r_1,r_2$ are the roots of the polynomial $r^2+2ar+b$.
+        \item Thus, we can solve this differential equation by solving the sub-equations
+        \begin{align*}
+            (D-r_2)y &= u&
+            (D-r_1)u &= 0
+        \end{align*}
+        \item It follows that $u=C_1\e[r_1x]$, meaning that to solve
+        \begin{equation*}
+            \dv{y}{x}-r_2y = C_1\e[r_1x]
+        \end{equation*}
+        as a first-order homogeneous equation with integrating factor $\rho=\e[-r_2x]$, we need to divide into two cases ($r_1\neq r_2$ and $r_1=r_2$).
+        \begin{itemize}
+            \item If $r_1\neq r_2$, then
+            \begin{equation*}
+                y = C_1\e[r_1x]+C_2\e[r_2x]
+            \end{equation*}
+            \item If $r_1=r_2$, then
+            \begin{equation*}
+                y = (C_1x+C_2)\e[r_2x]
+            \end{equation*}
+        \end{itemize}
+    \end{itemize}
+    \item Imaginary roots.
+    \begin{itemize}
+        \item Suppose the polynomial has roots $r_1=\alpha+i\beta$ and $r_2=\alpha-i\beta$.
+        \item If $\beta=0$, then the roots are real and we just use the $r_1=r_2$ formula above.
+        \item However, if $\beta\neq 0$, then the roots are complex and we can modify the $r_1\neq r_2$ solution above into a more convenient form.
+        \begin{align*}
+            y &= c_1\e[(\alpha+i\beta)x]+c_2\e[(\alpha-i\beta)x]\\
+            &= \e[\alpha x][c_1\e[i\beta x]+c_2\e[-i\beta x]]\\
+            &= \e[\alpha x][c_1(\cos\beta x+i\sin\beta x)+c_2(\cos\beta x-i\sin\beta x)]\\
+            &= \e[\alpha x][(c_1+c_2)\cos\beta x+i(c_1-c_2)\sin\beta x]\\
+            &= \e[\alpha x][C_1\cos\beta x+C_2\sin\beta x]
+        \end{align*}
+        \begin{itemize}
+            \item Note that $C_1$ and $C_2$ will generally be real.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Nonhomogeneous Linear Second-Order Differential Equations With Constant Coefficients}
+\begin{itemize}
+    \item Suppose we wish to solve an equation of the form
+    \begin{equation*}
+        \dv[2]{y}{x}+2a\dv{y}{x}+by = F(x)
+    \end{equation*}
+    \begin{itemize}
+        \item First, find the general solution $y_h$ to the homogeneous form of the above equation, $\dv*[2]{y}{x}+2a\dv*{y}{x}+by=0$, i.e.,
+        \begin{equation*}
+            y_h = C_1u_1(x)+C_2u_2(x)
+        \end{equation*}
+        where $u_1,u_2$ equal the appropriate corresponding functions, as derived in Section 20.9.
+        \item There are two possibilities from here.
+        \item Inspection.
+        \begin{itemize}
+            \item We can find by inspection one particular function $y=y_p(x)$ which satisfies the original differential equation, in which case
+            \begin{equation*}
+                y = y_h(x)+y_p(x)
+            \end{equation*}
+        \end{itemize}
+        \item Variation of parameters.
+        \begin{itemize}
+            \item Replace $C_1,C_2$ with $v_1,v_2$, which we let be functions of $x$.
+            \item The goal is now just to impose conditions that allow us to solve for $v_1,v_2$.
+            \item As a first condition, require that
+            \begin{equation*}
+                v_1'u_1+v_2'u_2 = 0
+            \end{equation*}
+            \item Thus, using the substitutions of $v_1,v_2$ and the above condition, we have that
+            \begin{align*}
+                y &= v_1u_1+v_2u_2&
+                \dv{y}{x} &= v_1u_1'+v_1'u_1+v_2u_2'+v_2'u_2&
+                \dv[2]{y}{x} &= v_1u_1''+v_1'u_1'+v_2u_2''+v_2'u_2'\\
+                &&
+                &= v_1u_1'+v_2u_2'
+            \end{align*}
+            \item It follows by substitution into the original equation that
+            \begin{align*}
+                F(x) &= (v_1u_1''+v_1'u_1'+v_2u_2''+v_2'u_2')+2a(v_1u_1'+v_2u_2')+b(v_1u_1+v_2u_2)\\
+                &= v_1\left( \dv[2]{u_1}{x}+2a\dv{u_1}{x}+bu_1 \right)+v_2\left( \dv[2]{u_2}{x}+2a\dv{u_2}{x}+bu_2 \right)+v_1'u_1'+v_2'u_2'
+            \end{align*}
+            \item But since $u_1,u_2$ are solutions to the homogeneous form of the original equation, the terms in the parentheses above equal zero.
+            \item Thus, as a second condition, we require that
+            \begin{equation*}
+                v_1'u_1'+v_2'u_2' = F(x)
+            \end{equation*}
+            \item In summary, to solve for $v_1,v_2$ after making the appropriate substitutions, solve
+            \begin{align*}
+                v_1'u_1+v_2'u_2 &= 0&
+                v_1'u_1'+v_2'u_2' &= F(x)
+            \end{align*}
+            as a two-variable system of equations in $v_1',v_2'$. Then recover $v_1,v_2$ with integration.
+        \end{itemize}
+    \end{itemize}
+    \item For example, consider the following equation.
+    \begin{equation*}
+        \dv[2]{y}{x}+2\dv{y}{x}-3y = 6
+    \end{equation*}
+    \begin{itemize}
+        \item The characteristic equation of the homogeneous form is $r^2+2r-3=(r-1)(r+3)=0$.
+        \item Thus, $y_h=C_1\e[-3x]+C_2\e[x]$.
+        \item Substitute $u_1(x)=\e[-3x]$ and $u_2(x)=\e[x]$.
+        \item Consequently, our two-variable system of equations is
+        \begin{align*}
+            v_1'\e[-3x]+v_2'\e[x] &= 0&
+            v_1'(-3\e[-3x])+v_2'\e[x] &= 6
+        \end{align*}
+        \item Solving the above yields
+        \begin{align*}
+            v_1' &= -\frac{3}{2}\e[3x]&
+            v_2' &= \frac{3}{2}\e[-x]
+        \end{align*}
+        \item It follows that
+        \begin{align*}
+            v_1 &= \int-\frac{3}{2}\e[3x]\dd{x} = -\frac{1}{2}\e[3x]+c_1&
+            v_2 &= \int\frac{3}{2}\e[-x]\dd{x} = -\frac{3}{2}\e[-x]+c_2
+        \end{align*}
+        \item Therefore, we have that
+        \begin{align*}
+            y &= v_1u_1+v_2u_2\\
+            &= \left( -\frac{1}{2}\e[3x]+c_1 \right)\e[-3x]+\left( -\frac{3}{2}\e[-x]+c_2 \right)\e[x]\\
+            &= -2+c_1\e[-3x]+c_2\e[x]
+        \end{align*}
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Higher-Order Linear Differential Equations With Constant Coefficients}
+\begin{itemize}
+    \item The methods of Sections 20.9-20.10 extend to equations of higher order.
+    \item If the roots $r_1,\dots,r_n$ of the characteristic polynomial are all distinct, then the solution of the homogenous equation is
+    \begin{equation*}
+        y_h = c_1\e[r_1x]+\cdots+c_n\e[r_nx]
+    \end{equation*}
+    \item If the roots of the characteristic polynomial are not all distinct, then the portion of $y_h$ corresponding to a root $r$ of multiplicity $m$ is to be replaced by
+    \begin{equation*}
+        (C_1x^{m-1}+C_2x^{m-2}+\cdots+C_m)\e[rx]
+    \end{equation*}
+    \item If the general solution of the homogeneous equation is $y_h=C_1u_1+\cdots+C_nu_n$, then $y=v_1u_1+\cdots+v_nu_n$ will be a solution of the nonhomogeneous equation if and only if
+    \begin{align*}
+        v_1'u_1+\cdots+v_n'u_n &= 0\\
+        v_1'\dv{u_1}{x}+\cdots+v_n'\dv{u_n}{x} &= 0\\
+        % v_1'\dv[2]{u_1}{x}+\cdots+v_n'\dv[2]{u_n}{x} &= 0\\
+        &\hspace{5.5pt}\vdots\\
+        v_1'\dv[n-2]{u_1}{x}+\cdots+v_n'\dv[n-2]{u_n}{x} &= 0\\
+        v_1'\dv[n-1]{u_1}{x}+\cdots+v_n'\dv[n-1]{u_n}{x} &= F(x)
+    \end{align*}
+    \begin{itemize}
+        \item These equations can be solved for $v_1',\dots,v_n'$ and then integrated.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Vibrations}
+\begin{itemize}
+    \item \textcite{bib:Thomas} uses differential equations and Newton's Laws to derive the undamped and damped motion of a system vibrating under a linear restoring force.
+\end{itemize}
+
+
+
 
 \end{document}
